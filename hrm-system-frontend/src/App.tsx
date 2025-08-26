@@ -3,7 +3,7 @@ import ReactDOM from "react-dom/client";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import Dashboard from "./Pages/Dashboard";
 import Navbar from "./Components/Navbar/Navbar";
-import Sidebar from "./Components/Navbar/Sidebar/Sidebar";
+import Sidebar from "./Components/Sidebar/Sidebar";
 import Login from "./Pages/Auth/Login";
 import SignUp from "./Pages/Auth/SignUp";
 import HRProtectedRoute from "./Pages/ProtectedRoutes/HRProtectedRoutes/HRProtectedRoute";
@@ -20,9 +20,9 @@ function App() {
     <>
       <BrowserRouter>
 
-        <Navbar />
+        {/* <Navbar /> */}
 
-        <Sidebar />
+        {/* <Sidebar /> */}
 
         <Routes>
 

@@ -8,6 +8,7 @@ const port = 2404;
 
 dotenv.config();
 mongoose.connect(process.env.MONGO)
+
 .then(()=>{
     console.log("DataBase Connected...")
 })
@@ -19,6 +20,7 @@ app.use(express.json());
 app.use(cookieParser());
 
 app.use('/api/auth',authRoute)
+
 
 //middleware for error
 app.use((err,req,res,next)=>{
