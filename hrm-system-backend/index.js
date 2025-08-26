@@ -9,26 +9,26 @@ const port = 2404;
 dotenv.config();
 mongoose.connect(process.env.MONGO)
 
-.then(()=>{
-    console.log("DataBase Connected...")
-})
-.catch((err)=>{
-    console.log(err.message)
-})
+    .then(() => {
+        console.log("DataBase Connected...")
+    })
+    .catch((err) => {
+        console.log(err.message)
+    })
 
 app.use(express.json());
 app.use(cookieParser());
 
-app.use('/api/auth',authRoute)
+app.use('/api/auth', authRoute)
 
 
 //middleware for error
-app.use((err,req,res,next)=>{
+app.use((err, req, res, next) => {
     const statusCode = err.statusCode || 500;
     const message = err.message || "internal server error";
     return res.status(statusCode).json(
         {
-            success:false,
+            success: false,
             statusCode,
             message
         }
@@ -37,7 +37,7 @@ app.use((err,req,res,next)=>{
 
 
 
-app.listen(port,()=>{
+app.listen(port, () => {
     console.log(`Server running on port ${port}`)
 })
 

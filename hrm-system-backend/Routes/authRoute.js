@@ -7,7 +7,7 @@ import { VerifyToken } from '../Utlis/VerifyToken.js';
 
 const authRoute = express.Router();
 
-authRoute.get('/login',Login)
+authRoute.post('/login',Login)
 authRoute.post('/signup',VerifyToken,signUp)
 
 export default authRoute;
