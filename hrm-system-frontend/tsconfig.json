@@ -1,9 +1,11 @@
-
-
 {
   "compilerOptions": {
-    "jsx": "react-jsx",   // ✅ for React 17+ new JSX transform
+    "jsx": "react-jsx",  
     "moduleResolution": "node",
-    "esModuleInterop": true
+    "esModuleInterop": true,
+    "baseUrl": ".",                // ✅ set base directory for imports
+    "paths": {
+      "@/*": ["src/*"]            // ✅ map @/ to src/
+    }
   }
 }
