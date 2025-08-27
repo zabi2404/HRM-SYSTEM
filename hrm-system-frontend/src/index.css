@@ -131,3 +131,9 @@ color: white;
   }
 }
 
+
+
+
+.customScroll{
+  scrollbar-width: none;
+}

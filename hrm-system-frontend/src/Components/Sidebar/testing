@@ -1,0 +1,354 @@
+import React, { useState } from 'react'
+import Button from '../Buttons/Buttons'
+import { MdIndeterminateCheckBox } from "react-icons/md";
+import { IoCalendarClear } from "react-icons/io5";
+import { IoMdCheckbox } from "react-icons/io";
+
+import { IoChevronDown } from 'react-icons/io5'
+import StatusButton from '../Buttons/StatusButton';
+import CalendarButton from '../Buttons/CalendarButton';
+export default function orderTable() {
+
+const [checked , setChecked] = useState(false);
+
+const HandleChange =(e)=>{
+setChecked(prev=>!prev)
+}
+
+    return (
+        <>
+            <div className=" bg-[#0B1739] rounded-[12px] min-w-0">
+        <div className="p-4 pb-10 flex justify-between mt-6">
+            <h1 className="text-[16px]">Recent Orders</h1>
+           <CalendarButton
+           title="Jan 24"
+           color="#0A1330"
+           />
+        </div>    
+           
+                <div className='  overflow-x-auto customScroll  xsm:min-w-[150px] 
+                
+                '>
+                    <table className=' min-w-max w-[700px] h-[400px] text-white text-sm   '>
+                    <thead>
+                        <tr ><td className='pl-8 align-middle'><div className='flex items-center gap-1'> <MdIndeterminateCheckBox className='text-[#CB3CFF]' /> Order</div></td>
+                            <td className='align-middle'><div className='flex items-center gap-1'><IoCalendarClear className='text-[#AEB9E1]' />
+                                Date</div></td>
+                            <td className='align-middle'><div className='flex items-center gap-1'><IoMdCheckbox className='text-[#AEB9E1]' />
+                                Status</div></td>
+                            <td>Total</td>
+                        </tr>
+
+                    </thead>
+                    <tbody  >
+                        <tr className={`${checked && `bg-[#0A1330]`}`} >
+                            <td className='pl-8' ><input onChange={HandleChange} className=' accent-[#CB3CFF]' type="checkbox" /> #1234</td>
+                            <td>Jan 1, 2024</td>
+                            <td><StatusButton
+                            title={`${checked?'Paid':'Pending'}`}
+                            /></td>
+                            <td>$100.00</td>
+                        </tr>
+                        <tr>
+                            <td className='pl-8' ><input   className=' accent-[#CB3CFF]' type="checkbox" name="" id="" /> #1235</td>
+                            <td>Jan 2, 2024</td>
+                            <td><StatusButton
+                            title='Pending'
+                            /></td>
+                            <td>$150.00</td>
+                        </tr>
+                        <tr>
+                            <td className='pl-8'><input className=' accent-[#CB3CFF]' type="checkbox" name="" id="" /> #1236</td>
+                            <td>Jan 3, 2024</td>
+                            <td><StatusButton
+                            title='Paid'
+                            /></td>
+                            <td>$200.00</td>
+                        </tr>
+                        <tr>
+                            <td className='pl-8'><input className=' accent-[#CB3CFF]' type="checkbox" name="" id="" /> #1236</td>
+                            <td>Jan 3, 2024</td>
+                            <td><StatusButton
+                            title='Pending'
+                            /></td>
+                            <td>$200.00</td>
+                        </tr>
+                        <tr>
+                            <td className='pl-8'><input className=' accent-[#CB3CFF]' type="checkbox" name="" id="" /> #1236</td>
+                            <td>Jan 3, 2024</td>
+                            <td><StatusButton
+                            title='Paid'
+                            /></td>
+                            <td>$200.00</td>
+                        </tr>
+                        <tr>
+                            <td className='pl-8'><input className=' accent-[#CB3CFF]' type="checkbox" name="" id="" /> #1236</td>
+                            <td>Jan 3, 2024</td>
+                            <td></td>
+                            <td>$200.00</td>
+                        </tr>
+                    </tbody>
+                </table>
+           
+            </div>
+
+            </div >
+            </>
+    )
+}
+
+
+
+
+
+
+
+
+
+
+.............
+
+
+import React, { useState } from 'react';
+import { MdIndeterminateCheckBox } from "react-icons/md";
+import { IoCalendarClear } from "react-icons/io5";
+import { IoMdCheckbox } from "react-icons/io";
+import { orderTabledata } from '../../../public/Data';
+import StatusButton from '../Buttons/StatusButton';
+import CalendarButton from '../Buttons/CalendarButton';
+
+export default function OrderTable() {
+    const [selected, setSelected] = useState([]); // ← store ids of checked rows
+
+    const toggleRow = (id) => {
+        setSelected((prev) =>
+            prev.includes(id) ? prev.filter((x) => x !== id) : [...prev, id]
+        );
+        console.log(selected)
+    };
+
+    return (
+        <div className="bg-[#0B1739] rounded-[12px] min-w-0">
+            <div className="p-4 pb-10 flex justify-between mt-6">
+                <h1 className="text-[16px]">Recent Orders</h1>
+                <CalendarButton title="Jan 24" color="#0A1330" />
+            </div>
+
+            <div className="overflow-x-auto customScroll xsm:min-w-[150px]">
+                <table className="min-w-max w-[700px] text-white text-sm">
+                    <thead>
+                        <tr>
+                            <td className="pl-8">
+                                <div className="flex items-center gap-1">
+                                    <MdIndeterminateCheckBox className="text-[#CB3CFF]" /> Order
+                                </div>
+                            </td>
+                            <td>
+                                <div className="flex items-center gap-1">
+                                    <IoCalendarClear className="text-[#AEB9E1]" /> Date
+                                </div>
+                            </td>
+                            <td>
+                                <div className="flex items-center gap-1">
+                                    <IoMdCheckbox className="text-[#AEB9E1]" /> Status
+                                </div>
+                            </td>
+                            <td>Total</td>
+                        </tr>
+                    </thead>
+
+                    <tbody>
+                        {orderTabledata.map((item) => {
+                            const isChecked = selected.includes(item.id);
+                            return (
+                                <tr key={item.id} className={isChecked ? 'bg-[#0A1330]' : ''}>
+                                    <td className="pl-8">
+                                        <input
+                                            type="checkbox"
+                                            className="accent-[#CB3CFF]"
+                                            checked={isChecked}
+                                            onChange={() => toggleRow(item.id)}
+                                        />{' '}
+                                        #{item.id}
+                                    </td>
+
+                                    <td>{item.date}</td>
+                                    <td>
+                                        <StatusButton title={isChecked ? 'Paid' : 'Pending'} />
+                                    </td>
+                                    <td>${item.total}.00</td>
+                                </tr>
+                            );
+                        })}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    );
+}
+
+
+
+// all user table
+
+import React from 'react'
+import { MdDelete } from "react-icons/md";
+import { FaPen } from "react-icons/fa";
+
+
+export default function  AllUserTable() {
+  return (
+   <>
+   
+    <div className='overflow-x-auto customScroll bg-[#0B1739]  '>
+        <table className=' text-white text-sm w-[1040px] '>
+    <thead>
+      <tr>
+        <th className='w-1/6'>Name</th>
+        <th className='w-1/6'>Phone</th>
+        <th className='w-1/6'>Location</th>
+        <th className='w-1/6'>Company</th>
+        <th className='w-1/6'>Status</th>
+        </tr>
+    </thead>
+
+    
+    <tbody>
+
+
+      <tr className='text-center '>
+        <td className='p-8 ' >
+          hello@johncarter.com
+        </td>
+        <td >(414) 907 - 1274</td>
+        <td>United States</td>
+        <td>Google</td>
+        <td>Online</td>
+        <td >
+             
+           <div className='flex gap-2 pl-4'> <FaPen/> <MdDelete/></div>
+            
+            </td>
+        </tr>
+
+        <tr className='text-center'>
+        <td className='p-8' >
+          hello@johncarter.com
+        </td>
+        <td >(414) 907 - 1274</td>
+        <td>United States</td>
+        <td>Google</td>
+        <td>Online</td>
+         <td >
+             
+           <div className='flex gap-2 pl-4'> <FaPen/> <MdDelete/></div>
+            
+            </td>
+        </tr>
+        <tr className='text-center'>
+        <td className='p-8' >
+          hello@johncarter.com
+        </td>
+        <td >(414) 907 - 1274</td>
+        <td>United States</td>
+        <td>Google</td>
+        <td>Online</td>
+         <td >
+             
+           <div className='flex gap-2 pl-4'> <FaPen/> <MdDelete/></div>
+            
+            </td>
+        </tr>
+         <tr className='text-center'>
+        <td className='p-8' >
+          hello@johncarter.com
+        </td>
+        <td >(414) 907 - 1274</td>
+        <td>United States</td>
+        <td>Google</td>
+        <td>Online</td>
+ <td >
+             
+           <div className='flex gap-2 pl-4'> <FaPen/> <MdDelete/></div>
+            
+            </td>
+        </tr>
+        <tr className='text-center'>
+        <td className='p-8' >
+          hello@johncarter.com
+        </td>
+        <td >(414) 907 - 1274</td>
+        <td>United States</td>
+        <td>Google</td>
+        <td>Online</td>
+         <td >
+             
+           <div className='flex gap-2 pl-4'> <FaPen/> <MdDelete/></div>
+            
+            </td>
+        </tr>
+         <tr className='text-center'>
+        <td className='p-8' >
+          hello@johncarter.com
+        </td>
+        <td >(414) 907 - 1274</td>
+        <td>United States</td>
+        <td>Google</td>
+        <td>Online</td>
+         <td >
+             
+           <div className='flex gap-2 pl-4'> <FaPen/> <MdDelete/></div>
+            
+            </td>
+        </tr>
+        <tr className='text-center'>
+        <td className='p-8' >
+          hello@johncarter.com
+        </td>
+        <td >(414) 907 - 1274</td>
+        <td>United States</td>
+        <td>Google</td>
+        <td>Online</td>
+         <td >
+             
+           <div className='flex gap-2 pl-4'> <FaPen/> <MdDelete/></div>
+            
+            </td>
+        </tr>
+         <tr className='text-center'>
+        <td className='p-8' >
+          hello@johncarter.com
+        </td>
+        <td >(414) 907 - 1274</td>
+        <td>United States</td>
+        <td>Google</td>
+        <td>Online</td>
+         <td >
+             
+           <div className='flex gap-2 pl-4'> <FaPen/> <MdDelete/></div>
+            
+            </td>
+        </tr>
+        <tr className='text-center'>
+        <td className='p-8' >
+          hello@johncarter.com
+        </td>
+        <td >(414) 907 - 1274</td>
+        <td>United States</td>
+        <td>Google</td>
+        <td>Online</td>
+         <td >
+             
+           <div className='flex gap-2 pl-4'> <FaPen/> <MdDelete/></div>
+            
+            </td>
+        </tr>
+
+        
+    </tbody>
+  </table>
+    </div>
+   
+   </>
+  )
+}
