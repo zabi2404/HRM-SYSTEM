@@ -25,7 +25,7 @@ e.preventDefault();
 
 axios.post('/api/auth/login',formData)
 .then((response)=>{
-  console.log(response);
+  console.log(response.data);
 })
 .catch((err)=>{
   if(err.response){
