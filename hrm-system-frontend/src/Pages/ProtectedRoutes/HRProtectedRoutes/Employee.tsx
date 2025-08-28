@@ -29,8 +29,13 @@ export default function Employee() {
       <ManageYourEmplopyee/>
         {/* filter */}
           <SearchInput />
-        <div className='flex items-center justify-between gap-4'>
-          <div className='flex items-center gap-4'>
+        <div className='flex items-center justify-between gap-4
+        xsm:flex-col
+        min-[500px]:flex-row
+        '>
+          <div className='flex items-center gap-4
+      
+          '>
             <DropDownButton
             />
             <DropDownButton

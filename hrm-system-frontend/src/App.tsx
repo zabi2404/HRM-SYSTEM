@@ -40,7 +40,7 @@ function App() {
 
   useEffect(() => {
     const handleResize = () => {
-      setIsOpen(window.innerWidth >= 768);
+      setIsOpen(window.innerWidth >= 850);
     };
     handleResize();
     window.addEventListener('resize', handleResize);
@@ -51,7 +51,7 @@ function App() {
     const handleClickOutside = (e) => {
       if (
         isopen &&
-        window.innerWidth < 768 &&
+        window.innerWidth < 850 &&
         sidebarRef.current &&
         !sidebarRef.current.contains(e.target) &&
         buttonRef.current &&
@@ -81,7 +81,7 @@ function App() {
           {!Hide &&
 
             <div ref={sidebarRef}
-              className={`fixed top-0 h-screen left-0 bg-[#0A0A0A]  z-40 shadow-xl min-h-screen transform transition-transform duration-1000 ease-in-out py-8 pl-7 pr-10 w-[344px]  ${isopen ? '  translate-x-0' : '  -translate-x-[305px] '}
+              className={`fixed top-0 h-screen left-0 bg-[#0A0A0A]  z-40 shadow-xl min-h-screen transform transition-transform duration-1000 ease-in-out py-8 pl-7 pr-10 w-[344px]  ${isopen ? '  translate-x-0' : '  -translate-x-[344px] '}
           max-[768px]:z-10 
           `}>
               <Sidebar />
@@ -114,8 +114,8 @@ function App() {
 
           {/* MAIN CONTENT */}
           <div
-            className={`transition-all duration-1000 ease-in-out ml-4 md:p-6 overflow-y-auto w-full  max-[767px]:pl-0 ${isopen && !Hide ? ' md:pl-[344px] ' : 'pl-[39px]'} md:pl-10
-            xsm:p-1 xsm:pl-8
+            className={`transition-all duration-1000 ease-in-out  md:p-6 overflow-y-auto w-full  sm:pl-0 ${isopen && !Hide ? ' min-[850px]:pl-[344px] ' : 'pl-[10]'} xsm:pl-2 xsm:pr-2 md:pl-8 md:pr-8
+            xsm:p-1 
             `}
           >
 

@@ -12,13 +12,13 @@ export default function Navbar({setIsOpen,isopen}:any) {
   return (
     <>
       <div className='flex item-center   justify-between pr-10
-      max-[1000px]:hidden
+      max-[1000px]:hidden min-[1000px]:pl-7
       '>
         <div className='flex gap-4'>
          
           <div className="flex justify-center gap-2 md:justify-start">
             <a href="#" className="flex items-center gap-2 font-medium">
-              <div className="bg-primary text-primary-foreground flex size-6 items-center justify-center rounded-md">
+              <div className="bg-primary text-primary-foreground flex size-6 items-center justify-center rounded-md ">
                 <GalleryVerticalEnd className="size-4" />
               </div >
               <p className='text-nowrap'>HR Dashboard</p>

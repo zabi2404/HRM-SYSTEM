@@ -4,7 +4,7 @@ import React from 'react'
 export default function LeaveCards() {
   return (
    <>
-    <div className='flex gap-2 justify-between mt-8 '>
+    <div className='flex flex-wrap gap-2 justify-center items-center mt-8 '>
    
      <InfoCard
        title="Annual"

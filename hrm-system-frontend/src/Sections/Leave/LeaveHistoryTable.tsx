@@ -18,7 +18,9 @@ export default function LeaveHistoryTable() {
 
   return (
     <>
-      <div className='flex items-center justify-end gap-4'>
+      <div className='flex items-center sm:justify-end gap-4
+      xsm:justify-center
+      '>
         
 
         <div className='flex gap-2 items-center'>

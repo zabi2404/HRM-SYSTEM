@@ -6,7 +6,10 @@ export default function ManageYourEmplopyee() {
    <>
    
    
-      <div className='flex items-center justify-between p-4'>
+      <div className='flex  items-center justify-between p-4 
+      xsm:flex-col xsm:text-center xsm:gap-4 xsm:p-2
+      sm:flex-row sm:text-start 
+      '>
              {/* Title */}
              <div>
                <h1 className='text-2xl font-semibold'>Emplopyee</h1>
@@ -14,7 +17,9 @@ export default function ManageYourEmplopyee() {
              </div>
    
              {/* BUTTONS */}
-             <div className="flex items-center gap-4">
+             <div className="flex items-center gap-4
+             
+             ">
                <Button variant='outline'>Button</Button>
                <AddNewUser />
                {/* <Button> </Button> */}

@@ -1,22 +1,22 @@
 import React, { useState } from 'react'
 import Data from '../../../../public/Data.js'
 import Menulink from './Menulink.js'
-import { hrMenu,adminMenu } from '../../../../public/Data.js'
+import { hrMenu, adminMenu } from '../../../../public/Data.js'
 import { FaArrowRight } from "react-icons/fa6";
 import Input from '../Navbar/Input.js';
 
-import { useDispatch, UseDispatch,useSelector } from 'react-redux';
+import { useDispatch, UseDispatch, useSelector } from 'react-redux';
 import { GalleryVerticalEnd } from 'lucide-react';
 
 
 export default function sidebar(props) {
 
-const dispatch = useDispatch();
-const  currentUser  = useSelector((state: any) => state.user.currentUser)
-let array=[]
-if(currentUser.role ==='admin'){ array=adminMenu}
-if(currentUser.role ==='hr'){ array=hrMenu}
-if(currentUser.role ==='employee'){ array=Data}
+  const dispatch = useDispatch();
+  const currentUser = useSelector((state: any) => state.user.currentUser)
+  let array = []
+  if (currentUser.role === 'admin') { array = adminMenu }
+  if (currentUser.role === 'hr') { array = hrMenu }
+  if (currentUser.role === 'employee') { array = Data }
 
   const [activelink, setActiveLink] = useState(null);
   const [isOpenMenu, setIsOpenMenu] = useState(false);
@@ -32,14 +32,14 @@ if(currentUser.role ==='employee'){ array=Data}
            
          
           </div> */}
-            <div className="flex  gap-2 justify-start mb-4 min-[1000px]:hidden">
-                      <a href="#" className="flex items-center gap-2 font-medium">
-                        <div className="bg-primary text-primary-foreground flex size-6 items-center justify-center rounded-md">
-                          <GalleryVerticalEnd className="size-4" />
-                        </div >
-                        <p className='text-nowrap text-2xl'>HR Dashboard</p>
-                      </a>
-                    </div>
+          <div className="flex  gap-2 justify-start mb-4 min-[1000px]:hidden">
+            <a href="#" className="flex items-center gap-2 font-medium">
+              <div className="bg-primary text-primary-foreground flex size-6 items-center justify-center rounded-md">
+                <GalleryVerticalEnd className="size-4" />
+              </div >
+              <p className='text-nowrap text-2xl'>HR Dashboard</p>
+            </a>
+          </div>
 
           <div className='mb-8'>
             <Input
@@ -67,7 +67,7 @@ if(currentUser.role ==='employee'){ array=Data}
           </ul>
           <hr className='border-t-[#FFFFFF]' />
 
-         
+
           <div className="bg-gradient-to-br from-[#CB3CFF] to-[#7F25FB] flex items-center justify-center rounded-[4px] mt-16">
             <button type="submit" className='text-white h-[44px] cursor-pointer flex items-center justify-between '>
               Get  Template
