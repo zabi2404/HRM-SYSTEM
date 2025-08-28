@@ -3,6 +3,7 @@ import dotenv from 'dotenv'
 import mongoose from 'mongoose';
 import authRoute from './Routes/authRoute.js'
 import cookieParser from 'cookie-parser';
+import EmployeeRoute from './Routes/EmployeeRoute.js'
 const app = express();
 const port = 2404;
 
@@ -20,7 +21,7 @@ app.use(express.json());
 app.use(cookieParser());
 
 app.use('/api/auth', authRoute)
-
+app.use('/api/employee', EmployeeRoute)
 
 //middleware for error
 app.use((err, req, res, next) => {

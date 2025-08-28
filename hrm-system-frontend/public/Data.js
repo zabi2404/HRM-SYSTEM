@@ -6,8 +6,7 @@ import { PiPuzzlePieceFill } from "react-icons/pi";
 import { FaPen } from "react-icons/fa";
 import { BsCreditCardFill } from "react-icons/bs";
 import { HiBell } from "react-icons/hi2";
-import { IoSettings } from "react-icons/io5";
-import { TbBrandWebflow } from "react-icons/tb";
+
 
 // employee menu
 const employeeMenu = [
@@ -21,21 +20,21 @@ const employeeMenu = [
 // hr menu
 const hrMenu = [
   { id: 1, title: "Dashboard", icon: RiHomeFill, to: "/dashboard" },
-  { id: 2, title: "Employee", icon: FaUser, to: "/employees" },
-  { id: 3, title: "Leaves", icon: FaStar, to: "/hr/leaves" },
-  { id: 4, title: "Attendance", icon: PiPuzzlePieceFill, to: "/hr/attendance" },
-  { id: 5, title: "Payroll", icon: PiCurrencyDollarSimpleBold, to: "/hr/payroll" },
-  { id: 6, title: "Announcements", icon: PiPuzzlePieceFill, to: "/hr/announcements" },
+  { id: 2, title: "Employee", icon: FaUser,},
+  { id: 3, title: "Leaves", icon: FaStar,  },
+  { id: 4, title: "Attendance", icon: PiPuzzlePieceFill,},
+  { id: 5, title: "Payroll", icon: PiCurrencyDollarSimpleBold,},
+  { id: 6, title: "Announcements", icon: PiPuzzlePieceFill, to: "/announcement" },
 ];
 
 const adminMenu = [
   { id: 1, title: "Dashboard", icon: RiHomeFill, to: "/dashboard" },
-  { id: 2, title: "Employee", icon: FaUser, to: "/employees" },
-  { id: 3, title: "Leaves", icon: FaStar, to: "/hr/leaves" },
-  { id: 4, title: "Attendance", icon: PiPuzzlePieceFill, to: "/hr/attendance" },
-  { id: 5, title: "Payroll", icon: PiCurrencyDollarSimpleBold, to: "/hr/payroll" },
-  { id: 6, title: "Announcements", icon: PiPuzzlePieceFill, to: "/hr/announcements" },
-  { id: 7, title: "Company Profile", icon: PiPuzzlePieceFill, to: "/hr/announcements" },
+  { id: 2, title: "Employee", icon: FaUser,  },
+  { id: 3, title: "Leaves", icon: FaStar, },
+  { id: 4, title: "Attendance", icon: PiPuzzlePieceFill, },
+  { id: 5, title: "Payroll", icon: PiCurrencyDollarSimpleBold, to: "/payroll" },
+  { id: 6, title: "Announcements", icon: PiPuzzlePieceFill, to: "/announcement" },
+  { id: 7, title: "Company Profile", icon: PiPuzzlePieceFill, to: "/company-profile" },
 ];
 
 
@@ -46,14 +45,15 @@ const hrSubmenu = [
     id: 1,
     title: "Employee",
     items: [
-      { name: "Directory", path: "all-pages" },     
+      { name: "Employee", path: "/employee" },
+      { name: "Directory", path: "/employee-directory" },     
     ]
   },{
     id: 2,
     title: "Leaves",
     items: [
-      { name: "My leave", path: "all-pages" }, 
-      { name: "Employees Leave", path: "all-pages" }, 
+      { name: "My leave", path: "/leave" }, 
+      { name: "Employees Leave", path: "/employee-leave" }, 
           
     ]
   },
@@ -61,8 +61,17 @@ const hrSubmenu = [
     id: 3,
     title: "Attendance",
     items: [
-      { name: "My attendance", path: "all-pages" },     
-      { name: "Employees attendance", path: "all-pages" },     
+      { name: "My attendance", path: "/attendance" },     
+      { name: "Employees attendance", path: "/employee-attendance" },     
+
+    ]
+  },
+  {
+    id: 4,
+    title: "Payroll",
+    items: [
+      { name: "My Payroll", path: "/payroll" },     
+      { name: "Employees Payroll", path: "/employee-payroll" },     
 
     ]
   },
@@ -74,14 +83,15 @@ const adminSubmenu = [
     id: 1,
     title: "Employee",
     items: [
-      { name: "Directory", path: "all-pages" },     
+      { name: "Employee", path: "/employee" },
+      { name: "Directory", path: "/employee-directory" },       
     ]
   },{
     id: 2,
     title: "Leaves",
     items: [
-      { name: "My leave", path: "all-pages" }, 
-      { name: "Employees Leave", path: "all-pages" }, 
+      { name: "My leave", path: "/leave" }, 
+      { name: "Employees Leave", path: "/employee-leave" }, 
           
     ]
   },
@@ -89,18 +99,16 @@ const adminSubmenu = [
     id: 3,
     title: "Attendance",
     items: [
-      { name: "My attendance", path: "all-pages" },     
-      { name: "Employees attendance", path: "all-pages" },     
-
+      { name: "My attendance", path: "/attendance" },     
+      { name: "Employees attendance", path: "/employee-attendance" }, 
     ]
   },
   {
     id: 4,
     title: "Payroll",
     items: [
-      { name: "Hr Payroll", path: "all-pages" },     
-      { name: "Employees Payroll", path: "all-pages" },     
-
+      { name: "My Payroll", path: "/payroll" },     
+      { name: "Employees Payroll", path: "/employee-payroll" }, 
     ]
   },
  

@@ -1,0 +1,58 @@
+import React, { useState } from 'react';
+import { MdDelete } from "react-icons/md";
+import { FaPen } from "react-icons/fa";
+
+export default function Table1({newAllUserTabledata}) {
+
+
+
+
+ return (
+    <div className="overflow-auto customScroll max-h-screen  w-full">
+      <table className="min-w-[1040px] w-full text-white text-sm">
+        <thead >
+          <tr className='bg-[#212121] '>
+            
+            <th className='p-6 rounded-l-lg'>-</th>
+            <th className='w-1/7'>From</th>
+            <th className='w-1/7'>To</th>
+            <th className='w-1/7'>Total Days</th>
+            <th className='w-1/7'>Type</th>
+            <th className='w-1/7'>Attachment</th>
+            <th className='w-1/7'>Status</th>
+            <th className='w-1/7 rounded-r-lg'>Action</th>
+            
+          </tr>
+        </thead>
+
+        <tbody>
+          {newAllUserTabledata.map((item) => (
+            <tr key={item.id} className='text-center'>
+              <td className='p-8'><input type="checkbox" /></td>
+              <td className='p-8'>
+                <div className='flex gap-2 items-center'>
+                  <img
+                    src="/Images/Avatar Circle.svg"
+                    alt=""
+                    className="w-8 h-8 rounded-full"
+                  />
+                  <div className='text-start'>
+                    <p>{item.name}</p>
+                    <p className='text-xs text-gray-400'>{item.email}</p>
+                  </div>
+                </div>
+              </td>
+              <td>{item.phone}</td>
+              <td>{item.country}</td>
+              <td>{item.company}</td>
+              <td>{item.status}</td>
+              <td>
+                <div className='flex gap-2 justify-center'> <FaPen /> <MdDelete /></div>
+              </td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
+  );
+}
