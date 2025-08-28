@@ -4,6 +4,7 @@ import mongoose from 'mongoose';
 import authRoute from './Routes/authRoute.js'
 import cookieParser from 'cookie-parser';
 import EmployeeRoute from './Routes/EmployeeRoute.js'
+import MessageRoute from'./Routes/MessageRoute.js'
 const app = express();
 const port = 2404;
 
@@ -22,6 +23,7 @@ app.use(cookieParser());
 
 app.use('/api/auth', authRoute)
 app.use('/api/employee', EmployeeRoute)
+app.use('/api/message',MessageRoute)
 
 //middleware for error
 app.use((err, req, res, next) => {
