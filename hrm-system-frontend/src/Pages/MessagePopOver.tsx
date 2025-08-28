@@ -8,7 +8,10 @@ import {
   PopoverTrigger,
 } from "@/Components/Common/ui/popover"
 
+import { useSelector } from 'react-redux';
+
 export function MessagePopOver() {
+  const messageObject = useSelector((state:any)=>state.Message.messageObject)
   return (
     <Popover >
       <PopoverTrigger asChild>
@@ -18,33 +21,23 @@ export function MessagePopOver() {
       </PopoverTrigger>
       <PopoverContent className="w-80">
 
+        
+
         <div className="grid gap-4 max-h-[220px] overflow-auto customScroll">
-          <div className="space-y-2 pb-4 border-b">
-            <h4 className="leading-none font-medium">Dimensions</h4>
-            <p className="text-muted-foreground text-sm">
-              Set the dimensions for the layer.
+{messageObject.map((item)=>
+         <div className="space-y-2 pb-4 border-b">
+            <h4 className="leading-none font-medium">{item.title}</h4>
+            <p className="text-muted-foreground text-smv truncate h-7 w-[200px]">
+             {item.message}
             </p>
           </div>
+      )
+        
+        }
 
-          <div className="space-y-2 pb-4 border-b">
-            <h4 className="leading-none font-medium">Dimensions</h4>
-            <p className="text-muted-foreground text-sm">
-              Set the dimensions for the layer.
-            </p>
-          </div>
+         
 
-          <div className="space-y-2 pb-4 border-b">
-            <h4 className="leading-none font-medium">Dimensions</h4>
-            <p className="text-muted-foreground text-sm">
-              Set the dimensions for the layer.
-            </p>
-          </div>
-          <div className="space-y-2 pb-4 border-b">
-            <h4 className="leading-none font-medium">Dimensions</h4>
-            <p className="text-muted-foreground text-sm">
-              Set the dimensions for the layer.
-            </p>
-          </div>
+        
           
 
 

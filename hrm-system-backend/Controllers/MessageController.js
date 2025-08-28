@@ -16,16 +16,31 @@ try {
         Created_by:id
     
     })
-    res.status(200).json(notification)
+    res.status(200).json("Message Published")
 } catch (error) {
     next(error)
 }
-
-
-
 }
 else{
     next(HandleError(404,'Unauthraized'))
+}
+
+
+}
+
+
+
+export const getMessages = async (req,res,next)=>{
+
+try {
+    
+const notification =await Message.find().sort({ createdAt: -1 });
+const [Created_by,...rest] = notification
+
+res.status(200).json(rest)
+
+} catch (error) {
+    next(error)
 }
 
 

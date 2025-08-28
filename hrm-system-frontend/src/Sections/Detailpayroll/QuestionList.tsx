@@ -10,9 +10,10 @@ import { AnswerListArray } from '../../../public/Data2';
 type QuestionListProps = {
     id: number;
     title: string;
+    messageObject:any
 }
 
- const QuestionList = ({id, title}:QuestionListProps) => {
+ const QuestionList = ({id, title,messageObject}:QuestionListProps) => {
 
  const [isOpen, setisOpen] = useState(false);
 
@@ -30,9 +31,9 @@ type QuestionListProps = {
 <FaChevronDown onClick={HandleMenuLink} className={`cursor-pointer  ${isOpen && `rotate-180`}`} />
   </div>
 {isOpen &&
-  AnswerListArray.filter(item => item.id === id).map(item => (
+  messageObject.filter(item => item._id === id).map(item => (
     <AnswerList key={item.id} 
-    title={item.title}
+    title={item.message}
     />
   ))
 }

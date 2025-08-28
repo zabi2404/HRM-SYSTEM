@@ -6,7 +6,18 @@ import { GalleryVerticalEnd } from 'lucide-react';
 import { FiSidebar } from "react-icons/fi";
 import { MessagePopOver } from '@/Pages/MessagePopOver';
 
+
+
+
+
+
+  
+
+
 export default function Navbar({setIsOpen,isopen}:any) {
+
+
+  
   
   const [popUp, setPopUp]=useState(false);
   return (

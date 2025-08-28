@@ -8,11 +8,13 @@ type AnswerListProps ={
  const AnswerList = ({title}:AnswerListProps) => {
   return (
    <>
-   <div className=''>
-    <p className='  text-[16px] opacity-50'>
+   <div className='w-[400px] overflow-hidden'>
+    <p className='  text-[16px] opacity-50 '>
         {title}
     </p>
+
    </div>
+
    
    </>
   )
