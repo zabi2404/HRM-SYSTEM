@@ -1,12 +1,30 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { FaChevronRight } from "react-icons/fa6";
 import SearchInput from '@/Components/Common/Navbar/Input';
 import { DropDownButton } from '@/Components/Common/DropDownButton';
 import EmployeeTable from '@/Sections/Employee/EmployeeTable';
 import { AllUserTabledata } from '../../../../public/Data'
 import ManageYourEmplopyee from '@/Sections/Employee/ManageYourEmplopyee';
+import axios from 'axios';
 
 export default function Employee() {
+
+const [listing,setListing]=useState();
+
+   useEffect(() => {
+  
+          axios.get('/api/employee/getEmployees')
+              .then((response) => {
+                  const data = response.data;
+                  setListing(data);
+                  console.log(data)
+              })
+              .catch((err) => {
+                  console.log(err)
+              })
+  
+  
+      }, []);
 
   // PAGINATION
 
@@ -15,10 +33,10 @@ export default function Employee() {
 
   const startIndex = (currentPage - 1) * 10
   const endIndex = startIndex + itemPerPage;
-  const totalListData = AllUserTabledata.length
-  const totalPages = Math.ceil(AllUserTabledata.length / itemPerPage)
+  const totalListData = listing?.length
+  const totalPages = Math.ceil(listing?.length / itemPerPage)
 
-  const newAllUserTabledata = AllUserTabledata.slice(startIndex, endIndex)
+  const newAllUserTabledata = listing?.slice(startIndex, endIndex)
 
 
   return (
