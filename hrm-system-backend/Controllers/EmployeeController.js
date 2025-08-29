@@ -56,7 +56,6 @@ export const getEmployees = async (req, res, next) => {
       try {
         const employees = await Employee.find()
           .populate("user_Ref", "username email "); 
-          // 👆 only fetch these fields from User
   
         res.status(200).json(employees);
       } catch (error) {
@@ -66,4 +65,17 @@ export const getEmployees = async (req, res, next) => {
       res.status(403).json({ message: "Access denied" });
     }
   };
+
+  
+  export const getEmployee = async(req,res,next)=>{
+    const id = req.params.id;
+    try {
+      const employee =await Employee.findById(id)
+      .populate("user_Ref", "username email "); 
+      if(!employee){return next(HandleError(404,'User Not Found'))}
+      res.status(200).json(employee)
+    } catch (error) {
+      next(error)
+    }
+  }
   

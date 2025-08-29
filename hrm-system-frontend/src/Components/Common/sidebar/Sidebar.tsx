@@ -7,6 +7,7 @@ import Input from '../Navbar/Input.js';
 
 import { useDispatch, UseDispatch, useSelector } from 'react-redux';
 import { GalleryVerticalEnd } from 'lucide-react';
+import { Link } from 'react-router-dom';
 
 
 export default function sidebar(props) {
@@ -69,11 +70,13 @@ export default function sidebar(props) {
 
 
           <div className="bg-gradient-to-br from-[#CB3CFF] to-[#7F25FB] flex items-center justify-center rounded-[4px] mt-16">
+            <Link to='/signup'>
             <button type="submit" className='text-white h-[44px] cursor-pointer flex items-center justify-between '>
-              Get  Template
+             Create New User
               <FaArrowRight className='ml-2' />
 
             </button>
+            </Link>
           </div>
         </div>
       </div>
