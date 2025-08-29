@@ -6,7 +6,7 @@ import { VerifyToken } from '../Utlis/VerifyToken.js';
 const Routes = express.Router();
 
 
-Routes.post('/createEmployee',VerifyToken,employeeCreate)
+Routes.post('/createEmploye',VerifyToken,employeeCreate)
 Routes.get('/getEmployees',VerifyToken,getEmployees)
 Routes.get('/getEmployee/:id',VerifyToken,getEmployee)
 

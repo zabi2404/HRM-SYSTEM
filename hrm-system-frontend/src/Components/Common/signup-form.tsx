@@ -46,7 +46,6 @@ export function LoginForm({
       setformData((prev) => ({ ...prev, [id]: value }))
     }
 
-    console.log(formData)
   }
 
   const formSubbmission = (e:React.ChangeEvent<HTMLFormElement>)=>{

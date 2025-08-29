@@ -2,9 +2,15 @@ import React, { useState } from 'react';
 import { MdDelete } from "react-icons/md";
 import { FaPen } from "react-icons/fa";
 
-export default function EmployeeLeaveTable1({newAllUserTabledata}) {
+export default function Table1({newAllUserTabledata}) {
 
-
+  function daysInclusive(from, to = from) {
+    const start = new Date(from + "T00:00:00Z"); 
+    const end   = new Date(to   + "T00:00:00Z");
+    const msPerDay = 24 * 60 * 60 * 1000;
+    return Math.floor((end - start) / msPerDay) + 1;
+  }
+ 
 
 
  return (
@@ -14,37 +20,34 @@ export default function EmployeeLeaveTable1({newAllUserTabledata}) {
           <tr className='bg-[#212121] '>
             
             <th className='p-6 rounded-l-lg'>-</th>
-            <th className='w-1/7 '>Name</th>
             <th className='w-1/7'>From</th>
             <th className='w-1/7'>To</th>
             <th className='w-1/7'>Total Days</th>
             <th className='w-1/7'>Type</th>
             <th className='w-1/7'>Attachment</th>
-            <th className='w-1/7 rounded-r-lg'>Status</th>
+            <th className='w-1/7'>Status</th>
+            <th className='w-1/7 rounded-r-lg'>Action</th>
             
           </tr>
         </thead>
-
+{newAllUserTabledata?.length>0&&
         <tbody>
-          {newAllUserTabledata.map((item) => (
+          {newAllUserTabledata?.map((item) => (
             <tr key={item.id} className='text-center'>
               <td className='p-8'><input type="checkbox" /></td>
               <td className='p-8'>
-                <div className='flex gap-2 items-center'>
-                  <img
-                    src="/Images/Avatar Circle.svg"
-                    alt=""
-                    className="w-8 h-8 rounded-full"
-                  />
+                
+                  
                   <div className='text-start'>
-                    <p>{item.name}</p>
+                    <p className='text-nowrap'>{item.start}</p>
                     <p className='text-xs text-gray-400'>{item.email}</p>
-                  </div>
+                  
                 </div>
               </td>
-              <td>{item.phone}</td>
-              <td>{item.country}</td>
-              <td>{item.company}</td>
+              <td>{item.end||"-"}</td>
+              <td>{ daysInclusive(item.start, item.end)||"-"}</td>
+              <td>{item.type}</td>
+              <td>{item.file || "-"}</td>
               <td>{item.status}</td>
               <td>
                 <div className='flex gap-2 justify-center'> <FaPen /> <MdDelete /></div>
@@ -52,7 +55,11 @@ export default function EmployeeLeaveTable1({newAllUserTabledata}) {
             </tr>
           ))}
         </tbody>
+        }
+
       </table>
+      {newAllUserTabledata?.length==0&&
+        <h1 className='font-script text-3xl flex justify-center font-bold text-nowrap mt-4'>Have No Leave History</h1>}
     </div>
   );
 }

@@ -18,9 +18,8 @@ export const Login = async (req, res, next) => {
 if(validUser.role!=='admin'){
     const validUseremployeeId = await Employee.findOne({user_Ref:validUser._id})
     if(!validUseremployeeId){return(next(HandleError(404,'The Account is not set yet for this User')))}
-    const employeeId = validUseremployeeId._id
-    console.log("Employee id ",employeeId)
-    console.log(validUser);
+     employeeId = validUseremployeeId._id
+
 }
     
 

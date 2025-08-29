@@ -20,7 +20,7 @@ export default function Menulink(props) {
     : currentUser?.rest.role === "hr"
       ? hrSubmenu
       : [];
-  console.log(array)
+
   const [activelink, setActiveLink] = useState(null);
 
   let Icon = props.icon

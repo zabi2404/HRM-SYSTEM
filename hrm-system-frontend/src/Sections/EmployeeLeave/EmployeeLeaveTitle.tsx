@@ -2,10 +2,17 @@ import { AddNewReq } from '@/Components/Employee/Leave/AddNewReq'
 import { SelectDemo } from '@/Components/LeaveSelectType'
 import React, { useState } from 'react'
 
-export default function EmployeeLeaveTitle() {
+type EmployeeLeaveTitleprops={
+  onChange?: (val: string) => void; 
+}
+
+export default function EmployeeLeaveTitle({onChange}:EmployeeLeaveTitleprops) {
   
+
+
   const [type,setType]=useState('');
-  console.log(type)
+  console.log("from title",type)
+  onChange(type)
   return (
    <>
     <div className='flex items-center justify-between p-4'>

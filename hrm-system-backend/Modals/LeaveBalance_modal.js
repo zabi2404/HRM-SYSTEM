@@ -34,15 +34,15 @@ const LeaveBalanceSchema = mongoose.Schema({
     },
     remainingAnnualLeave: {
         type: Number,
-        default: 60
+        default: 30
     },
     remainingSickLeave: {
         type: Number,
-        default: 60
+        default: 30
     },
     remainingCasualLeave: {
         type: Number,
-        default: 60
+        default: 30
     },
     employee_Ref:{
         type:mongoose.Schema.Types.ObjectId,

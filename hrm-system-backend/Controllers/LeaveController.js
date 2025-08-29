@@ -1,3 +1,4 @@
+import Leave from "../Modals/Leave_modal.js";
 import LeaveBalance from "../Modals/LeaveBalance_modal.js";
 import { HandleError } from "../Utlis/error.js";
 
@@ -11,4 +12,69 @@ const id = req.params.id
         next(error)
     }
 
+}
+
+
+export const createLeave = async(req,res,next)=>{
+        const id = req.params.id
+        
+    const {leaveType,days,description,file,from,to}=req.body
+
+    try {
+        const createLeave = await Leave.create({
+            type: leaveType, 
+            days,
+            description,
+            file,
+            start:from,
+            end:to,
+            employee_Ref:id
+        })
+
+        res.status(201).json("Successfully Created")
+        
+    } catch (error) {
+        next(error)
+    }
+
+}
+
+
+export const getAppliedLeave = async(req,res,next)=>{
+    const id = req.params.id
+  
+    let status = req.query.status;
+    if (status === undefined) {
+        status = { $in: ['approved', 'rejected'] }
+    }
+    
+    try {
+        const leaves=await Leave.find({employee_Ref:id , status})
+        if(!leaves){return res.json("No Leave found of this employee")}
+        res.status(200).json(leaves)
+    } catch (error) {
+        next(error)
+    }
+}
+// filter leave
+
+export const getAppliedLeaves = async(req,res,next)=>{
+
+  
+    let type = req.query.type;
+    console.log(type)
+    if (type === "undefined") {
+        type = { $in: ["Sick", "other"] }
+    }
+    let status = req.query.status;
+    if(status==='undefined'){
+        status:{$in:['rejected,accepted']}
+    }
+    try {
+        const leaves=await Leave.find({  type,status})
+        if(!leaves){return res.json("No Leave found of this employee")}
+        res.status(200).json(leaves)
+    } catch (error) {
+        next(error)
+    }
 }

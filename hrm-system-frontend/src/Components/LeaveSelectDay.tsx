@@ -20,6 +20,7 @@ export default function SelectDays({onChange}) {
     onValueChange={(val)=>{
         onChange(val)
       }}
+      required
     >
       <SelectTrigger className="w-[180px]">
         <SelectValue placeholder="Select Days" />

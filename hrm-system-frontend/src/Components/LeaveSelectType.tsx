@@ -21,6 +21,7 @@ export function SelectDemo({onChange}:SelectDemoProps) {
   onValueChange={(val)=>{
     onChange(val)
   }}
+  required
     >
      
       <SelectTrigger className="w-[180px]">
@@ -30,8 +31,7 @@ export function SelectDemo({onChange}:SelectDemoProps) {
         <SelectGroup>
           <SelectLabel>Types</SelectLabel>
           <SelectItem value="Sick">Sick</SelectItem>
-          <SelectItem value="Wedding">Wedding</SelectItem>
-          <SelectItem value="Other">Other</SelectItem>
+          <SelectItem value="other">other</SelectItem>
         </SelectGroup>
       </SelectContent>
     </Select>

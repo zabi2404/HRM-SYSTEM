@@ -1,20 +1,41 @@
 import { FaChevronRight, FaPlus } from "react-icons/fa6";
 import EmployeeTable from '@/Sections/Employee/EmployeeTable';
 import { AllUserTabledata } from '../../../public/Data'
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Table1 from "./Table1";
+import { useSelector } from "react-redux";
+import axios from "axios";
 export default function LeaveHistoryTable() {
+
+
+  const User = useSelector((state: any) => state.user.currentUser)
+  const [listing, setListing] = useState();
+
+
+  useEffect(() => {
+
+    axios.get(`/api/leave/get-Appliedleave/${User.employeeId}?status=approved`)
+      .then((Response) => {
+        const data = Response.data;
+        setListing(data)
+        console.log(data)
+      }
+      )
+
+      .catch((err) => console.log(err))
+  }, []);
 
    const [currentPage, setCurrentPage] = useState(1);
     const itemPerPage = 10;
   
     const startIndex = (currentPage - 1) * 10
     const endIndex = startIndex + itemPerPage;
-    const totalListData = AllUserTabledata.length
-    const totalPages = Math.ceil(AllUserTabledata.length / itemPerPage)
+    const totalListData = listing?.length
+    const totalPages = Math.ceil(listing?.length / itemPerPage)
   
-    const newAllUserTabledata = AllUserTabledata.slice(startIndex, endIndex)
+    const newAllUserTabledata = listing?.slice(startIndex, endIndex)
   
+
 
   return (
     <>

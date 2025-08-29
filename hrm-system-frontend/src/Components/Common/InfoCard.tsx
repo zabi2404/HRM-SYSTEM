@@ -3,11 +3,11 @@ import { RiErrorWarningLine } from "react-icons/ri";
 
 
 type  AttendanceCardProps={
-    title:string
-    description:string
+    title?:string
+    description?:number
     subTitle?:string
     subTitle2?:string
-    description2?:string
+    description2?:number
 }
 export default function InfoCard({title,description,subTitle, description2,subTitle2}:AttendanceCardProps) {
   return (

@@ -35,7 +35,7 @@ import { toast } from "sonner"
 import { SelectDemo } from "../../LeaveSelectType"
 import SelectDays from "@/Components/LeaveSelectDay"
 import { Textarea } from "@/Components/Common/ui/textarea"
-
+import { UseSelector } from "react-redux"
 
 export function AddNewReq() {
     const [open, setOpen] = React.useState(false)
@@ -109,8 +109,8 @@ function ProfileForm({ className }: React.ComponentProps<"form">) {
 
 
 
+    const User = useSelector((state: any) => state.user.currentUser)
     const handleForm = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-
         setFormData({
 
             ...formData,
@@ -121,17 +121,14 @@ function ProfileForm({ className }: React.ComponentProps<"form">) {
 
     const formSubbmission = (e: React.ChangeEvent<HTMLFormElement>) => {
         e.preventDefault();
-        dispatch(Start());
-        axios.post('/api/employee/createEmployee', formData)
+
+        axios.post(`/api/leave/create-leave/${User.employeeId}`,formData)
             .then((response) => {
-                toast.success("User Created Successfully");
-                dispatch(Success())
+                const data = response.data
+                toast.success(data)
             })
-            .catch((error) => {
-                console.log(error)
-
-            })
-
+            .catch((err) =>
+                toast.error(err.response.data.message))
     }
 
     return (
@@ -139,20 +136,21 @@ function ProfileForm({ className }: React.ComponentProps<"form">) {
 
             <div className="flex gap-4 w-full">
                 <SelectDemo
-                    onChange={(val:string) => {
+                    onChange={(val: string) => {
                         setFormData({
                             ...formData,
                             'leaveType': val
                         })
                     }}
+
                 />
-                <SelectDays 
-                onChange={(val:string)=>{
-                    setFormData({
-                        ...formData,
-                        'days':val
-                    })
-                }}
+                <SelectDays
+                    onChange={(val: string) => {
+                        setFormData({
+                            ...formData,
+                            'days': val
+                        })
+                    }}
                 />
             </div>
 
@@ -169,7 +167,7 @@ function ProfileForm({ className }: React.ComponentProps<"form">) {
                     />
                 </div>
 
-              {formData.days==="multiple" &&  <div className="grid gap-3 w-full">
+                {formData.days === "multiple" && <div className="grid gap-3 w-full">
                     <Label htmlFor="to">To</Label>
                     <Input id="to"
                         type="date"

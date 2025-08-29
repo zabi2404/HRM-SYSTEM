@@ -1,15 +1,19 @@
 import mongoose from "mongoose"
 
 const LeaveSchema = new mongoose.Schema({
-   user_Ref: {
+   employee_Ref: {
         type: mongoose.Schema.Types.ObjectId,
         ref: 'employee',
         required: true,
-        unique: true
+       
     },
     type: {
         type: String,
         required: true,
+    },
+    days:{
+        type:String,
+        required:true
     }
     ,
     start: {
@@ -17,16 +21,19 @@ const LeaveSchema = new mongoose.Schema({
         required: true,
     },
     end: {
-        type: Date,
+        type: String,
     },
     description:{
         type:String,
     } ,
     status: {
         type: String,
-        required: true,
         default:'pending'
+    },
+    file:{
+        type:String,
     }
+
 })
 
 
