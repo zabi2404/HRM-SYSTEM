@@ -90,7 +90,6 @@ const adminSubmenu = [
     id: 2,
     title: "Leaves",
     items: [
-      { name: "My leave", path: "/leave" }, 
       { name: "Employees Leave", path: "/employee-leave" }, 
           
     ]
@@ -99,15 +98,13 @@ const adminSubmenu = [
     id: 3,
     title: "Attendance",
     items: [
-      { name: "My attendance", path: "/attendance" },     
       { name: "Employees attendance", path: "/employee-attendance" }, 
     ]
   },
   {
     id: 4,
     title: "Payroll",
-    items: [
-      { name: "My Payroll", path: "/payroll" },     
+    items: [  
       { name: "Employees Payroll", path: "/employee-payroll" }, 
     ]
   },

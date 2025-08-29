@@ -12,7 +12,6 @@ const AttendanceSchema = new mongoose.Schema({
     },
     overtime:{
         type:String,
-        required:true
     },
     date:{
         type:Date,

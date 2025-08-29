@@ -59,7 +59,7 @@ dispatch(signInSuccess(data))
           dispatch(failure(err.response.data.message))
          
           toast.error("Login failed", {
-            description: error,
+            description: err.response.data.message,
           });
         }
         dispatch(failure(err))

@@ -59,7 +59,7 @@ export function LoginForm({
       dispatch(Success())
       toast.success("User Created Successfully"
       );
-      navigate('/login')
+      navigate('/employee')
     })
     .catch((error)=>{
       if(error.response){

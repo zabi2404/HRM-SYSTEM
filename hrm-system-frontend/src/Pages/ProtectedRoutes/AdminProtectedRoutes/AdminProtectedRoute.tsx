@@ -1,5 +1,5 @@
 import React from 'react'
-import { useSelector, UseSelector } from 'react-redux'
+import { useSelector } from 'react-redux'
 import { Outlet, Navigate } from 'react-router-dom'
 
 
@@ -7,15 +7,20 @@ export default function AdminProtectedRoute() {
   
 
   const  currentUser  = useSelector((state: any) => state.user.currentUser)
-  console.log(currentUser)
+
+   if(!currentUser){return <Navigate to="/login" replace />}
+else{
   return (
     <>
     {
-      currentUser.role === 'admin' ?
+      currentUser.rest.role === 'admin' ?
         <Outlet />
         :
         <Navigate to="/login" replace />
     }
   </>
   )
+}
+  
+
 }

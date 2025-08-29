@@ -32,7 +32,7 @@ import axios from "axios"
 import { useDispatch, UseDispatch, useSelector } from "react-redux"
 import { Start, Success, failure } from '../../../Redux/user/loadingErrorSlice'
 import { toast } from "sonner"
-
+import { useNavigate } from "react-router-dom"
 
 export function AddNewUser() {
   const [open, setOpen] = React.useState(false)
@@ -98,7 +98,7 @@ function ProfileForm({ className }: React.ComponentProps<"form">) {
   const [formData, setFormData] = React.useState({
   })
 
-
+const navigate = useNavigate();
 
   const handleForm = (e: React.ChangeEvent<HTMLInputElement>) => {
 
@@ -117,13 +117,17 @@ function ProfileForm({ className }: React.ComponentProps<"form">) {
       .then((response) => {
         toast.success("User Created Successfully");
         dispatch(Success())
+        navigate('/profile')
       })
+      
       .catch((error) => {
+        toast.error(error.response.data.message)
           console.log(error)
     
   })
 
 }
+
 
 return (
   <form onSubmit={formSubbmission} className={cn("grid items-start gap-6", className)}>
@@ -133,6 +137,7 @@ return (
       <Input type="email" id="email"
         placeholder="@example.com"
         onChange={handleForm}
+        required
       />
     </div>
     <div className="flex gap-4 w-full">
@@ -142,6 +147,7 @@ return (
         <Input id="job_title"
           placeholder="Job title"
           onChange={handleForm}
+          required
         />
       </div>
       <div className="grid gap-3 w-full">
@@ -149,6 +155,7 @@ return (
         <Input id="department"
           placeholder="Department"
           onChange={handleForm}
+          required
         />
       </div>
     </div>
@@ -159,6 +166,7 @@ return (
         <Input id="salery" type="number"
           placeholder="Salery in Pkr"
           onChange={handleForm}
+          required
         />
       </div>
       <div className="grid gap-3 w-full ">
@@ -166,6 +174,9 @@ return (
         <Input id="contact_number"
           placeholder="Contact Number"
           onChange={handleForm}
+          type="number"
+          min={11}
+          required
         />
       </div>
       <div className="grid gap-3 w-full">
@@ -173,6 +184,7 @@ return (
         <Input id="address"
           placeholder="Address"
           onChange={handleForm}
+          required
         />
       </div>
     </div>

@@ -1,28 +1,24 @@
 import mongoose from "mongoose";
 
 const LeaveBalanceSchema = mongoose.Schema({
-user_Ref: {
-        type: mongoose.Schema.Types.ObjectId,
-        ref: 'user',
-        required: true,
-        unique: true
-    },
+
     year: {
-        type: Date,
+        type:  Number,
+        default:new Date().getFullYear(),
         required: true,
     }
     ,
     totalAnnualLeave: {
         type: Number,
-        default: 0
+        default: 60
     },
     totalSickLeave: {
         type: Number,
-        default: 0
+        default: 30
     },
     totalCasualLeave: {
         type: Number,
-        default: 0
+        default: 30
     },
     usedAnnualLeave: {
         type: Number,
@@ -38,16 +34,22 @@ user_Ref: {
     },
     remainingAnnualLeave: {
         type: Number,
-        default: 0
+        default: 60
     },
     remainingSickLeave: {
         type: Number,
-        default: 0
+        default: 60
     },
     remainingCasualLeave: {
         type: Number,
-        default: 0
+        default: 60
     },
+    employee_Ref:{
+        type:mongoose.Schema.Types.ObjectId,
+        ref: 'employee',
+        required:true,
+        unique:true
+    }
 
 })
 

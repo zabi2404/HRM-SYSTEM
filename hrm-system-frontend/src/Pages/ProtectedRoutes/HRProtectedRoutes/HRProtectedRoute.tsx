@@ -1,14 +1,26 @@
 import React from 'react'
-import { Outlet } from 'react-router-dom'
+import { useSelector } from 'react-redux'
+import { Outlet, Navigate } from 'react-router-dom'
 
-export default function HRProtectedRoute() {
+
+export default function AdminProtectedRoute() {
+  
+
+  const  currentUser  = useSelector((state: any) => state.user.currentUser)
+
+   if(!currentUser){return <Navigate to="/login" replace />}
+else{
   return (
-   <>
-   <Outlet/>
-   </>
+    <>
+    {
+      currentUser.rest.role === 'admin' ||currentUser.rest.role==='hr'?
+        <Outlet />
+        :
+        <Navigate to="/login" replace />
+    }
+  </>
   )
 }
+  
 
-
-
-
+}

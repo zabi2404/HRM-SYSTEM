@@ -15,9 +15,9 @@ export default function Menulink(props) {
   const dispatch = useDispatch();
   const currentUser = useSelector((state: any) => state.user.currentUser)
 
-  const array = currentUser?.role === "admin"
+  const array = currentUser?.rest.role === "admin"
     ? adminSubmenu
-    : currentUser?.role === "hr"
+    : currentUser?.rest.role === "hr"
       ? hrSubmenu
       : [];
   console.log(array)
@@ -87,7 +87,7 @@ export default function Menulink(props) {
 
       {/* SUBMENU */}
 
-      {currentUser.role !== 'employee' &&
+      {currentUser.rest.role !== 'employee' &&
         array?.map((item, index) =>
           item.title === props.title ? (
 

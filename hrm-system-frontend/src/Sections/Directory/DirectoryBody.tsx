@@ -19,6 +19,7 @@ export default function DirectoryBody() {
 
 
     }, []);
+    console.log(cardListing)
   return (
   <>
   <div className='flex flex-wrap gap-10'>
@@ -30,7 +31,7 @@ export default function DirectoryBody() {
             contact_number={item.contact_number}
             username={item.user_Ref.username}
             email={item.user_Ref.email}
-            job_title={item.user_Ref.job_title}
+            job_title={item.job_title}
         />
 
 

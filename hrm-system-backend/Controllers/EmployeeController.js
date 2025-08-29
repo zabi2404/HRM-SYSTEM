@@ -1,4 +1,5 @@
 import Employee from "../Modals/Employee_modal.js";
+import LeaveBalance from "../Modals/LeaveBalance_modal.js";
 import User from "../Modals/User_modal.js";
 import { HandleError } from "../Utlis/error.js";
 
@@ -27,6 +28,7 @@ try {
     if(existingEmployee){return next(HandleError(400,"Employee profile already exists for this user "))}
 
     const employee =await Employee.create({
+      name:user.username,
         user_Ref:user._id,
         employeeCode:newCode,
         job_title,
@@ -35,6 +37,9 @@ try {
            salery,
            address,
            contact_number
+    });
+    const leavebalance = await LeaveBalance.create({
+      employee_Ref:employee._id
     })
     
 res.status(201).json({message:"EmployeeCreated",employee})
@@ -44,6 +49,9 @@ res.status(201).json({message:"EmployeeCreated",employee})
 }
 
     }  
+    else{
+      return next(HandleError(403, "Forbidden: You are not allowed to create employees"));
+    }
 
 }
 
@@ -70,7 +78,7 @@ export const getEmployees = async (req, res, next) => {
   export const getEmployee = async(req,res,next)=>{
     const id = req.params.id;
     try {
-      const employee =await Employee.findById(id)
+      const employee =await Employee.findOne({ user_Ref: id })
       .populate("user_Ref", "username email "); 
       if(!employee){return next(HandleError(404,'User Not Found'))}
       res.status(200).json(employee)

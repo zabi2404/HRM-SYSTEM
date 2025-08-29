@@ -15,9 +15,9 @@ export default function sidebar(props) {
   const dispatch = useDispatch();
   const currentUser = useSelector((state: any) => state.user.currentUser)
   let array = []
-  if (currentUser.role === 'admin') { array = adminMenu }
-  if (currentUser.role === 'hr') { array = hrMenu }
-  if (currentUser.role === 'employee') { array = Data }
+  if (currentUser.rest.role === 'admin') { array = adminMenu }
+  if (currentUser.rest.role === 'hr') { array = hrMenu }
+  if (currentUser.rest.role === 'employee') { array = Data }
 
   const [activelink, setActiveLink] = useState(null);
   const [isOpenMenu, setIsOpenMenu] = useState(false);
@@ -68,8 +68,8 @@ export default function sidebar(props) {
           </ul>
           <hr className='border-t-[#FFFFFF]' />
 
-
-          <div className="bg-gradient-to-br from-[#CB3CFF] to-[#7F25FB] flex items-center justify-center rounded-[4px] mt-16">
+         {currentUser.rest.role === 'admin'&&
+<div className="bg-gradient-to-br from-[#CB3CFF] to-[#7F25FB] flex items-center justify-center rounded-[4px] mt-16">
             <Link to='/signup'>
             <button type="submit" className='text-white h-[44px] cursor-pointer flex items-center justify-between '>
              Create New User
@@ -78,6 +78,10 @@ export default function sidebar(props) {
             </button>
             </Link>
           </div>
+         }
+          
+
+
         </div>
       </div>
     </>

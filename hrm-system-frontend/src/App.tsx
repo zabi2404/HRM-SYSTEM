@@ -27,11 +27,13 @@ import EmployeeAttendance from "./Pages/ProtectedRoutes/HRProtectedRoutes/Employ
 import Payroll from "./Pages/ProtectedRoutes/EmployeesProtectedRoutes/Payroll";
 import EmployeePayroll from "./Pages/ProtectedRoutes/HRProtectedRoutes/EmployeePayroll";
 import DetailPayroll from "./Pages/ProtectedRoutes/EmployeesProtectedRoutes/DetailPayroll";
+import { useSelector } from "react-redux";
 
 
 
 
 function App() {
+  const user = useSelector((state: any) => state.user.currentUser)
   const [isopen, setIsOpen] = useState(true);
 
 
@@ -65,9 +67,9 @@ function App() {
     return () => document.removeEventListener('mousedown', handleClickOutside);
   }, [isopen]);
 
-  console.log(buttonRef);
 
-  const Hide = false
+
+  const Hide = !user; 
 
 
   return (
@@ -78,6 +80,7 @@ function App() {
           theme="dark" />
         <div className="flex">
           {/* SIDEBAR */}
+
           {!Hide &&
 
             <div ref={sidebarRef}
@@ -90,7 +93,7 @@ function App() {
           }
 
           {/* SIDEBAR OPEN CLOSE BUTTON */}
-
+    
           {!Hide &&
             <div ref={buttonRef}
               className={`rounded-md flex items-center justify-center  bg-[#212121] border cursor-pointer border-[#424242] p-2 h-[40px] w-[40px]  shadow-lg  fixed  z-50 transform transition-all ease-in-out duration-1000 
@@ -111,6 +114,7 @@ function App() {
                 />
               )} */}
             </div>}
+
 
           {/* MAIN CONTENT */}
           <div

@@ -8,6 +8,10 @@ const EmployeeSchema = new mongoose.Schema({
         required: true,
         unique: true
     },
+    name: {
+        type: String,
+        required: true
+    },
     job_title: {
         type: String,
         required: true,
