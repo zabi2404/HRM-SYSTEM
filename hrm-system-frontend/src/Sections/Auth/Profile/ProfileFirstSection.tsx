@@ -4,7 +4,10 @@ import { FaPhoneAlt } from 'react-icons/fa'
 import { IoIosMail } from 'react-icons/io'
 
 import {signOutUserSuccess} from '../../../Redux/user/userSlice'
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
+import { useParams } from 'react-router-dom'
+
+
 type ProfileFirstSection = {
 
     name?: string,
@@ -18,7 +21,12 @@ type ProfileFirstSection = {
 
 
 export default function ProfileFirstSection({ name, job_title, email, contact_number, department, employeeCode }) {
+
+
     const dispatch =useDispatch();
+    const User = useSelector((state:any)=>state.user.currentUser)
+    const param = useParams();
+
     const logout = ()=>{
     
         axios.get('/api/auth/logout')
@@ -75,11 +83,12 @@ export default function ProfileFirstSection({ name, job_title, email, contact_nu
                     </div>
 
                 </div>
+                { !param.id &&
                 <div className='w-full flex justify-center mt-4'>
                     <button onClick={logout} className='text-center p-2 bg-white text-black w-full rounded-lg cursor-pointer hover:opacity-80'>
                         LogOut
                     </button>
-                </div>
+                </div>}
             </div>
         </>
     )

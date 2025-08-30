@@ -57,6 +57,7 @@ console.log("from table", type)
       <div>
         <EmployeeLeaveTable1
           newAllUserTabledata={newAllUserTabledata}
+          fallback="No Leave History"
         />
       </div>
     

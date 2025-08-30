@@ -20,7 +20,7 @@ export default function ManageYourEmplopyee() {
              <div className="flex items-center gap-4
              
              ">
-               <Button variant='outline'>Button</Button>
+              
                <AddNewUser />
                {/* <Button> </Button> */}
    

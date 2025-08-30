@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { MdDelete } from "react-icons/md";
 import { FaPen } from "react-icons/fa";
 
-export default function Table1({newAllUserTabledata}) {
+export default function Table1({newAllUserTabledata,fallback}) {
 
   function daysInclusive(from, to = from) {
     const start = new Date(from + "T00:00:00Z"); 
@@ -59,7 +59,7 @@ export default function Table1({newAllUserTabledata}) {
 
       </table>
       {newAllUserTabledata?.length==0&&
-        <h1 className='font-script text-3xl flex justify-center font-bold text-nowrap mt-4'>Have No Leave History</h1>}
+        <h1 className='font-script text-3xl flex justify-center font-bold text-nowrap mt-4'>{fallback}</h1>}
     </div>
   );
 }

@@ -22,6 +22,7 @@ export default function EmployeeLeave() {
                     placeholder="Search name or Emplpoyee Id" />
                 <EmployeeLeaveTable 
                 type={type}
+                
                 />
             </div>
 
@@ -29,7 +30,10 @@ export default function EmployeeLeave() {
                 <EmployeeLeaveHistoryTitle />
                 <SearchInput
                     placeholder="Search name or Emplpoyee Id" />
-                <EmployeeLeaveHistoryTable />
+                <EmployeeLeaveHistoryTable
+                 type={type}
+                
+                />
             </div>
 
         </>

@@ -117,7 +117,10 @@ const navigate = useNavigate();
       .then((response) => {
         toast.success("User Created Successfully");
         dispatch(Success())
-        navigate('/profile')
+        const data = response.data;
+        console.log(data)
+         console.log(data.user_Ref._id)
+        navigate(`/profile/${data.user_Ref}`)
       })
       
       .catch((error) => {

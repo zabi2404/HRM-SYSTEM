@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { IoIosMail } from "react-icons/io";
 import { FaPhoneAlt } from "react-icons/fa";
 import { Link } from 'react-router-dom';
@@ -7,12 +7,19 @@ type DirectoryCardProps = {
     username: string
     contact_number: string
     email: string
-    job_title:string
+    job_title: string
 }
 
-export default function DirectoryCard({ username, contact_number, email,job_title }: DirectoryCardProps) {
+export default function DirectoryCard({ username, contact_number, email, job_title }: DirectoryCardProps) {
 
     let name = username.slice(0, 1).toUpperCase() + username.slice(1).toLowerCase();
+
+    const [copied, setCopied] = useState(false);
+    const handleCopy = (val) => {
+        navigator.clipboard.writeText(val);
+        setCopied(true);
+        setTimeout(() => setCopied(false), 1500); // reset after 1.5s
+    };
 
     return (
         <>
@@ -30,7 +37,6 @@ export default function DirectoryCard({ username, contact_number, email,job_titl
                             <h1 className="text-2xl hover:underline">
                                 {
                                     name
-
                                 }
                             </h1>
                         </Link>
@@ -41,16 +47,31 @@ export default function DirectoryCard({ username, contact_number, email,job_titl
                 </div>
                 {/* lower part */}
                 <div className='flex flex-col jusitfy-center items-center gap-2 border-t pt-4 border-[#424242]'>
-                    <div className='flex items-center gap-2'>
+                    {copied && (
+                        <p className="absolute -translate-y-5  bg-black text-white text-xs px-2 py-1 rounded">
+                            Copied
+                        </p>
+                    )}
+                    <div className='flex  items-center gap-2'>
                         <IoIosMail />
-                        <p>
+                        <p className='cursor-pointer '
+                            onClick={() => {
+                                handleCopy(email)
+                            }}>
                             {email}
                         </p>
+
                     </div>
                     <div className='flex items-center gap-2'>
                         <FaPhoneAlt className='w-4 h-4' />
 
-                        <p>{contact_number}</p>
+                        <p className='cursor-pointer '
+                            onClick={() => {
+                                handleCopy(contact_number)
+                            }}
+                        >{contact_number}
+
+                        </p>
                     </div>
                 </div>
             </div>

@@ -35,6 +35,7 @@ import { useEffect, useRef, useState } from "react";
 import { FiSidebar } from "react-icons/fi";
 import { useSelector } from "react-redux";
 import { LoadingSpinner } from './Components/Common/loading/Loading';
+import EMPProfile from './Pages/ProtectedRoutes/EmployeesProtectedRoutes/EMPProfile';
 
 
 
@@ -173,10 +174,9 @@ function App() {
                     <Route path="/message" element={<Message />} />
                     <Route path="/payroll" element={<Payroll />} />
                     <Route path="/profile" element={<Profile />} />
-                    <Route path="/detail-payroll" element={<DetailPayroll />} />
-
+                    <Route path="/profile/:id" element={<EMPProfile />} />
+                    <Route path="/detail-payroll/:id" element={<DetailPayroll />} />
                   </Route >
-
                 </Routes>
               </div>
 

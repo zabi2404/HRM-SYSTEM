@@ -1,4 +1,5 @@
 import Employee from "../Modals/Employee_modal.js";
+import Leave from "../Modals/Leave_modal.js";
 import LeaveBalance from "../Modals/LeaveBalance_modal.js";
 import User from "../Modals/User_modal.js";
 import { HandleError } from "../Utlis/error.js";
@@ -42,7 +43,7 @@ try {
       employee_Ref:employee._id
     })
     
-res.status(201).json({message:"EmployeeCreated",employee})
+res.status(201).json(employee)
 
 } catch (error) {
     next(error)
@@ -78,7 +79,7 @@ export const getEmployees = async (req, res, next) => {
   export const getEmployee = async(req,res,next)=>{
     const id = req.params.id;
     try {
-      const employee =await Employee.findOne({ user_Ref: id })
+      const employee =await Employee.findOne({  user_Ref: id })
       .populate("user_Ref", "username email "); 
       if(!employee){return next(HandleError(404,'User Not Found'))}
       res.status(200).json(employee)
@@ -86,4 +87,33 @@ export const getEmployees = async (req, res, next) => {
       next(error)
     }
   }
+  
+
+  export const deleteEmployees = async (req, res, next) => {
+    const id = req.params.id;
+  
+    try {
+      // Find the employee by ID
+      const employee = await Employee.findById(id);
+      if (!employee) {
+        return res.status(404).json({ message: "Employee not found" });
+      }
+  
+      // Delete the related User
+      if (employee.user_Ref) {
+        await User.findByIdAndDelete(employee.user_Ref);
+      }
+  
+      // Delete the Employee itself
+      await Employee.findByIdAndDelete(id);
+  
+      // Delete related Leave & LeaveBalance
+      await Leave.findOneAndDelete({ employee_Ref: id });
+      await LeaveBalance.findOneAndDelete({ employee_Ref: id });
+  
+      res.status(200).json({ message: "Employee and related records deleted" });
+    } catch (error) {
+      next(error);
+    }
+  };
   
