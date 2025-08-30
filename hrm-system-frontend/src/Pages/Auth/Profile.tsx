@@ -9,7 +9,7 @@ import { useSelector } from 'react-redux';
 export default function Profile() {
     const user = useSelector((state: any) => state.user.currentUser)
     const [listing, setListing] = useState();
-    const id = user._id
+    const id = user.rest._id
     console.log(id)
     useEffect(() => {
 

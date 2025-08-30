@@ -8,10 +8,35 @@ import {
   PopoverTrigger,
 } from "@/Components/Common/ui/popover"
 
-import { useSelector } from 'react-redux';
+
+
+
+import { getMessage } from '@/Redux/Message/messageSlice';
+import { useDispatch, useSelector } from 'react-redux';
+import { useEffect } from "react"
+import axios from "axios"
 
 export function MessagePopOver() {
+
+  const dispatch = useDispatch();
   const messageObject = useSelector((state:any)=>state.Message.messageObject)
+
+  useEffect(() => {
+  
+    axios.get('/api/message/get-messages')
+    .then((response)=>{
+     console.log('server response : ',response.data)
+      const data = response.data;
+
+     dispatch(getMessage(data))
+   
+    })
+    .catch((err)=>{
+     console.log(err)
+    })
+   }, []);
+
+  
   return (
     <Popover >
       <PopoverTrigger asChild>

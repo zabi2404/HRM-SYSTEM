@@ -4,7 +4,7 @@ export default function ProfileSecondSection() {
   return (
    <>
    
-    <div className='bg-[#212121] flex flex-col gap-10 rounded-lg p-4 pt-10 overflow-auto max-h-[620px] customScroll'>
+    <div className='bg-[#212121] flex flex-col gap-10 rounded-lg p-4 pt-10 overflow-auto max-h-[700px] customScroll'>
                        <div className='border border-[#424242] rounded-lg'>
                            {/* title */}
    

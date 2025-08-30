@@ -76,7 +76,7 @@ export default function ProfileFirstSection({ name, job_title, email, contact_nu
 
                 </div>
                 <div className='w-full flex justify-center mt-4'>
-                    <button onClick={logout} className='text-center p-4 bg-white text-black w-full rounded-lg cursor-pointer hover:opacity-80'>
+                    <button onClick={logout} className='text-center p-2 bg-white text-black w-full rounded-lg cursor-pointer hover:opacity-80'>
                         LogOut
                     </button>
                 </div>

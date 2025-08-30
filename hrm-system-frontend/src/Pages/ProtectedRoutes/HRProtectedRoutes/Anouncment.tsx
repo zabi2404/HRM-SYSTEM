@@ -13,23 +13,8 @@ export default function Anouncment() {
 
   
 
-  const dispatch = useDispatch();
   const messageObject = useSelector((state:any)=>state.Message.messageObject)
 
-  useEffect(() => {
-  
-    axios.get('/api/message/get-messages')
-    .then((response)=>{
-     console.log('server response : ',response.data)
-      const data = response.data;
-
-     dispatch(getMessage(data))
-   
-    })
-    .catch((err)=>{
-     console.log(err)
-    })
-   }, []);
 
 
 
