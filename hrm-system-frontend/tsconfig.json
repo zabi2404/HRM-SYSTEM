@@ -1,11 +1,14 @@
 {
   "compilerOptions": {
+    "target": "esnext",               // ✅ ensures modern JS features (Promises, async/await, dynamic import)
+    "module": "esnext",               // ✅ supports dynamic import
+    "lib": ["dom", "esnext"],         // ✅ includes DOM + latest ES features
     "jsx": "react-jsx",  
     "moduleResolution": "node",
     "esModuleInterop": true,
-    "baseUrl": ".",                // ✅ set base directory for imports
+    "baseUrl": ".",                  
     "paths": {
-      "@/*": ["src/*"]            // ✅ map @/ to src/
+      "@/*": ["src/*"]               
     }
   }
 }

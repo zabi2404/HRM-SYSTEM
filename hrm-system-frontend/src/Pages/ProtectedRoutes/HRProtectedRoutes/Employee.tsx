@@ -9,22 +9,22 @@ import axios from 'axios';
 
 export default function Employee() {
 
-const [listing,setListing]=useState();
+  const [listing, setListing] = useState();
 
-   useEffect(() => {
-  
-          axios.get('/api/employee/getEmployees')
-              .then((response) => {
-                  const data = response.data;
-                  setListing(data);
-                  console.log(data)
-              })
-              .catch((err) => {
-                  console.log(err)
-              })
-  
-  
-      }, []);
+  useEffect(() => {
+
+    axios.get('/api/employee/getEmployees')
+      .then((response) => {
+        const data = response.data;
+        setListing(data);
+        console.log(data)
+      })
+      .catch((err) => {
+        console.log(err)
+      })
+
+
+  }, []);
 
   // PAGINATION
 
@@ -42,11 +42,11 @@ const [listing,setListing]=useState();
   return (
     <>
       <div className='bg-[#2B2B2B] px-4 flex flex-col gap-8 rounded-2xl'>
-     
-      {/* Title */}
-      <ManageYourEmplopyee/>
+
+        {/* Title */}
+        <ManageYourEmplopyee />
         {/* filter */}
-          <SearchInput />
+        <SearchInput />
         <div className='flex items-center justify-between gap-4
         xsm:flex-col
         min-[500px]:flex-row
@@ -67,10 +67,10 @@ const [listing,setListing]=useState();
         </div>
 
         {/* Table     */}
-          <EmployeeTable
-            newAllUserTabledata={newAllUserTabledata}
-          />
-       
+
+        <EmployeeTable
+          newAllUserTabledata={newAllUserTabledata}
+        />
       </div>
 
     </>

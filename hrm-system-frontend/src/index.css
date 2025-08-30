@@ -1,5 +1,6 @@
 @import "tailwindcss";
 @import "tw-animate-css";
+@plugin "daisyui";
 
 @custom-variant dark (&:is(.dark *));
 
@@ -134,7 +135,13 @@ color: white;
   }
   body {
     @apply bg-background text-foreground;
+   
   }
+}
+
+html{
+  background-color: #0A0A0A;
+
 }
 
 @font-face {
