@@ -10,7 +10,8 @@ export default function Profile() {
     const user = useSelector((state: any) => state.user.currentUser)
     const [listing, setListing] = useState();
     const id = user.rest._id
-    console.log(id)
+  
+
     useEffect(() => {
 
         axios.get(`/api/employee/getEmployee/${id}`)
@@ -22,6 +23,11 @@ export default function Profile() {
             .catch((err) =>
                 console.log(err))
     }, []);
+
+
+
+
+
     return (
         <>
             <div className='grid md:grid-cols-[25%_75%] gap-4 

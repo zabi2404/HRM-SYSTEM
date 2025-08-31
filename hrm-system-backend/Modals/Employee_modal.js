@@ -54,6 +54,9 @@ const EmployeeSchema = new mongoose.Schema({
     city: {
         type: String
     },
+    state:{
+
+    },
     instution: {
         type: String
     },
@@ -72,6 +75,13 @@ const EmployeeSchema = new mongoose.Schema({
     skills: {
         type: String
     },
+    Certifications:{
+        type: String
+    },
+    Languages:{
+        type: String
+    },
+
 }, { timestamps: true });
 
 const Employee = mongoose.model("employee", EmployeeSchema)
