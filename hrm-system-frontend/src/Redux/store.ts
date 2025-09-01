@@ -2,6 +2,7 @@ import { combineReducers, configureStore } from '@reduxjs/toolkit'
 import  userReducer  from './user/userSlice'
 import loadingErrorReducer from './user/loadingErrorSlice' 
 import MessageReducer from './Message/messageSlice'
+import attendanceReducer from './attendance/attendanceSlice'
 import { persistStore, persistReducer } from "redux-persist";
 import storage from "redux-persist/lib/storage";
 
@@ -10,14 +11,14 @@ import storage from "redux-persist/lib/storage";
 const rootReducer = combineReducers({
     user:userReducer,
     loadingError: loadingErrorReducer,
-    Message:MessageReducer
-
+    Message:MessageReducer,
+    attendance:attendanceReducer
 })
 
 const persistConfig = {
   key: 'root',
   storage,
-  whitelist: ["user"],
+  whitelist: ["user","attendance"],
 }
 
 const persistedReducer = persistReducer(persistConfig, rootReducer)

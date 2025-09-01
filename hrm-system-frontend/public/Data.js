@@ -13,7 +13,7 @@ const employeeMenu = [
   { id: 1, title: "Dashboard", icon: RiHomeFill, to: "/dashboard" },
   { id: 2, title: "Attendance", icon: FaStar, to: "/attendance" },
   { id: 3, title: "Leave", icon: FaUser, to: "/leave" },
-  { id: 4, title: "Payroll", icon: PiCurrencyDollarSimpleBold, to: "/payroll" },
+  // { id: 4, title: "Payroll", icon: PiCurrencyDollarSimpleBold, to: "/payroll" },
   { id: 5, title: "Messages", icon: PiPuzzlePieceFill, to: "/message" },
 ];
 
@@ -23,7 +23,7 @@ const hrMenu = [
   { id: 2, title: "Employee", icon: FaUser,},
   { id: 3, title: "Leaves", icon: FaStar,  },
   { id: 4, title: "Attendance", icon: PiPuzzlePieceFill,},
-  { id: 5, title: "Payroll", icon: PiCurrencyDollarSimpleBold,},
+  // { id: 5, title: "Payroll", icon: PiCurrencyDollarSimpleBold,},
   { id: 6, title: "Announcements", icon: PiPuzzlePieceFill, to: "/announcement" },
 ];
 
@@ -32,7 +32,7 @@ const adminMenu = [
   { id: 2, title: "Employee", icon: FaUser,  },
   { id: 3, title: "Leaves", icon: FaStar, },
   { id: 4, title: "Attendance", icon: PiPuzzlePieceFill, },
-  { id: 5, title: "Payroll", icon: PiCurrencyDollarSimpleBold, to: "/payroll" },
+  // { id: 5, title: "Payroll", icon: PiCurrencyDollarSimpleBold, to: "/payroll" },
   { id: 6, title: "Announcements", icon: PiPuzzlePieceFill, to: "/announcement" },
   { id: 7, title: "Company Profile", icon: PiPuzzlePieceFill, to: "/company-profile" },
 ];
@@ -66,15 +66,15 @@ const hrSubmenu = [
 
     ]
   },
-  {
-    id: 4,
-    title: "Payroll",
-    items: [
-      { name: "My Payroll", path: "/payroll" },     
-      { name: "Employees Payroll", path: "/employee-payroll" },     
+  // {
+  //   id: 4,
+  //   title: "Payroll",
+  //   items: [
+  //     { name: "My Payroll", path: "/payroll" },     
+  //     { name: "Employees Payroll", path: "/employee-payroll" },     
 
-    ]
-  },
+  //   ]
+  // },
  
 ];
 
@@ -101,13 +101,13 @@ const adminSubmenu = [
       { name: "Employees attendance", path: "/employee-attendance" }, 
     ]
   },
-  {
-    id: 4,
-    title: "Payroll",
-    items: [  
-      { name: "Employees Payroll", path: "/employee-payroll" }, 
-    ]
-  },
+  // {
+  //   id: 4,
+  //   title: "Payroll",
+  //   items: [  
+  //     { name: "Employees Payroll", path: "/employee-payroll" }, 
+  //   ]
+  // },
  
 ];
 

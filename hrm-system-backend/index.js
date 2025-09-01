@@ -6,6 +6,8 @@ import cookieParser from 'cookie-parser';
 import EmployeeRoute from './Routes/EmployeeRoute.js'
 import MessageRoute from'./Routes/MessageRoute.js'
 import LeaveRoute from'./Routes/LeaveRoute.js'
+import AttendanceRouter from'./Routes/attendanceRoute.js'
+
 const app = express();
 const port = 2404;
 
@@ -26,6 +28,8 @@ app.use('/api/auth', authRoute)
 app.use('/api/employee', EmployeeRoute)
 app.use('/api/message',MessageRoute)
 app.use('/api/leave',LeaveRoute)
+app.use('/api/attendance',AttendanceRouter)
+
 
 //middleware for error
 app.use((err, req, res, next) => {

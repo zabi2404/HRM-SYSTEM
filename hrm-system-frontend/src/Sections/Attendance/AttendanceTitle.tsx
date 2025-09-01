@@ -4,7 +4,13 @@ import { TimerButtonModal } from './TimerButtonModal';
 export default function AttendanceTitle() {
 
   const [isOpen,setIsOpen]=useState(false);
-  
+  const [time,setTime]=useState("");
+  const currentTime = ()=>{
+    const time = new Date().toLocaleTimeString();
+    setTime(time);
+  }
+setInterval(currentTime, 1000);
+
   return (
     <>
     <div className='flex justify-between'>
@@ -18,8 +24,8 @@ export default function AttendanceTitle() {
       > 
       <BiTimer className='w-6 h-6' />
     
-        Clocks in
-        00h 00m 00s
+        Clocks in{" "}
+        {time}
       </button>
 
       <TimerButtonModal 

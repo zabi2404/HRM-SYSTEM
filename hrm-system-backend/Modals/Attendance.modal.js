@@ -8,7 +8,7 @@ const AttendanceSchema = new mongoose.Schema({
     },
     checkout:{
         type:String,
-        required:true
+        
     },
     overtime:{
         type:String,
@@ -19,7 +19,6 @@ const AttendanceSchema = new mongoose.Schema({
     },
     status:{
         type:String,
-
     },
     emp_Ref:{
         type:mongoose.Schema.Types.ObjectId,
