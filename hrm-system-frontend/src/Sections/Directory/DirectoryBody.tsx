@@ -32,6 +32,7 @@ export default function DirectoryBody() {
             username={item.user_Ref.username}
             email={item.user_Ref.email}
             job_title={item.job_title}
+            id={item.user_Ref._id}
         />
 
 

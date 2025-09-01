@@ -6,14 +6,19 @@ import EmployeeTable from '@/Sections/Employee/EmployeeTable';
 import { AllUserTabledata } from '../../../../public/Data'
 import ManageYourEmplopyee from '@/Sections/Employee/ManageYourEmplopyee';
 import axios from 'axios';
+import { useLocation } from 'react-router-dom';
 
 export default function Employee() {
+  const location = useLocation();
 
   const [listing, setListing] = useState();
 
+
+  const urlParams = new URLSearchParams(location.search);
+  const searchTerm  = urlParams.get("searchTerm");
   useEffect(() => {
 
-    axios.get('/api/employee/getEmployees')
+    axios.get(`/api/employee/getEmployees?searchTerm=${searchTerm||''}`)
       .then((response) => {
         const data = response.data;
         setListing(data);
@@ -24,8 +29,11 @@ export default function Employee() {
       })
 
 
-  }, []);
+  }, [searchTerm]);
 
+
+  // axios.get('/api/employee/getEmployees')
+  // ?searchTerm=1003
   // PAGINATION
 
   const [currentPage, setCurrentPage] = useState(1);
@@ -33,7 +41,6 @@ export default function Employee() {
 
   const startIndex = (currentPage - 1) * 10
   const endIndex = startIndex + itemPerPage;
-  const totalListData = listing?.length
   const totalPages = Math.ceil(listing?.length / itemPerPage)
 
   const newAllUserTabledata = listing?.slice(startIndex, endIndex)
@@ -54,14 +61,11 @@ export default function Employee() {
           <div className='flex items-center gap-4
       
           '>
-            <DropDownButton
-            />
-            <DropDownButton
-            />
+          
           </div>
           <div className='flex gap-2 items-center'>
             <FaChevronRight className='rotate-180 p-3 h-10 w-10 rounded-md  bg-[#212121] border cursor-pointer border-[#424242] ' onClick={() => setCurrentPage((p) => Math.max(p - 1, 1))} />
-            <p className=''>{startIndex}-{endIndex} of {totalListData}</p>
+            <p className=''>{currentPage}-{totalPages} </p>
             <FaChevronRight className='p-3 rounded-md h-10 w-10 bg-[#212121] border cursor-pointer border-[#424242] ' onClick={() => setCurrentPage((p) => Math.min(p + 1, totalPages))} />
           </div>
         </div>

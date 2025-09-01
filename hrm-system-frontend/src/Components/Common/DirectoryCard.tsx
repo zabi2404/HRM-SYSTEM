@@ -7,10 +7,11 @@ type DirectoryCardProps = {
     username: string
     contact_number: string
     email: string
-    job_title: string
+    job_title: string,
+    id:string
 }
 
-export default function DirectoryCard({ username, contact_number, email, job_title }: DirectoryCardProps) {
+export default function DirectoryCard({ username, contact_number, email, job_title,id }: DirectoryCardProps) {
 
     let name = username.slice(0, 1).toUpperCase() + username.slice(1).toLowerCase();
 
@@ -34,7 +35,7 @@ export default function DirectoryCard({ username, contact_number, email, job_tit
                             alt="" />
                     </div>
                     <div className=' flex flex-col jusitfy-center items-center '>
-                        <Link to=''>
+                        <Link to={`/profile/${id}`}>
                             <h1 className="text-2xl hover:underline">
                                 {
                                     name

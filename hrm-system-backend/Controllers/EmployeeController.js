@@ -110,7 +110,13 @@ export const getEmployees = async (req, res, next) => {
 
   if (role === "admin" || role === "hr") {
     try {
-      const employees = await Employee.find()
+
+      const searchTerm = (req.query.searchTerm || "");
+      const employees = await Employee.find({
+        $or: [
+       { name: { $regex: searchTerm, $options: 'i' }},
+       { employeeCode: { $regex: searchTerm, $options: 'i' }}]
+      })
         .populate("user_Ref", "username email ");
 
       res.status(200).json(employees);
