@@ -22,7 +22,7 @@ export default function DirectoryBody() {
     console.log(cardListing)
   return (
   <>
-  <div className='flex flex-wrap gap-10'>
+  <div className='flex flex-wrap gap-10 justify-center'>
 
 {
     cardListing?.map((item: any) =>

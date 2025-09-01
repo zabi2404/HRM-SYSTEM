@@ -4,6 +4,7 @@ import axios from 'axios';
 import React, { useEffect, useState } from 'react'
 import { FaPen } from "react-icons/fa";
 import { useParams } from 'react-router-dom';
+import { toast } from 'sonner';
 export default function ProfileSecondSection() {
 
 
@@ -13,20 +14,20 @@ export default function ProfileSecondSection() {
     const [formData,setFormData]=useState({
         name:'',
         dob:'',
-        gender:'',
-        city:'',
-        institution:'',
-        degree:'',
-        year:0,
-        experience:'',
-        achievements:'',
-        skills:'',
         email:'',
+        gender:'',
         contact_number:'',
         address:'',
         state:'',
-        Languages:'',
-        Certifications:''
+        city:'',
+        degree:'',
+        institution:'',
+        year:0,
+        achievements:'',
+        experience:'',
+        skills:'',
+        certifications:'',
+        languages:'',
     })
 
 
@@ -34,7 +35,7 @@ export default function ProfileSecondSection() {
         axios.get(`/api/employee/getEmployee/${params.id}`)
           .then((response) => {
             const data = response.data;
-      
+      console.log(data);
             
             setFormData({
               name: data.name || "",
@@ -47,17 +48,20 @@ export default function ProfileSecondSection() {
               experience: data.experience || "",
               achievements: data.achievements || "",
               skills: data.skills || "",
-              email: data.email || "",
+              email: data.user_Ref.email || "",
               contact_number: data.contact_number || "",
               address: data.address || "",
               state: data.state || "",
-              Languages: data.Languages || "",
-              Certifications: data.Certifications || "",
+              languages: data.Languages || "",
+              certifications: data.Certifications || "",
             });
           })
           .catch((err) => console.log(err));
       }, [params.id]);
       
+
+      
+
 
 
 const HandleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -70,18 +74,33 @@ const HandleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
 
 }
 
+const formSubbmission = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    console.log('form subbmitted : ',formData);
+    axios.post(`/api/employee/update-employee/${params.id}`, formData)
+        .then((response) => {
+            console.log(response.data);
+          toast.success("Profile Updated Successfully")
+           
+        })
+        .catch((err) => {
+            console.log(err.message);
+            toast.error("Error while updating profile")
+        })
+}
+
     return (
 
         <>
 
-            <form action="">
+            <form onSubmit={formSubbmission}>
             <div className='bg-[#212121] flex flex-col gap-10 rounded-lg p-4 pt-10 overflow-auto max-h-[700px] customScroll'>
                 <div className='flex justify-end gap-4 items-center '>
 
                     <Button variant='outline' className='cursor-pointer '
                         onClick={() => { setEdit(true) }}
                     > Edit</Button>
-                    <Button className='cursor-pointer hover:opacity-70'
+                    <Button type='submit' className='cursor-pointer hover:opacity-70'
                         onClick={() => { setEdit(false) }}
                     > Save Changes</Button>
 
@@ -124,7 +143,7 @@ const HandleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
                                     onChange={HandleChange}
                                 />
                                 :
-                                <p>{"-"}</p>
+                                <p>{formData.dob||"-"}</p>
                             }
                         </div>
                         <div className='grid grid-cols-2 items-center '>
@@ -155,7 +174,7 @@ const HandleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
                                 }}
                                 />
                                 :
-                                <p>{"-"}</p>
+                                <p>{formData.gender||"-"}</p>
                             }
                         </div>
                         <div className='grid grid-cols-2 items-center '>
@@ -366,11 +385,11 @@ const HandleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
                                     type="text"
                                     id='Certifications'
                                     placeholder='Certifications'
-                                    value={formData.Certifications}
+                                    value={formData.certifications}
                                     onChange={HandleChange}
                                 />
                                 :
-                                <p>{formData.Certifications||"-"}</p>
+                                <p>{formData.certifications||"-"}</p>
                             }
                         </div>
 
@@ -382,11 +401,11 @@ const HandleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
                                     type="text"
                                     id='Languages'
                                     placeholder='Languages'
-                                    value={formData.Languages}
+                                    value={formData.languages}
                                     onChange={HandleChange}
                                 />
                                 :
-                                <p>{formData.Languages||"-"}</p>
+                                <p>{formData.languages||"-"}</p>
                             }
                         </div>
 

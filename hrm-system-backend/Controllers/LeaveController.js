@@ -44,7 +44,7 @@ export const getAppliedLeave = async(req,res,next)=>{
     const id = req.params.id
   
     let status = req.query.status;
-    if (status === undefined) {
+    if (status === undefined  ) {
         status = { $in: ['approved', 'rejected'] }
     }
     
@@ -63,7 +63,7 @@ export const getAppliedLeaves = async(req,res,next)=>{
   
     let type = req.query.type;
     console.log(type)
-    if (type === "undefined") {
+    if (type === "undefined"|| type==='all') {
         type = { $in: ["Sick", "other"] }
     }
     let status = req.query.status;
@@ -74,6 +74,21 @@ export const getAppliedLeaves = async(req,res,next)=>{
         const leaves=await Leave.find({  type,status})
         if(!leaves){return res.json("No Leave found of this employee")}
         res.status(200).json(leaves)
+    } catch (error) {
+        next(error)
+    }
+}
+
+
+// update leave
+
+const updateLeave = async(req,res,next)=>{
+    const id = req.params.id
+    const {status}=req.body
+    try {
+        const leave=await Leave.findByIdAndUpdate(id,{status},{new:true})
+        if(!leave){return next(HandleError(404,'No record Found for this User'))}
+        res.status(200).json(leave)
     } catch (error) {
         next(error)
     }

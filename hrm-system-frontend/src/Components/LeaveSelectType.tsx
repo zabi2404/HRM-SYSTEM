@@ -30,6 +30,7 @@ export function SelectDemo({onChange}:SelectDemoProps) {
       <SelectContent>
         <SelectGroup>
           <SelectLabel>Types</SelectLabel>
+          <SelectItem value="all">All</SelectItem>
           <SelectItem value="Sick">Sick</SelectItem>
           <SelectItem value="other">other</SelectItem>
         </SelectGroup>

@@ -120,7 +120,7 @@ const navigate = useNavigate();
         const data = response.data;
         console.log(data)
          console.log(data.user_Ref._id)
-        navigate(`/profile/${data.user_Ref}`)
+        navigate(`/profile/${data._id}`)
       })
       
       .catch((error) => {

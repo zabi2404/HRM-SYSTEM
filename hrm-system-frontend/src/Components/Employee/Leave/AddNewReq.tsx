@@ -198,8 +198,9 @@ function ProfileForm({ className }: React.ComponentProps<"form">) {
                     className="flex justify-center"
                 />
             </div>
-
+            <DialogTrigger asChild>
             <Button type="submit" className="cursor-pointer hover:opacity-80">Save changes</Button>
+            </DialogTrigger >
         </form>
     )
 }

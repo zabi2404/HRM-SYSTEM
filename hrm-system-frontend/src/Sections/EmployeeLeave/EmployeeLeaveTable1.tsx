@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import { MdDelete } from "react-icons/md";
 import { FaPen } from "react-icons/fa";
+import { Badge } from '@/Components/Common/badge';
+import { AppRejButton } from '@/Components/Common/AppRejButton';
 
 export default function Table1({newAllUserTabledata,fallback}) {
 
@@ -48,7 +50,9 @@ export default function Table1({newAllUserTabledata,fallback}) {
               <td>{ daysInclusive(item.start, item.end)||"-"}</td>
               <td>{item.type}</td>
               <td>{item.file || "-"}</td>
-              <td>{item.status}</td>
+              <td className='pl-6'>
+              <AppRejButton/>
+                 </td>
               <td>
                 <div className='flex gap-2 justify-center'> <FaPen /> <MdDelete /></div>
               </td>

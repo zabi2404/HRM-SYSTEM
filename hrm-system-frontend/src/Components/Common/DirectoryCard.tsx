@@ -24,7 +24,8 @@ export default function DirectoryCard({ username, contact_number, email, job_tit
     return (
         <>
             <div className='bg-[#212121] flex flex-col text-center jusitfy-center items-center  gap-3 rounded-lg max-w-fit py-6 px-8
-    '>
+  min-w-[300px]
+  '>
                 {/* UPPER part */}
                 <div className='flex flex-col jusitfy-center items-center gap-3 '>
                     <div className="w-16 h-16  object-cover">

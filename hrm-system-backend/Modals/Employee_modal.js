@@ -57,7 +57,7 @@ const EmployeeSchema = new mongoose.Schema({
     state:{
 
     },
-    instution: {
+    institution: {
         type: String
     },
     degree: {
