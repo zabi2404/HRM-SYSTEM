@@ -1,20 +1,36 @@
 import { FaChevronRight, FaPlus } from "react-icons/fa6";
 import EmployeeTable from '@/Sections/Employee/EmployeeTable';
 import { AllUserTabledata } from '../../../public/Data'
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Table1 from "../Leave/Table1";
 import EmployeeAttendanceTable1 from "./EmployeeAttendanceTable1";
+import axios from "axios";
 export default function EmployeeAttendanceTable() {
+
+  const [listint,setListing]=useState()
+
+  useEffect(() => {
+  
+  axios.get(`/api/attendance/get-EmployeeAttendance`)
+    .then((response)=>{
+      console.log(response.data)
+      const data = response.data;
+      setListing(data)
+    })
+  .catch((error)=>{
+    console.log(error)
+  })
+  }  ,[])
 
    const [currentPage, setCurrentPage] = useState(1);
     const itemPerPage = 10;
   
     const startIndex = (currentPage - 1) * 10
     const endIndex = startIndex + itemPerPage;
-    const totalListData = AllUserTabledata.length
-    const totalPages = Math.ceil(AllUserTabledata.length / itemPerPage)
+    const totalListData = listint?.length
+    const totalPages = Math.ceil(listint?.length / itemPerPage)
   
-    const newAllUserTabledata = AllUserTabledata.slice(startIndex, endIndex)
+    const newAllUserTabledata = listint?.slice(startIndex, endIndex)
   
 
   return (

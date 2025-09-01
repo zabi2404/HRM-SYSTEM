@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import { BiTimer } from "react-icons/bi";
 import { TimerButtonModal } from './TimerButtonModal';
+import { useSelector } from 'react-redux';
 export default function AttendanceTitle() {
 
   const [isOpen,setIsOpen]=useState(false);
@@ -10,7 +11,7 @@ export default function AttendanceTitle() {
     setTime(time);
   }
 setInterval(currentTime, 1000);
-
+const attendance = useSelector((state: any) => state.attendance.Attendance);
   return (
     <>
     <div className='flex justify-between'>
@@ -23,9 +24,12 @@ setInterval(currentTime, 1000);
      onClick={()=>{setIsOpen(true)}} 
       > 
       <BiTimer className='w-6 h-6' />
-    
-        Clocks in{" "}
-        {time}
+      {!attendance?
+      (
+         `Clocks In at ${time}`
+        
+      ):(`Clocks Out at ${time}`)}
+       
       </button>
 
       <TimerButtonModal 

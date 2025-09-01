@@ -13,11 +13,15 @@ const attendanceSlice = createSlice({
     initialState,
     reducers:{
 
-        ChangeAttendance:(state)=>{
+        ClockIn:(state)=>{
             state.Attendance=true
         }
+        ,ClockOut:(state)=>{
+            state.Attendance=false
+        },
+
     }})
 
-export const {ChangeAttendance} = attendanceSlice.actions;
+export const {ClockIn,ClockOut} = attendanceSlice.actions;
 
 export default attendanceSlice.reducer;
