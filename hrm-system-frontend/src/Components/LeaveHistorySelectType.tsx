@@ -14,7 +14,7 @@ import {
 type SelectDemoProps={
   onChange?: (val: string) => void; 
 }
-export function SelectDemo({onChange}:SelectDemoProps) {
+export function LeaveHistorySelectType({onChange}:SelectDemoProps) {
 
   return (
     <Select

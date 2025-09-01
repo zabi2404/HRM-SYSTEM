@@ -1,9 +1,12 @@
 import { SelectDemo } from '@/Components/LeaveSelectType'
 import { SelectMonth } from '../Leave/SelectMonth'
 import { useState } from 'react'
+import { LeaveHistorySelectType } from '@/Components/LeaveHistorySelectType';
 
-export default function EmployeeLeaveHistoryTitle() {
+export default function EmployeeLeaveHistoryTitle({sethistoryType}:any) {
   const [type,setType]=useState("")
+  sethistoryType(type);
+  console.log("from history title",type)
   return (
    <>
     <div className='flex items-center justify-between p-4'>
@@ -15,15 +18,12 @@ export default function EmployeeLeaveHistoryTitle() {
    
              
              <div className="flex items-center gap-4">
-               <SelectDemo
+               <LeaveHistorySelectType
                                   onChange={(val:string) => {
                                     setType(val)
                                   }}
                               />
-                <SelectMonth/>
-            
-   
-             </div>
+                           </div>
    
    
            </div>

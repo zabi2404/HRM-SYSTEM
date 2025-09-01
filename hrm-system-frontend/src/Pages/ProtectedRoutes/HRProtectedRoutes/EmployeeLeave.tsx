@@ -9,7 +9,8 @@ import React, { useState } from 'react'
 
 export default function EmployeeLeave() {
       const [type,setType]=useState('');
-      
+      const [historyType,sethistoryType]=useState('');
+      console.log("from main page",type)
     return (
         <>
             <div className='bg-[#2B2B2B] p-4 flex flex-col gap-8 rounded-2xl'>
@@ -27,11 +28,15 @@ export default function EmployeeLeave() {
             </div>
 
             <div className='bg-[#2B2B2B] p-4 flex flex-col gap-8 rounded-2xl mt-4'>
-                <EmployeeLeaveHistoryTitle />
+                <EmployeeLeaveHistoryTitle 
+                 sethistoryType={(val)=>{
+                    sethistoryType(val)
+                   }}
+                />
                 <SearchInput
                     placeholder="Search name or Emplpoyee Id" />
                 <EmployeeLeaveHistoryTable
-                 type={type}
+                 type={historyType}
                 
                 />
             </div>

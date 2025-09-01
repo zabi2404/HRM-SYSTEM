@@ -4,7 +4,7 @@ import { FaPen } from "react-icons/fa";
 import { Badge } from '@/Components/Common/badge';
 import { AppRejButton } from '@/Components/Common/AppRejButton';
 
-export default function Table1({newAllUserTabledata,fallback}) {
+export default function EmployeeLeaveHistoryTable1({newAllUserTabledata,fallback}) {
   
   
   function daysInclusive(from, to = from) {
@@ -52,9 +52,7 @@ export default function Table1({newAllUserTabledata,fallback}) {
               <td>{item.type}</td>
               <td>{item.file || "-"}</td>
               <td className='pl-6'>
-              <AppRejButton
-              LeaveId={item._id}
-              />
+            {item.status}
                  </td>
               <td>
                 <div className='flex gap-2 justify-center'> <FaPen /> <MdDelete /></div>

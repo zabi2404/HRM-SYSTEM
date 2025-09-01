@@ -67,11 +67,11 @@ export const getAppliedLeaves = async(req,res,next)=>{
         type = { $in: ["Sick", "other"] }
     }
     let status = req.query.status;
-    if(status==='undefined'){
-        status:{$in:['rejected,accepted']}
+    if(status==="undefined"){
+        status = { $in: ['rejected', 'approved'] }
     }
     try {
-        const leaves=await Leave.find({  type,status})
+        const leaves = await Leave.find({  type,status})
         if(!leaves){return res.json("No Leave found of this employee")}
         res.status(200).json(leaves)
     } catch (error) {
@@ -82,7 +82,7 @@ export const getAppliedLeaves = async(req,res,next)=>{
 
 // update leave
 
-const updateLeave = async(req,res,next)=>{
+export const updateLeave = async(req,res,next)=>{
     const id = req.params.id
     const {status}=req.body
     try {

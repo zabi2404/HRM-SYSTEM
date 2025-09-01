@@ -6,6 +6,7 @@ import Table1 from "../Leave/Table1";
 import EmployeeLeaveTable1 from "./EmployeeLeaveTable1";
 import { useSelector } from "react-redux";
 import axios from "axios";
+import EmployeeLeaveHistoryTable1 from "./EmployeeLeaveHistoryTable1";
 
 type EmployeeLeaveTableProps={
 type:string
@@ -13,18 +14,18 @@ type:string
 
 
 export default function EmployeeLeaveTable({type}:EmployeeLeaveTableProps) {
-console.log("from table", type)
+console.log("from history table", type)
   const User = useSelector((state: any) => state.user.currentUser)
   const [listing, setListing] = useState();
 
 
   useEffect(() => {
-
-    axios.get(`/api/leave/get-Appliedleaves?type=${type||undefined}&status=undefined`)
+console.log("type in useeffect:",type)
+    axios.get(`/api/leave/get-Appliedleaves?type=${type||undefined}&status=${undefined}`)
       .then((Response) => {
         const data = Response.data;
         setListing(data)
-        console.log(data)
+        console.log("leave history table:",data)
       }
       )
 
@@ -55,7 +56,7 @@ console.log("from table", type)
         </div>
       </div>
       <div>
-        <EmployeeLeaveTable1
+        <EmployeeLeaveHistoryTable1
           newAllUserTabledata={newAllUserTabledata}
           fallback="No Leave History"
         />

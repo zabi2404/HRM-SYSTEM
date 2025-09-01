@@ -18,21 +18,29 @@ import { toast } from "sonner";
 import { Badge } from '@/Components/Common/badge';
 
 type ConfirmButtonProps = {
-    empID?: Number
+    LeaveId?: Number
 }
 
-export function AppRejButton({ empID }: ConfirmButtonProps) {
+export function AppRejButton({ LeaveId }: ConfirmButtonProps) {
 
-    const HandleSubmit = () => {
-        console.log("Button Clicked");
-        // axios.delete(`/api/employee/delete-employee/${empID}`)
-        //     .then((Response) => {
-        //         toast.success(Response.data.message)
-        //     })
-        //     .catch((err) => toast.error(err.message)
-        //     )
+    const Approved = () => {
+        console.log("Approved");
+        axios.post(`/api/leave/update-leave/${LeaveId}`,{status:"approved"})
+            .then((Response) => {
+                toast.success('Leave Marked as Approved')
+            })
+            .catch((err) => toast.error('Something went wrong')
+            )
     }
-
+const Rejected=()=>{
+    console.log("Rejected");
+    axios.post(`/api/leave/update-leave/${LeaveId}`,{status:"rejected"})
+    .then((Response) => {
+        toast.success('Leave Marked as Rejected')
+    })
+    .catch((err) => toast.error('Something went wrong')
+    )
+}
 
     return (
         <Dialog>
@@ -61,10 +69,10 @@ export function AppRejButton({ empID }: ConfirmButtonProps) {
 
                     <DialogFooter className="flex xsm:!justify-center ">
                         <DialogClose asChild>
-                            <Button variant="outline" className="cursor-pointer min-w-[100px]">Reject</Button>
+                            <Button onClick={Rejected} variant="outline" className="cursor-pointer min-w-[100px]">Reject</Button>
                         </DialogClose >
                         <DialogClose asChild>
-                            <Button onClick={HandleSubmit} className="cursor-pointer hover:opacity-70">Approved</Button>
+                            <Button onClick={Approved} className="cursor-pointer hover:opacity-70">Approved</Button>
                         </DialogClose >
                     </DialogFooter>
                 </DialogContent>
