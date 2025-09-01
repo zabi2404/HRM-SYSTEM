@@ -4,6 +4,7 @@ import ProfileFirstSection from '@/Sections/Auth/Profile/ProfileFirstSection';
 import ProfileSecondSection from '@/Sections/Auth/Profile/ProfileSecondSection';
 import axios from 'axios';
 import { useParams } from 'react-router-dom';
+import EmpSecondSection from '@/Sections/EmployeeProfile/EmpSecondSection';
 
 
 
@@ -44,7 +45,7 @@ const param = useParams();
                                 department={listing?.department}
                                 employeeCode={listing?.employeeCode}
                             />
-                            <ProfileSecondSection
+                            <EmpSecondSection
                             />
                   
                   

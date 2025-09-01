@@ -125,7 +125,7 @@ export const getEmployees = async (req, res, next) => {
 
 export const getEmployee = async (req, res, next) => {
   const id = req.params.id;
-
+  console.log(id);
   try {
     const employee = await Employee.findOne({
       $or: [
