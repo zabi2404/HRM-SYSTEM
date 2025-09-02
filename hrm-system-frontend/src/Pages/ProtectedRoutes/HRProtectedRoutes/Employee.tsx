@@ -11,7 +11,7 @@ import { useLocation } from 'react-router-dom';
 export default function Employee() {
   const location = useLocation();
 
-  const [listing, setListing] = useState();
+  const [listing, setListing] = useState<any[]>([]);
 
 
   const urlParams = new URLSearchParams(location.search);
@@ -43,7 +43,7 @@ export default function Employee() {
   const endIndex = startIndex + itemPerPage;
   const totalPages = Math.ceil(listing?.length / itemPerPage)
 
-  const newAllUserTabledata = listing?.slice(startIndex, endIndex)
+  const newAllUserTabledata = listing.slice(startIndex, endIndex)
 
 
   return (

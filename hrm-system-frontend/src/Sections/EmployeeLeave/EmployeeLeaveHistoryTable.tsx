@@ -16,7 +16,7 @@ type:string
 export default function EmployeeLeaveTable({type}:EmployeeLeaveTableProps) {
 console.log("from history table", type)
   const User = useSelector((state: any) => state.user.currentUser)
-  const [listing, setListing] = useState();
+  const [listing, setListing] = useState([]);
 
 
   useEffect(() => {
@@ -45,7 +45,10 @@ console.log("type in useeffect:",type)
 
   return (
     <>
-      <div className='flex items-center justify-end gap-4'>
+      <div className='flex items-center justify-end gap-4
+       xsm:flex-col
+       min-[500px]:flex-row
+      '>
         
 
         <div className='flex gap-2 items-center'>

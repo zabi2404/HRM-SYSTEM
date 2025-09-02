@@ -38,7 +38,10 @@ export default function EmployeeAttendanceTable() {
 
   return (
     <>
-      <div className='flex items-center justify-end gap-4'>
+      <div className='flex items-center justify-end gap-4
+       xsm:flex-col
+       min-[500px]:flex-row
+      '>
         
 
         <div className='flex gap-2 items-center'>

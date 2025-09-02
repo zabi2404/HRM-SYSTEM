@@ -15,7 +15,10 @@ export default function EmployeeLeaveTitle({onChange}:EmployeeLeaveTitleprops) {
   onChange(type)
   return (
    <>
-    <div className='flex items-center justify-between p-4'>
+    <div className='flex items-center justify-between p-4
+      xsm:flex-col xsm:text-center xsm:gap-4 xsm:p-2
+      sm:flex-row sm:text-start 
+    '>
              {/* Title */}
              <div>
                <h1 className='text-2xl font-semibold'>Emplopyees Leaves</h1>

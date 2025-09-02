@@ -1,8 +1,5 @@
-import { FaChevronRight, FaPlus } from "react-icons/fa6";
-import EmployeeTable from '@/Sections/Employee/EmployeeTable';
-import { AllUserTabledata } from '../../../public/Data'
+import { FaChevronRight } from "react-icons/fa6";
 import { useEffect, useState } from "react";
-import Table1 from "../Leave/Table1";
 import EmployeeLeaveTable1 from "./EmployeeLeaveTable1";
 import { useSelector } from "react-redux";
 import axios from "axios";
@@ -51,7 +48,10 @@ console.log("from table", type)
 
   return (
     <>
-      <div className='flex items-center justify-end gap-4'>
+      <div className='flex items-center justify-end gap-4
+       xsm:flex-col
+       min-[500px]:flex-row
+      '>
         
 
         <div className='flex gap-2 items-center'>

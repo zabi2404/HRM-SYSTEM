@@ -67,9 +67,17 @@ export default function sidebar(props) {
             }
           </ul>
           <hr className='border-t-[#FFFFFF]' />
+<div className="bg-[#212121] min-[1000px]:hidden   border border-[#424242] flex items-center justify-center rounded-[4px] mt-4">
+            <Link to='/profile'>
+            <button type="submit" className='text-white h-[44px] cursor-pointer flex items-center justify-between '>
+             Profile
+              <FaArrowRight className='ml-2' />
 
+            </button>
+            </Link>
+          </div>
          {currentUser.rest.role === 'admin'&&
-<div className="bg-[#212121]  border border-[#424242] flex items-center justify-center rounded-[4px] mt-16">
+<div className="bg-[#212121]  border border-[#424242] flex items-center justify-center rounded-[4px] mt-4">
             <Link to='/signup'>
             <button type="submit" className='text-white h-[44px] cursor-pointer flex items-center justify-between '>
              Create New User
@@ -79,6 +87,7 @@ export default function sidebar(props) {
             </Link>
           </div>
          }
+         
           
 
 
