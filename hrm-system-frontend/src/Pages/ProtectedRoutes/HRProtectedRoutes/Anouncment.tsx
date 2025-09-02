@@ -14,7 +14,7 @@ export default function Anouncment() {
   
 
   const messageObject = useSelector((state:any)=>state.Message.messageObject)
-
+console.log(messageObject)
 
 
 

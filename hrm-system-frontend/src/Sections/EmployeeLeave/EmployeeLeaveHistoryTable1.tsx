@@ -23,12 +23,14 @@ export default function EmployeeLeaveHistoryTable1({newAllUserTabledata,fallback
           <tr className='bg-[#212121] '>
             
           
-            <th className='w-1/6 p-6 rounded-l-lg'>From</th>
-            <th className='w-1/6'>To</th>
-            <th className='w-1/6'>Total Days</th>
-            <th className='w-1/6'>Type</th>
-            <th className='w-1/6'>Attachment</th>
-            <th className='w-1/6 rounded-r-lg'>Status</th>
+          <th className='w-1/9 p-6 rounded-l-lg text-nowrap'>Employee ID</th>
+            <th className='w-1/9'>Name</th>
+            <th className='w-1/9'>From</th>
+            <th className='w-1/9'>To</th>
+            <th className='w-1/9'>Total Days</th>
+            <th className='w-1/9'>Type</th>
+            <th className='w-1/9'>Attachment</th>
+            <th className='w-1/9 rounded-r-lg'>Status</th>
             
             
           </tr>
@@ -38,17 +40,15 @@ export default function EmployeeLeaveHistoryTable1({newAllUserTabledata,fallback
           {newAllUserTabledata?.map((item) => (
             <tr key={item.id} className='text-center'>
              
-              <td className='p-8'>
-                
-                  
+              <td>{item.employee_Ref.employeeCode}</td>
+                    <td>{item.employee_Ref.name}</td>
+              <td className='p-8'> 
                   <div className='text-start'>
                     <p className='text-nowrap'>{item.start}</p>
-                    <p className='text-xs text-gray-400'>{item.email}</p>
-                  
                 </div>
               </td>
               <td>{item.end||"-"}</td>
-              <td>{ daysInclusive(item.start, item.end)||"-"}</td>
+              <td>{ daysInclusive(item.start, item.end)||"1"}</td>
               <td>{item.type}</td>
               <td>{item.file || "-"}</td>
               <td className='pl-6'>

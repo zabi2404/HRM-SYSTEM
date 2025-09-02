@@ -50,7 +50,7 @@ console.log(newAllUserTabledata)
                 </div>
               </td>
               <td>{item.end||"-"}</td>
-              <td>{ daysInclusive(item.start, item.end)||"-"}</td>
+              <td>{ daysInclusive(item.start, item.end)||"1"}</td>
               <td>{item.type}</td>
               <td>{item.file || "-"}</td>
               <td>

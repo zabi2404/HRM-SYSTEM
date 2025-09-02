@@ -5,6 +5,7 @@ import { FaChevronDown } from "react-icons/fa";
 
 import AnswerList from './AnswerList';
 import { AnswerListArray } from '../../../public/Data2';
+import { MessageDeleteButton } from './MessageDeleteButton';
 
 
 type QuestionListProps = {
@@ -28,7 +29,13 @@ type QuestionListProps = {
       <li className='rounded-[8px]  p-5  border mb-6 '>
        <div className='flex justify-between items-center'>
 <h1 className=' font-bold mb-2'>{title}</h1>
+<div className='flex gap-4 items-center'>
+<MessageDeleteButton
+   MessageID={id}
+/>
 <FaChevronDown onClick={HandleMenuLink} className={`cursor-pointer  ${isOpen && `rotate-180`}`} />
+</div>
+
   </div>
 {isOpen &&
   messageObject.filter(item => item._id === id).map(item => (

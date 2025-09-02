@@ -28,7 +28,7 @@ export function TimerButtonModal({ isOpen, onClose }: TimerButtonModalProps) {
 
 
   const handleClockIn = () => {
-    axios.post(`api/attendance/create-attendance`, {
+    axios.post(`/api/attendance/create-attendance`, {
       employeeId: user.employeeId,
       checkin: new Date().toLocaleTimeString(),
     })
@@ -53,6 +53,7 @@ export function TimerButtonModal({ isOpen, onClose }: TimerButtonModalProps) {
    })
    .catch((error)=>{
     toast.error('Error in clock out');
+    console.log(error.message)
    })
   }
 
@@ -115,7 +116,7 @@ export function TimerButtonModal({ isOpen, onClose }: TimerButtonModalProps) {
           {!attendance ?
 
             <DialogClose asChild>
-              <Button disabled={!canClockOut} onClick={handleClockIn} className='cursor-pointer'>
+              <Button disabled={canClockOut} onClick={handleClockIn} className='cursor-pointer'>
                 Clock In</Button>
             </DialogClose>
             :

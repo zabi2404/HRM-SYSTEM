@@ -85,7 +85,7 @@ export const getAppliedLeaves = async(req,res,next)=>{
         status = { $in: ['rejected', 'approved'] }
     }
     try {
-        const leaves = await Leave.find({  type,status})
+        const leaves = await Leave.find({  type,status}).populate("employee_Ref",'name employeeCode ')
         if(!leaves){return res.json("No Leave found of this employee")}
         res.status(200).json(leaves)
     } catch (error) {
