@@ -75,7 +75,7 @@ console.log(newAllUserTabledata)
 
       </table>
       {newAllUserTabledata?.length==0&&
-        <h1 className='font-script text-3xl flex justify-center font-bold text-nowrap mt-4'>Have No Leave History</h1>}
+        <h1 className='font-script text-3xl flex justify-center font-bold text-nowrap my-4'>Have No Leave History</h1>}
     </div>
   );
 }

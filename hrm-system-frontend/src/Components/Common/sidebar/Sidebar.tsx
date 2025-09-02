@@ -69,7 +69,7 @@ export default function sidebar(props) {
           <hr className='border-t-[#FFFFFF]' />
 
          {currentUser.rest.role === 'admin'&&
-<div className="bg-gradient-to-br from-[#CB3CFF] to-[#7F25FB] flex items-center justify-center rounded-[4px] mt-16">
+<div className="bg-[#212121]  border border-[#424242] flex items-center justify-center rounded-[4px] mt-16">
             <Link to='/signup'>
             <button type="submit" className='text-white h-[44px] cursor-pointer flex items-center justify-between '>
              Create New User

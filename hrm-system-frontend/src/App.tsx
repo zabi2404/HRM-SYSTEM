@@ -1,7 +1,7 @@
 // REACT
 import { lazy, Suspense } from 'react';
 import ReactDOM from "react-dom/client";
-import { BrowserRouter, Route, Routes } from "react-router-dom";
+import { BrowserRouter, Navigate, Route, Routes } from "react-router-dom";
 
 //GLOBAL
 import Dashboard from "./Pages/Dashboard";
@@ -168,6 +168,7 @@ function App() {
 
                   {/* ROUTES THAT  CAN ACCESS  WITH VERFIED LOGIN AND TOKEN*/}
                   <Route element={<EmployeeProtectedRoute />} >
+                  <Route path="/" element={<Navigate to="/dashboard" replace />} />
                     <Route path="/dashboard" element={<Dashboard />} />
                     <Route path="/attendance" element={<Attendance />} />
                     <Route path="/leave" element={<Leave />} />
