@@ -5,6 +5,7 @@ import { useEffect, useState } from "react";
 import Table1 from "./Table1";
 import { useSelector } from "react-redux";
 import axios from "axios";
+import LeaveHistoryTable1 from "./LeaveHistoryTable1";
 export default function LeaveHistoryTable() {
 
 
@@ -30,7 +31,7 @@ export default function LeaveHistoryTable() {
   
     const startIndex = (currentPage - 1) * 10
     const endIndex = startIndex + itemPerPage;
-    const totalListData = listing?.length
+    
     const totalPages = Math.ceil(listing?.length / itemPerPage)
   
     const newAllUserTabledata = listing?.slice(startIndex, endIndex)
@@ -47,12 +48,12 @@ export default function LeaveHistoryTable() {
         <div className='flex gap-2 items-center'>
           <FaChevronRight className='rotate-180 p-3 h-10 w-10 rounded-md  bg-[#212121] border cursor-pointer border-[#424242] ' onClick={() => setCurrentPage((p) => Math.max(p - 1, 1))} />
 
-          <p className=''>{startIndex}-{endIndex} of {totalListData}</p>
+          <p className=''>{currentPage}-{totalPages} </p>
           <FaChevronRight className='p-3 rounded-md h-10 w-10 bg-[#212121] border cursor-pointer border-[#424242] ' onClick={() => setCurrentPage((p) => Math.min(p + 1, totalPages))} />
         </div>
       </div>
       <div>
-        <Table1
+        <LeaveHistoryTable1
           newAllUserTabledata={newAllUserTabledata}
         />
       </div>

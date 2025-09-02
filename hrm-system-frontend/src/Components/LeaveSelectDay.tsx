@@ -11,16 +11,21 @@ import {
 } from "./Common/ui/select"
 
 
+type SelectDaysprops = {
+  value:string,
+onChange?: (val: string) => void; 
 
+}
 
-export default function SelectDays({onChange}) {
-    
+export default function SelectDays({onChange,value}) {
+    console.log(value)
   return (
     <Select
     onValueChange={(val)=>{
         onChange(val)
       }}
       required
+      value={value}
     >
       <SelectTrigger className="w-[180px]">
         <SelectValue placeholder="Select Days" />
@@ -28,10 +33,10 @@ export default function SelectDays({onChange}) {
       <SelectContent>
         <SelectGroup>
           <SelectLabel>Days</SelectLabel>
-          <SelectItem value="single">Single</SelectItem>
-          <SelectItem value="multiple">Multiple</SelectItem>
+          <SelectItem value="single">single</SelectItem>
+          <SelectItem value="multiple">multiple</SelectItem>
         </SelectGroup>
-      </SelectContent>
+      </SelectContent> 
     </Select>
   )
 }

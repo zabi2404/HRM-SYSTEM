@@ -39,10 +39,7 @@ export function TimerButtonModal({ isOpen, onClose }: TimerButtonModalProps) {
       })
       .catch((err) => { console.log(err) })
   }
-//   const handleClockOut = () => {
-    
-//   
-// }
+
 
   const handleClockOut = () => {
    axios.post(`/api/attendance/update-attendance`, {
@@ -118,7 +115,7 @@ export function TimerButtonModal({ isOpen, onClose }: TimerButtonModalProps) {
           {!attendance ?
 
             <DialogClose asChild>
-              <Button disabled={canClockOut} onClick={handleClockIn} className='cursor-pointer'>
+              <Button disabled={!canClockOut} onClick={handleClockIn} className='cursor-pointer'>
                 Clock In</Button>
             </DialogClose>
             :

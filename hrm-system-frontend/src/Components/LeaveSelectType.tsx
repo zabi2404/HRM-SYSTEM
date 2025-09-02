@@ -13,8 +13,9 @@ import {
 
 type SelectDemoProps={
   onChange?: (val: string) => void; 
+  value:string;
 }
-export function SelectDemo({onChange}:SelectDemoProps) {
+export function SelectDemo({onChange,value}:SelectDemoProps) {
 
   return (
     <Select
@@ -22,6 +23,7 @@ export function SelectDemo({onChange}:SelectDemoProps) {
     console.log("from select",val)
     onChange(val)
   }}
+  value={value}
   required
     >
      

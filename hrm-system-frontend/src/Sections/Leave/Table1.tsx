@@ -1,6 +1,11 @@
 import React, { useState } from 'react';
 import { MdDelete } from "react-icons/md";
 import { FaPen } from "react-icons/fa";
+import { Badge } from '@/Components/Common/badge';
+import { ConfirmButton } from '@/Components/Common/ConfirmButton';
+import { LeaveDelConfirmButton } from './LeaveDelConfirmButton';
+import { AddNewReq } from '@/Components/Employee/Leave/AddNewReq';
+import { EditLeavedialouge } from './EditLeavedialouge';
 
 export default function Table1({newAllUserTabledata}) {
 
@@ -12,15 +17,15 @@ export default function Table1({newAllUserTabledata}) {
   }
  
 
-
+console.log(newAllUserTabledata)
  return (
     <div className="overflow-auto customScroll max-h-screen  w-full">
       <table className="min-w-[1040px] w-full text-white text-sm">
         <thead >
           <tr className='bg-[#212121] '>
             
-            <th className='p-6 rounded-l-lg'>-</th>
-            <th className='w-1/7'>From</th>
+            
+            <th className='w-1/7  p-6 rounded-l-lg'>From</th>
             <th className='w-1/7'>To</th>
             <th className='w-1/7'>Total Days</th>
             <th className='w-1/7'>Type</th>
@@ -34,7 +39,7 @@ export default function Table1({newAllUserTabledata}) {
         <tbody>
           {newAllUserTabledata?.map((item) => (
             <tr key={item.id} className='text-center'>
-              <td className='p-8'><input type="checkbox" /></td>
+             
               <td className='p-8'>
                 
                   
@@ -48,9 +53,20 @@ export default function Table1({newAllUserTabledata}) {
               <td>{ daysInclusive(item.start, item.end)||"-"}</td>
               <td>{item.type}</td>
               <td>{item.file || "-"}</td>
-              <td>{item.status}</td>
               <td>
-                <div className='flex gap-2 justify-center'> <FaPen /> <MdDelete /></div>
+              
+                <Badge className=" px-4 py-2 ">
+  {item.status}
+                </Badge>
+                </td>
+              <td>
+                <div className='flex gap-2 justify-center items-center'>
+                   <EditLeavedialouge
+                    LeaveId={item?._id}
+                   />
+                   <LeaveDelConfirmButton
+                                LeaveId={item?._id}
+                                /></div>
               </td>
             </tr>
           ))}

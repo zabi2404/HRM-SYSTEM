@@ -2,11 +2,9 @@ import React, { useState } from 'react';
 import { MdDelete } from "react-icons/md";
 import { FaPen } from "react-icons/fa";
 import { Badge } from '@/Components/Common/badge';
-import { AppRejButton } from '@/Components/Common/AppRejButton';
 
-export default function EmployeeLeaveHistoryTable1({newAllUserTabledata,fallback}) {
-  
-  
+export default function LeaveHistoryTable1({newAllUserTabledata}) {
+
   function daysInclusive(from, to = from) {
     const start = new Date(from + "T00:00:00Z"); 
     const end   = new Date(to   + "T00:00:00Z");
@@ -22,13 +20,13 @@ export default function EmployeeLeaveHistoryTable1({newAllUserTabledata,fallback
         <thead >
           <tr className='bg-[#212121] '>
             
-          
-            <th className='w-1/6 p-6 rounded-l-lg'>From</th>
-            <th className='w-1/6'>To</th>
-            <th className='w-1/6'>Total Days</th>
-            <th className='w-1/6'>Type</th>
-            <th className='w-1/6'>Attachment</th>
-            <th className='w-1/6 rounded-r-lg'>Status</th>
+            
+            <th className='w-1/7  p-6 rounded-l-lg'>From</th>
+            <th className='w-1/7'>To</th>
+            <th className='w-1/7'>Total Days</th>
+            <th className='w-1/7'>Type</th>
+            <th className='w-1/7'>Attachment</th>
+            <th className='w-1/7 rounded-r-lg'>Status</th>
             
             
           </tr>
@@ -51,10 +49,12 @@ export default function EmployeeLeaveHistoryTable1({newAllUserTabledata,fallback
               <td>{ daysInclusive(item.start, item.end)||"-"}</td>
               <td>{item.type}</td>
               <td>{item.file || "-"}</td>
-              <td className='pl-6'>
-              <Badge className={` px-4 py-2 text-white ${item.status==='approved'?"bg-green-800":"bg-red-800"}`}> {item.status}</Badge>
-           
-                 </td>
+              <td>
+              
+                <Badge className=" px-4 py-2 bg-green-800 text-white">
+  {item.status}
+                </Badge>
+                </td>
               
             </tr>
           ))}
@@ -63,7 +63,7 @@ export default function EmployeeLeaveHistoryTable1({newAllUserTabledata,fallback
 
       </table>
       {newAllUserTabledata?.length==0&&
-        <h1 className='font-script text-3xl flex justify-center font-bold text-nowrap mt-4'>{fallback}</h1>}
+        <h1 className='font-script text-3xl flex justify-center font-bold text-nowrap mt-4'>Have No Leave History</h1>}
     </div>
   );
 }

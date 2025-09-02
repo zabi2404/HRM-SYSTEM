@@ -56,6 +56,20 @@ export const getAppliedLeave = async(req,res,next)=>{
         next(error)
     }
 }
+
+
+
+export const LeaveByid = async(req,res,next)=>{
+    const {id} = req.params;
+    console.log(id)
+    try {
+        
+        const leave = await Leave.findById(id);
+        res.status(200).json(leave)
+    } catch (error) {
+        next(error)
+    }
+}
 // filter leave
 
 export const getAppliedLeaves = async(req,res,next)=>{
@@ -80,7 +94,7 @@ export const getAppliedLeaves = async(req,res,next)=>{
 }
 
 
-// update leave
+// update leave by hr mean approving leave
 
 export const updateLeave = async(req,res,next)=>{
     const id = req.params.id
@@ -92,4 +106,17 @@ export const updateLeave = async(req,res,next)=>{
     } catch (error) {
         next(error)
     }
+}
+
+
+export const deleteLeave = async(req,res,next)=>{   
+const id = req.params.id
+    try {
+        await Leave.findByIdAndDelete(id)
+res.status(200).json("successfully Deleted the Leave")
+    } catch (error) {
+        next(error)
+    }
+
+
 }

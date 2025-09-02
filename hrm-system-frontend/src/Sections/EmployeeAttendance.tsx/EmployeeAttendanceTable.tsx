@@ -13,7 +13,7 @@ export default function EmployeeAttendanceTable() {
   
   axios.get(`/api/attendance/get-EmployeeAttendance`)
     .then((response)=>{
-      console.log(response.data)
+      console.log("emplouye attendance",response.data)
       const data = response.data;
       setListing(data)
     })
@@ -27,7 +27,7 @@ export default function EmployeeAttendanceTable() {
   
     const startIndex = (currentPage - 1) * 10
     const endIndex = startIndex + itemPerPage;
-    const totalListData = listint?.length
+   
     const totalPages = Math.ceil(listint?.length / itemPerPage)
   
     const newAllUserTabledata = listint?.slice(startIndex, endIndex)
@@ -41,7 +41,7 @@ export default function EmployeeAttendanceTable() {
         <div className='flex gap-2 items-center'>
           <FaChevronRight className='rotate-180 p-3 h-10 w-10 rounded-md  bg-[#212121] border cursor-pointer border-[#424242] ' onClick={() => setCurrentPage((p) => Math.max(p - 1, 1))} />
 
-          <p className=''>{startIndex}-{endIndex} of {totalListData}</p>
+          <p className=''>{currentPage}-{totalPages} </p>
           <FaChevronRight className='p-3 rounded-md h-10 w-10 bg-[#212121] border cursor-pointer border-[#424242] ' onClick={() => setCurrentPage((p) => Math.min(p + 1, totalPages))} />
         </div>
       </div>

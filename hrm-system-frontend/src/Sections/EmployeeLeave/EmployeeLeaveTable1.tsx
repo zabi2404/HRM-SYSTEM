@@ -22,14 +22,14 @@ export default function Table1({newAllUserTabledata,fallback}) {
         <thead >
           <tr className='bg-[#212121] '>
             
-            <th className='p-6 rounded-l-lg'>-</th>
-            <th className='w-1/7'>From</th>
+             
+            <th className='w-1/7 p-6 rounded-l-lg'>From</th>
             <th className='w-1/7'>To</th>
             <th className='w-1/7'>Total Days</th>
             <th className='w-1/7'>Type</th>
             <th className='w-1/7'>Attachment</th>
             <th className='w-1/7'>Status</th>
-            <th className='w-1/7 rounded-r-lg'>Action</th>
+           
             
           </tr>
         </thead>
@@ -37,7 +37,7 @@ export default function Table1({newAllUserTabledata,fallback}) {
         <tbody>
           {newAllUserTabledata?.map((item) => (
             <tr key={item.id} className='text-center'>
-              <td className='p-8'><input type="checkbox" /></td>
+            
               <td className='p-8'>
                 
                   
@@ -56,9 +56,7 @@ export default function Table1({newAllUserTabledata,fallback}) {
               LeaveId={item._id}
               />
                  </td>
-              <td>
-                <div className='flex gap-2 justify-center'> <FaPen /> <MdDelete /></div>
-              </td>
+              
             </tr>
           ))}
         </tbody>

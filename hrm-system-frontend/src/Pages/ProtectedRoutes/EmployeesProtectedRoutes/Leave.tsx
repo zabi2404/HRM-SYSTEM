@@ -13,7 +13,6 @@ export default function Leave() {
       <LeaveCards/>
       <div className='bg-[#2B2B2B] px-4 flex flex-col gap-8 rounded-2xl my-8'>
         <LeaveTitle />
-        <SearchInput />
         <LeaveTable />
         
       </div>

@@ -155,8 +155,9 @@ return (
         </div>
       </div>
     </div>
-   
+    <DialogTrigger asChild>
     <Button type="submit" className="cursor-pointer hover:opacity-80">Publish</Button>
+    </DialogTrigger>
   </form>
 )
 }

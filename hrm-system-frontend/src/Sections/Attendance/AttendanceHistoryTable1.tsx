@@ -4,8 +4,9 @@ import { FaPen } from "react-icons/fa";
 
 export default function AttendanceHistoryTable1({newAllUserTabledata}) {
 
-  const loggedTime = (checkin: string, checkout: string) => {
-    const timeToSeconds = (time: string) => {
+  const loggedTime = (checkin?: string, checkout?: string) => {
+    const timeToSeconds = (time?: string) => {
+      if (!time) return 0; // handle undefined
       const [hours, minutes, seconds] = time.split(':').map(Number);
       return hours * 3600 + minutes * 60 + seconds;
     };
@@ -18,12 +19,13 @@ export default function AttendanceHistoryTable1({newAllUserTabledata}) {
     };
   
     const loggedSeconds = timeToSeconds(checkout) - timeToSeconds(checkin);
-    return secondsToHHMMSS(loggedSeconds);
+    return secondsToHHMMSS(Math.max(loggedSeconds, 0)); // avoid negative
   };
   
   // calculte defiecit and over time
   const calculateOvertimeDeficit = (checkin: string, checkout: string) => {
     const timeToSeconds = (time: string) => {
+      if (!time) return 0;
       const [h, m, s] = time.split(':').map(Number);
       return h * 3600 + m * 60 + s;
     };
@@ -78,10 +80,10 @@ export default function AttendanceHistoryTable1({newAllUserTabledata}) {
               <td>{item?.checkout||'-'}</td>
               <td>{"9 Hours"}</td>
               <td>{
-                loggedTime(item?.checkin,item?.checkout)
+                loggedTime(item?.checkin,item?.checkout)||'-'
                 }</td>
               <td>
-                  {calculateOvertimeDeficit(item?.checkin, item?.checkout).overtime}
+                  {calculateOvertimeDeficit(item?.checkin, item?.checkout).overtime||'-'}
               </td>
               <td>
               {calculateOvertimeDeficit(item?.checkin, item?.checkout).deficit}
