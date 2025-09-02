@@ -4,7 +4,7 @@ import { useSelector } from 'react-redux';
 import axios from 'axios';
 
 export default function AtendanceCardSection() {
-
+ 
   const loggedTime = (checkin?: string, checkout?: string) => {
     const timeToSeconds = (time?: string) => {
       if (!time) return 0; // handle undefined
@@ -76,7 +76,7 @@ const deficit = calculateOvertimeDeficit(record?.checkin, record?.checkout).defi
   return (
     <>
     
-    <div className='flex gap-4 justify-between mt-8'>
+    <div className='flex flex-wrap gap-2 justify-center items-center mt-8'>
 
   <InfoCard
     title="Work Schedule"

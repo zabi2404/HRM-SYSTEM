@@ -7,7 +7,7 @@ import EmployeeAttendanceTable1 from "./EmployeeAttendanceTable1";
 import axios from "axios";
 export default function EmployeeAttendanceTable() {
 
-  const [listint,setListing]=useState()
+  const [listint,setListing]=useState([])
 
 
   const urlParams = new URLSearchParams(location.search);

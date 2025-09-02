@@ -1,9 +1,12 @@
 import { SelectMonth } from '../Leave/SelectMonth'
 
 export default function AttendanceHistoryTitle() {
-  return (
+  return ( 
    <>
-    <div className='flex items-center justify-between p-4'>
+    <div className='flex items-center justify-between p-4
+     xsm:flex-col xsm:text-center xsm:gap-4 xsm:p-2
+     sm:flex-row sm:text-start 
+    '>
           
              <div>
                <h1 className='text-2xl font-semibold'>Attendance History</h1>

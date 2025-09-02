@@ -126,7 +126,7 @@ function App() {
 
             {/* MAIN CONTENT */}
             <div
-              className={`transition-all duration-1000 ease-in-out  md:p-6 overflow-y-auto w-full  sm:pl-0 ${isopen && !Hide ? ' min-[850px]:pl-[344px] ' : 'pl-[10]'} xsm:pl-2 xsm:pr-2 md:pl-8 md:pr-8
+              className={`transition-all duration-1000 ease-in-out  md:p-6 overflow-y-auto w-full xsm:mt-8 md:mt-0 sm:pl-0 ${isopen && !Hide ? ' min-[850px]:pl-[344px] ' : 'pl-[10]'} xsm:pl-2 xsm:pr-2 md:pl-8 md:pr-8
             xsm:p-1 
             `}
             >

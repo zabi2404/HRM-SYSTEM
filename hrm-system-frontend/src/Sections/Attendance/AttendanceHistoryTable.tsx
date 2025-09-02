@@ -15,10 +15,10 @@ import axios from "axios";
 
 export default function AttendanceHistoryTable() {
 
-  const [listing , setListing] = useState();
+  const [listing , setListing] = useState([]);
 const user = useSelector((state: any) => state.user.currentUser);
 const { loading } = useSelector((state: any) => state.loadingError)
-useEffect(() => {
+useEffect(() => { 
   axios.get(`/api/attendance/get-attendance/${user.employeeId}`)
   .then((response)=>{
     console.log(response.data)
@@ -43,10 +43,15 @@ useEffect(() => {
 
   return (
     <>
-      <div className='flex items-center justify-end gap-4'>
+      <div className='flex items-center justify-end gap-4
+       xsm:flex-col
+       min-[500px]:flex-row
+      '>
         
 
-        <div className='flex gap-2 items-center'>
+        <div className='flex gap-2 items-center
+         
+        '>
           <FaChevronRight className='rotate-180 p-3 h-10 w-10 rounded-md  bg-[#212121] border cursor-pointer border-[#424242] ' onClick={() => setCurrentPage((p) => Math.max(p - 1, 1))} />
 
           <p className=''>{currentPage}-{totalPages}</p>
