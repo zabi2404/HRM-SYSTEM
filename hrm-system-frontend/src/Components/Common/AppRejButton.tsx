@@ -16,20 +16,26 @@ import { Label } from "../Common/ui/label"
 import axios from "axios";
 import { toast } from "sonner";
 import { Badge } from '@/Components/Common/badge';
-
+import { useDispatch, useSelector } from "react-redux"
+import { Start, Success } from '../../Redux/user/loadingErrorSlice'
 type ConfirmButtonProps = {
     LeaveId?: Number
 }
 
 export function AppRejButton({ LeaveId }: ConfirmButtonProps) {
-
+    
+    const dispatch = useDispatch();
     const Approved = () => {
-        console.log("Approved");
+        
+        dispatch(Start())
         axios.post(`/api/leave/update-leave/${LeaveId}`,{status:"approved"})
-            .then((Response) => {
-                toast.success('Leave Marked as Approved')
+        .then((Response) => {
+            toast.success('Leave Marked as Approved')
+            dispatch(Success())
             })
-            .catch((err) => toast.error('Something went wrong')
+            .catch((err) => {toast.error('Something went wrong')
+            dispatch(Success())
+            }
             )
     }
 const Rejected=()=>{

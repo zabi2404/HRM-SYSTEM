@@ -17,7 +17,7 @@ export default function AttendanceHistoryTable() {
 
   const [listing , setListing] = useState();
 const user = useSelector((state: any) => state.user.currentUser);
-
+const { loading } = useSelector((state: any) => state.loadingError)
 useEffect(() => {
   axios.get(`/api/attendance/get-attendance/${user.employeeId}`)
   .then((response)=>{
@@ -28,7 +28,7 @@ useEffect(() => {
   .catch((error)=>{
     console.log(error)
   })
-}, []);
+}, [loading]);
 
    const [currentPage, setCurrentPage] = useState(1);
     const itemPerPage = 10;

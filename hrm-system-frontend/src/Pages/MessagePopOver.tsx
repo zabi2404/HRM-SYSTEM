@@ -20,7 +20,7 @@ export function MessagePopOver() {
 
   const dispatch = useDispatch();
   const messageObject = useSelector((state:any)=>state.Message.messageObject)
-
+  const { loading } = useSelector((state: any) => state.loadingError)
   useEffect(() => {
   
     axios.get('/api/message/get-messages')
@@ -34,7 +34,7 @@ export function MessagePopOver() {
     .catch((err)=>{
      console.log(err)
     })
-   }, []);
+   }, [loading]);
 
   
   return (

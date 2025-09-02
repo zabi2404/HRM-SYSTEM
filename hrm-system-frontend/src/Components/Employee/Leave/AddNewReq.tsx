@@ -29,7 +29,7 @@ import axios from "axios"
 
 // redux
 
-import { useDispatch, UseDispatch, useSelector } from "react-redux"
+import { useDispatch, useSelector } from "react-redux"
 import { Start, Success, failure } from '../../../Redux/user/loadingErrorSlice'
 import { toast } from "sonner"
 import { SelectDemo } from "../../LeaveSelectType"
@@ -121,14 +121,18 @@ function ProfileForm({ className }: React.ComponentProps<"form">) {
 
     const formSubbmission = (e: React.ChangeEvent<HTMLFormElement>) => {
         e.preventDefault();
-
+        dispatch(Start())
         axios.post(`/api/leave/create-leave/${User.employeeId}`,formData)
             .then((response) => {
+
                 const data = response.data
                 toast.success(data)
+                dispatch(Success())
             })
             .catch((err) =>
-                toast.error(err.response.data.message))
+            {    toast.error(err.response.data.message)
+            dispatch(Success())}
+        )
     }
 
     return (
@@ -136,15 +140,16 @@ function ProfileForm({ className }: React.ComponentProps<"form">) {
 
             <div className="flex gap-4 w-full">
                 <SelectDemo
+                    value={formData.leaveType}
                     onChange={(val: string) => {
                         setFormData({
                             ...formData,
                             'leaveType': val
                         })
                     }}
-
                 />
                 <SelectDays
+                    value={formData.days}
                     onChange={(val: string) => {
                         setFormData({
                             ...formData,

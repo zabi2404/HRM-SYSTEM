@@ -23,7 +23,7 @@ console.log("from table", type)
 
   const User = useSelector((state: any) => state.user.currentUser)
   const [listing, setListing] = useState([]);
-
+  const { loading } = useSelector((state: any) => state.loadingError)
 
   useEffect(() => {
 
@@ -36,7 +36,7 @@ console.log("from table", type)
       )
 
       .catch((err) => console.log(err))
-  }, [type,searchTerm]);
+  }, [type,loading]);
 
    const [currentPage, setCurrentPage] = useState(1);
     const itemPerPage = 10;

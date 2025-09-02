@@ -13,7 +13,7 @@ import {
 
 type SelectDemoProps={
   onChange?: (val: string) => void; 
-  value:string;
+  value?:string;
 }
 export function SelectDemo({onChange,value}:SelectDemoProps) {
 
@@ -33,7 +33,7 @@ export function SelectDemo({onChange,value}:SelectDemoProps) {
       <SelectContent>
         <SelectGroup>
           <SelectLabel>Types</SelectLabel>
-         
+          <SelectItem value="all">All</SelectItem>
           <SelectItem value="Sick">Sick</SelectItem>
           <SelectItem value="other">other</SelectItem>
         </SelectGroup>

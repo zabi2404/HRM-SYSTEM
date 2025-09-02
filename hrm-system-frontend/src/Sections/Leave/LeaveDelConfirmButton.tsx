@@ -15,20 +15,27 @@ import { Input } from "../../Components/Common/ui/input"
 import { Label } from "../../Components/Common/ui/label"
 import axios from "axios";
 import { toast } from "sonner";
-
+import { useDispatch, useSelector } from "react-redux"
+import { Start, Success } from '../../Redux/user/loadingErrorSlice'
 type ConfirmButtonProps = {
     LeaveId?: Number
 }
 
 export function LeaveDelConfirmButton({ LeaveId }: ConfirmButtonProps) {
+    const dispatch = useDispatch();
 
     const HandleSubmit = () => {
         console.log("Button Clicked");
+        dispatch(Start())
         axios.delete(`/api/leave/delete-leave/${LeaveId}`)
-            .then((Response) => {
-                toast.success("Leave Deleted Successfully")
+        .then((Response) => {
+            toast.success("Leave Deleted Successfully")
+            dispatch(Success())
             })
-            .catch((err) => toast.error("Error in Deleting Leave")
+            .catch((err) => {toast.error("Error in Deleting Leave")
+            dispatch(Success())
+
+            }
             )
     }
 

@@ -16,32 +16,41 @@ import axios from 'axios'
 import { useDispatch, useSelector } from 'react-redux'
 import { ClockIn,ClockOut } from '@/Redux/attendance/attendanceSlice'
 import { toast } from 'sonner'
+
+import { Start, Success } from '../../Redux/user/loadingErrorSlice'
 type TimerButtonModalProps = {
   isOpen: boolean;
   onClose: () => void;
 }
 
 export function TimerButtonModal({ isOpen, onClose }: TimerButtonModalProps) {
+  
   const dispatch = useDispatch();
   const attendance = useSelector((state: any) => state.attendance.Attendance);
   const user = useSelector((state: any) => state.user.currentUser);
-
-
+  
+  
   const handleClockIn = () => {
+    dispatch(Start())
     axios.post(`/api/attendance/create-attendance`, {
       employeeId: user.employeeId,
       checkin: new Date().toLocaleTimeString(),
     })
-      .then((res) => {
-        console.log(res.data);
-        toast.success("Clock in successfully");
-        dispatch(ClockIn());
+    .then((res) => {
+      console.log(res.data);
+      toast.success("Clock in successfully");
+      dispatch(ClockIn());
+      dispatch(Success())
       })
-      .catch((err) => { console.log(err) })
+      .catch((err) => {
+      dispatch(Success())
+        console.log(err) })
   }
 
 
   const handleClockOut = () => {
+    dispatch(Start())
+
    axios.post(`/api/attendance/update-attendance`, {
     employeeId: user.employeeId,
     checkout: new Date().toLocaleTimeString(),
@@ -50,10 +59,14 @@ export function TimerButtonModal({ isOpen, onClose }: TimerButtonModalProps) {
    .then((response)=>{
    toast.success('Clock out successfully');
    dispatch(ClockOut());
+   dispatch(Success())
+
    })
    .catch((error)=>{
     toast.error('Error in clock out');
     console.log(error.message)
+    dispatch(Success())
+
    })
   }
 

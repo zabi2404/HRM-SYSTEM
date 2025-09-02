@@ -1,9 +1,10 @@
-import React, { useEffect, useState } from 'react'
+import React, { Suspense, useEffect, useState } from 'react'
 
-import ProfileFirstSection from '@/Sections/Auth/Profile/ProfileFirstSection';
-import ProfileSecondSection from '@/Sections/Auth/Profile/ProfileSecondSection';
+const ProfileFirstSection = React.lazy(() => import('@/Sections/Auth/Profile/ProfileFirstSection'));
+const ProfileSecondSection = React.lazy(() => import('@/Sections/Auth/Profile/ProfileSecondSection'));
 import axios from 'axios';
 import { useSelector } from 'react-redux';
+import { Loader2 } from 'lucide-react';
 
 
 export default function Profile() {
@@ -30,6 +31,7 @@ export default function Profile() {
 
     return (
         <>
+        <Suspense fallback={<Loader2/>}>
             <div className='grid md:grid-cols-[25%_75%] gap-4 
             xsm:grid-rows-2 md:grid-rows-1
             '>
@@ -52,7 +54,7 @@ export default function Profile() {
                   
             </div>
 
-
+            </Suspense>
         </>
     )
 }

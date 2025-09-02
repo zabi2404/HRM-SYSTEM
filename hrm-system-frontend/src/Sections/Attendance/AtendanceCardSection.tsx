@@ -52,7 +52,7 @@ export default function AtendanceCardSection() {
 
   const [listing , setListing] = useState();
 const user = useSelector((state: any) => state.user.currentUser);
-
+const { loading } = useSelector((state: any) => state.loadingError)
 useEffect(() => {
   axios.get(`/api/attendance/get-attendance/${user.employeeId}`)
   .then((response)=>{
@@ -63,7 +63,7 @@ useEffect(() => {
   .catch((error)=>{
     console.log(error)
   })
-}, []);
+}, [loading]);
 
 const record = Array.isArray(listing) ? listing[0] : null;
 const loginime = loggedTime(record?.checkin,record?.checkout)

@@ -162,13 +162,18 @@ const [formData, setFormData] = React.useState({
         }
         e.preventDefault();
         console.log(formData)
+        dispatch(Start())
         axios.post(`/api/leave/Employeeupdate-leave/${LeaveId}`, payload)
-            .then((response) => {
-                const data = response.data
-                toast.success("Leave Updated Succesfully")
+        .then((response) => {
+            const data = response.data
+            toast.success("Leave Updated Succesfully")
+            dispatch(Success())
             })
             .catch((err) =>
-                toast.error("Error while Updating Leave"))
+                {toast.error("Error while Updating Leave")
+            dispatch(Success())
+
+                })
     }
 
     return (

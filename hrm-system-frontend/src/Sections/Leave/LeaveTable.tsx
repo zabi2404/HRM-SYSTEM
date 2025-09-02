@@ -9,7 +9,7 @@ export default function LeaveTable() {
 
   const User = useSelector((state: any) => state.user.currentUser)
   const [listing, setListing] = useState();
-
+const { loading } = useSelector((state: any) => state.loadingError)
 
   useEffect(() => {
 
@@ -22,7 +22,7 @@ export default function LeaveTable() {
       )
 
       .catch((err) => console.log(err))
-  }, []);
+  }, [loading]);
 
    const [currentPage, setCurrentPage] = useState(1);
     const itemPerPage = 10;

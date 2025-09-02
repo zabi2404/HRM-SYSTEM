@@ -35,9 +35,9 @@ export const getMessages = async (req, res, next) => {
     try {
 
         const notification = await Message.find().sort({ createdAt: -1 });
-        const [Created_by, ...rest] = notification
+        // const [Created_by, ...rest] = notification
 
-        res.status(200).json(rest)
+        res.status(200).json(notification)
 
     } catch (error) {
         next(error)

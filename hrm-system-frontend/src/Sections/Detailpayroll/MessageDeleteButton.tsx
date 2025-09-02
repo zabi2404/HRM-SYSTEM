@@ -15,20 +15,30 @@ import { Input } from "../../Components/Common/ui/input"
 import { Label } from "../../Components/Common/ui/label"
 import axios from "axios";
 import { toast } from "sonner";
+import { useDispatch, useSelector } from "react-redux"
+import { Start, Success } from '../../Redux/user/loadingErrorSlice'
+
 
 type ConfirmButtonProps = {
     MessageID?: Number
 }
 
 export function MessageDeleteButton({ MessageID }: ConfirmButtonProps) {
-
+    const dispatch = useDispatch();
+    
     const HandleSubmit = () => {
+        dispatch(Start())
         console.log("Button Clicked");
         axios.delete(`/api/message/delete-message/${MessageID}`)
-            .then((Response) => {
-                toast.success("Message Deleted Successfully")
+        .then((Response) => {
+            toast.success("Message Deleted Successfully")
+            dispatch(Success())
             })
-            .catch((err) => toast.error("Error in Deleting Message")
+            .catch((err) => {
+                
+                toast.error("Error in Deleting Message")
+                dispatch(Success())
+            }
             )
     }
 
