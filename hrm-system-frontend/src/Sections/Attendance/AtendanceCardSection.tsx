@@ -76,7 +76,7 @@ const deficit = calculateOvertimeDeficit(record?.checkin, record?.checkout).defi
   return (
     <>
     
-    <div className='flex flex-wrap gap-2 justify-center items-center mt-8'>
+    <div className='flex flex-wrap gap-2 items-center mt-8'>
 
   <InfoCard
     title="Work Schedule"

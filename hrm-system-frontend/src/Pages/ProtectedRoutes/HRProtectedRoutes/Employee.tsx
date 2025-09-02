@@ -7,12 +7,13 @@ import { AllUserTabledata } from '../../../../public/Data'
 import ManageYourEmplopyee from '@/Sections/Employee/ManageYourEmplopyee';
 import axios from 'axios';
 import { useLocation } from 'react-router-dom';
+import { useSelector } from 'react-redux';
 
 export default function Employee() {
   const location = useLocation();
 
   const [listing, setListing] = useState<any[]>([]);
-
+  const { loading } = useSelector((state: any) => state.loadingError)
 
   const urlParams = new URLSearchParams(location.search);
   const searchTerm  = urlParams.get("searchTerm");
@@ -29,7 +30,7 @@ export default function Employee() {
       })
 
 
-  }, [searchTerm]);
+  }, [searchTerm,loading]);
 
 
   // axios.get('/api/employee/getEmployees')

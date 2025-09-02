@@ -3,7 +3,7 @@ import Data from '../../../../public/Data.js'
 import Menulink from './Menulink.js'
 import { hrMenu, adminMenu } from '../../../../public/Data.js'
 import { FaArrowRight } from "react-icons/fa6";
-import Input from '../Navbar/Input.js';
+import Input from '../Navbar/Input.js'; 
 import { useDispatch, UseDispatch, useSelector } from 'react-redux';
 import { GalleryVerticalEnd } from 'lucide-react';
 import { Link } from 'react-router-dom';

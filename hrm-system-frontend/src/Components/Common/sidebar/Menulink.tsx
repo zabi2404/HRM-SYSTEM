@@ -40,9 +40,11 @@ export default function Menulink(props) {
     if (props.activelink === props.title) {
       props.setActiveLink(null); // close if already open
       setActiveLink(null)
+      
     } else {
       props.setActiveLink(props.title); // open this one
       setActiveLink(null)
+      
     }
 
   };

@@ -11,9 +11,6 @@ export default function EmployeeAttendance() {
    
     <div className='bg-[#2B2B2B] p-4 flex flex-col gap-8 rounded-2xl'>
                    <EmployeeAttendanceTitle/>
-                   <SearchInput
-                       placeholder="Search name or Emplpoyee Id" />
-
                    <EmployeeAttendanceTable />
                </div>
    </>

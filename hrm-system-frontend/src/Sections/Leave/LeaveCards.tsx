@@ -8,7 +8,23 @@ import { useSelector } from 'react-redux';
 export default function LeaveCards() {
   const user = useSelector((state:any)=>state.user.currentUser)
 
-  const [cardData , setCardData]=useState();
+  interface LeaveCardData {
+    remainingAnnualLeave: number;
+    totalAnnualLeave: number;
+    totalSickLeave: number;
+    remainingSickLeave: number;
+    totalCasualLeave: number;
+    remainingCasualLeave: number;
+  }
+
+  const [cardData, setCardData] = useState<LeaveCardData>({
+    remainingAnnualLeave: 0,
+    totalAnnualLeave: 0,
+    totalSickLeave: 0,
+    remainingSickLeave: 0,
+    totalCasualLeave: 0,
+    remainingCasualLeave: 0,
+  });
   
   useEffect(() => {
     
@@ -22,7 +38,7 @@ export default function LeaveCards() {
     })
   }, []);
 
-  let annualLeave = cardData?.remainingAnnualLeave;
+  let annualLeave = cardData?.remainingAnnualLeave ?? 0;
 let monthly;
   let annual = 60 - annualLeave;
   if(annual>5){monthly=0}
@@ -47,7 +63,7 @@ let monthly;
   
       <InfoCard
        title="Monthly"
-       description="5"
+       description={5}
        subTitle="Total"
        subTitle2='Remaning'
        description2={monthly>0?monthly:'0'}

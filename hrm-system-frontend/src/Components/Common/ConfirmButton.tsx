@@ -15,20 +15,27 @@ import { Input } from "../Common/ui/input"
 import { Label } from "../Common/ui/label"
 import axios from "axios";
 import { toast } from "sonner";
+import { useDispatch, useSelector } from "react-redux"
+import { Start, Success } from '../../Redux/user/loadingErrorSlice'
 
 type ConfirmButtonProps = {
     empID?: Number
 }
 
 export function ConfirmButton({ empID }: ConfirmButtonProps) {
-
+    
+    const dispatch = useDispatch();
     const HandleSubmit = () => {
         console.log("Button Clicked");
+        dispatch(Start())
         axios.delete(`/api/employee/delete-employee/${empID}`)
-            .then((Response) => {
-                toast.success(Response.data.message)
-            })
-            .catch((err) => toast.error(err.message)
+        .then((Response) => {
+            toast.success(Response.data.message)
+            dispatch(Success())
+        })
+        .catch((err) => {toast.error(err.message)
+        dispatch(Success())
+    }
             )
     }
 

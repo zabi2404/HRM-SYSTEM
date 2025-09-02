@@ -36,7 +36,7 @@ export default function ProfileSecondSection() {
     const formSubbmission = (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
         console.log('form subbmitted : ', formData);
-        axios.post(`/api/employee/update-employee/${user.rest._id}`, formData)
+        axios.post(`/api/employee/update-employeeById/${user.rest._id}`, formData)
             .then((response) => {
                 console.log(response.data);
                 toast.success("Profile Updated Successfully")
@@ -115,7 +115,7 @@ export default function ProfileSecondSection() {
                             <div className='grid grid-cols-2 items-center '>
                                 <p className='opacity-50'>Date of Birth </p>
 
-                                <p>{empInfo?.dob || "-"}</p>
+                                <p>{empInfo?.dob?.split("T")[0] || "-"}</p>
 
                             </div>
                             <div className='grid grid-cols-2 items-center '>

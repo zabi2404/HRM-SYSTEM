@@ -93,9 +93,7 @@ function App() {
                 className={`fixed top-0 h-screen left-0 bg-[#0A0A0A]  z-40 shadow-xl min-h-screen transform transition-transform duration-1000 ease-in-out py-8 pl-7 pr-10 w-[344px]  ${isopen ? '  translate-x-0' : '  -translate-x-[344px] '}
           max-[768px]:z-10 
           `}>
-                <Sidebar 
-                
-                />
+                 <Sidebar setIsOpen={setIsOpen} />
               </div>
 
             }

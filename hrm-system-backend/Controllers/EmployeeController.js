@@ -104,6 +104,47 @@ export const updateEmployee = async (req, res, next) => {
 
 
 
+export const updateEmployeeById = async (req, res, next) => {
+  const { id, role } = req.decoded;
+  const _id = req.params.id
+  
+    
+    try {
+      
+      const employee = await Employee.findOne({  $or: [
+        { _id:  _id },         // match by Employee's _id
+        { user_Ref:  _id }     // match by linked User's _id
+      ] });
+      if (!employee) { return next(HandleError(404, "Emplopyee profile not found for this user")) }
+      
+      const user = await User.findById(employee.user_Ref);
+      if (!user) { return next(HandleError(404, "User not found")) }
+      
+      const updatedUser = await User.findByIdAndUpdate(
+        employee.user_Ref,
+        {
+          email: req.body.email || user.email,
+          username: req.body.name || user.username
+        }
+        ,
+        { new: true, runValidators: true }
+      );
+
+
+      const updateEmployee = await Employee.findByIdAndUpdate(
+        employee._id, 
+        req.body,
+        { new: true, runValidators: true }
+      );
+
+      const populateEmployee  = await  updateEmployee.populate("user_Ref", "username email");
+      res.status(200).json(updateEmployee);
+    } catch (error) {
+      next(error)
+    }
+ 
+}
+
 export const getEmployees = async (req, res, next) => {
 
   const { role } = req.decoded;

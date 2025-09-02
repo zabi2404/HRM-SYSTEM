@@ -97,7 +97,7 @@ const formSubbmission = (e: React.FormEvent<HTMLFormElement>) => {
             <div className='bg-[#212121] flex flex-col gap-10 rounded-lg p-4 pt-10 overflow-auto max-h-[700px] customScroll'>
                 <div className='flex justify-end gap-4 items-center '>
 
-                    <Button variant='outline' className='cursor-pointer '
+                    <Button type='button' variant='outline' className='cursor-pointer '
                         onClick={() => { setEdit(true) }}
                     > Edit</Button>
                     <Button type='submit' className='cursor-pointer hover:opacity-70'
@@ -166,6 +166,7 @@ const formSubbmission = (e: React.FormEvent<HTMLFormElement>) => {
                             <p className='opacity-50'>Gender </p>
                             {edit ?
                                 <GenderSelect
+                                value={formData.gender}
                                 onChange={(val)=>{
                                     setFormData({
                                         ...formData,
@@ -383,7 +384,7 @@ const formSubbmission = (e: React.FormEvent<HTMLFormElement>) => {
                                 <input
                                     className='outline-1  rounded-[6px] p-1'
                                     type="text"
-                                    id='Certifications'
+                                    id='certifications'
                                     placeholder='Certifications'
                                     value={formData.certifications}
                                     onChange={HandleChange}
@@ -399,7 +400,7 @@ const formSubbmission = (e: React.FormEvent<HTMLFormElement>) => {
                                 <input
                                     className='outline-1  rounded-[6px] p-1'
                                     type="text"
-                                    id='Languages'
+                                    id='languages'
                                     placeholder='Languages'
                                     value={formData.languages}
                                     onChange={HandleChange}

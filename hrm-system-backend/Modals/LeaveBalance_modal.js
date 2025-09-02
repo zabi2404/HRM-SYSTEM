@@ -34,7 +34,7 @@ const LeaveBalanceSchema = mongoose.Schema({
     },
     remainingAnnualLeave: {
         type: Number,
-        default: 30
+        default: 60
     },
     remainingSickLeave: {
         type: Number,

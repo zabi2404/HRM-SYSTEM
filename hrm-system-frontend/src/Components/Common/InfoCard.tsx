@@ -4,7 +4,7 @@ import { RiErrorWarningLine } from "react-icons/ri";
 
 type  AttendanceCardProps={
     title?:string
-    description?:string
+    description?:number
     subTitle?:string
     subTitle2?:string
     description2?:number

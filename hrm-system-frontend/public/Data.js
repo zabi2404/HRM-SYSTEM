@@ -34,7 +34,7 @@ const adminMenu = [
   { id: 4, title: "Attendance", icon: PiPuzzlePieceFill, },
   // { id: 5, title: "Payroll", icon: PiCurrencyDollarSimpleBold, to: "/payroll" },
   { id: 6, title: "Announcements", icon: PiPuzzlePieceFill, to: "/announcement" },
-  { id: 7, title: "Company Profile", icon: PiPuzzlePieceFill, to: "/company-profile" },
+
 ];
 
 

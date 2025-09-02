@@ -10,6 +10,9 @@ export default function Dropdown(props) {
     props.setActiveLink(null)
    }else{
     props.setActiveLink(props.title);
+    if (window.innerWidth < 768) {
+      props.setIsOpen(false)
+            }
    }
     
     

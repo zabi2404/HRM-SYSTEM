@@ -19,8 +19,7 @@ export default function EmployeeLeave() {
                     setType(val)
                    }}
                 />
-                <SearchInput
-                    placeholder="Search name or Emplpoyee Id" />
+              
                 <EmployeeLeaveTable 
                 type={type}
                 
@@ -33,8 +32,7 @@ export default function EmployeeLeave() {
                     sethistoryType(val)
                    }}
                 />
-                <SearchInput
-                    placeholder="Search name or Emplpoyee Id" />
+                
                 <EmployeeLeaveHistoryTable
                  type={historyType}
                 

@@ -48,26 +48,30 @@ export function TimerButtonModal({ isOpen, onClose }: TimerButtonModalProps) {
   }
 
 
-  const handleClockOut = () => {
-    dispatch(Start())
+  // const handleClockOut = () => {
+  //   dispatch(Start())
 
-   axios.post(`/api/attendance/update-attendance`, {
-    employeeId: user.employeeId,
-    checkout: new Date().toLocaleTimeString(),
+  //  axios.post(`/api/attendance/update-attendance`, {
+  //   employeeId: user.employeeId,
+  //   checkout: new Date().toLocaleTimeString(),
     
-   })
-   .then((response)=>{
-   toast.success('Clock out successfully');
-   dispatch(ClockOut());
-   dispatch(Success())
+  //  })
+  //  .then((response)=>{
+  //  toast.success('Clock out successfully');
+  //  dispatch(ClockOut());
+  //  dispatch(Success())
 
-   })
-   .catch((error)=>{
-    toast.error('Error in clock out');
-    console.log(error.message)
-    dispatch(Success())
+  //  })
+  //  .catch((error)=>{
+  //   toast.error('Error in clock out');
+  //   console.log(error.message)
+  //   dispatch(Success())
 
-   })
+  //  })
+  // }
+
+  const handleClockOut = () => {
+    dispatch(ClockOut());
   }
 
 
@@ -120,9 +124,7 @@ export function TimerButtonModal({ isOpen, onClose }: TimerButtonModalProps) {
           <DialogTitle>Clock {attendance?"Out":"In"} at {time}</DialogTitle>
             <DialogDescription>
 
-            {canClockOut&&
-            "Can't mark double attendance in a single day"
-            }
+            
             </DialogDescription>
         </DialogHeader>
 
@@ -134,7 +136,7 @@ export function TimerButtonModal({ isOpen, onClose }: TimerButtonModalProps) {
           {!attendance ?
 
             <DialogClose asChild>
-              <Button disabled={canClockOut} onClick={handleClockIn} className='cursor-pointer'>
+              <Button  onClick={handleClockIn} className='cursor-pointer'>
                 Clock In</Button>
             </DialogClose>
             :
