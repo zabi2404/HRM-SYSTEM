@@ -128,6 +128,9 @@ const [formData, setFormData] = React.useState({
             .catch((err) => console.log(err))
     }, []);
 
+
+
+    
     //redux
     const dispatch = useDispatch();
     const { loading, error } = useSelector((state: any) => state.loadingError)
@@ -148,14 +151,14 @@ const [formData, setFormData] = React.useState({
 
     const formSubbmission = (e: React.ChangeEvent<HTMLFormElement>) => {
         e.preventDefault();
-
-        axios.post(`/api/leave/create-leave/${User.employeeId}`, formData)
+        console.log(formData)
+        axios.post(`/api/leave/Employeeupdate-leave/${LeaveId}`, formData)
             .then((response) => {
                 const data = response.data
-                toast.success(data)
+                toast.success("Leave Updated Succesfully")
             })
             .catch((err) =>
-                toast.error(err.response.data.message))
+                toast.error("Error while Updating Leave"))
     }
 
     return (
