@@ -1,5 +1,6 @@
 import Leave from "../Modals/Leave_modal.js";
 import LeaveBalance from "../Modals/LeaveBalance_modal.js";
+import { calculateLeaveDays } from "../Utlis/Daycalcultation.js";
 import { HandleError } from "../Utlis/error.js";
 
 export const getLeaveBalance = async (req, res, next) => {
@@ -85,7 +86,7 @@ export const getAppliedLeaves = async (req, res, next) => {
         status = { $in: ['rejected', 'approved'] }
     }
     try {
-        const leaves = await Leave.find({ type, status }).populate("employee_Ref", 'name employeeCode ')
+        const leaves = await Leave.find({ type, status, }).populate("employee_Ref", 'name employeeCode ')
         if (!leaves) { return res.json("No Leave found of this employee") }
         res.status(200).json(leaves)
     } catch (error) {
@@ -102,9 +103,46 @@ export const updateLeave = async (req, res, next) => {
     const id = req.params.id
     const { status } = req.body
     try {
-        const leave = await Leave.findByIdAndUpdate(id, { status }, { new: true })
+        const leave = await Leave.findOne({_id:id});
         if (!leave) { return next(HandleError(404, 'No record Found for this User')) }
-        res.status(200).json(leave)
+
+
+        const leavebalance = await LeaveBalance.findOne({employee_Ref: leave.employee_Ref})
+       
+        if(leave.type==='Sick'){
+            if(leave.days==='single'){
+                leavebalance.remainingAnnualLeave-=1
+                leavebalance.remainingSickLeave-=1
+                leavebalance.usedAnnualLeave+=1
+                leavebalance.usedSickLeave+=1
+            }else{
+              const days = calculateLeaveDays(leave.start,leave.end);
+              leavebalance.remainingAnnualLeave-=days
+                leavebalance.remainingSickLeave-=days
+                leavebalance.usedAnnualLeave+=days
+                leavebalance.usedSickLeave+=days
+            }
+        }
+        if(leave.type==='other'){
+            if(leave.days==='single'){
+                leavebalance.remainingAnnualLeave-=1
+                leavebalance.remainingCasualLeave-=1
+                leavebalance.usedCasualLeave+=1
+                leavebalance.usedAnnualLeave+=1
+            }else{
+                const days = calculateLeaveDays(leave.start,leave.end);
+                leavebalance.remainingAnnualLeave-=days
+                leavebalance.remainingCasualLeave-=days
+                leavebalance.usedCasualLeave+=days
+                leavebalance.usedAnnualLeave+=days
+            }
+        }
+        await leavebalance.save()
+        console.log(leave)
+
+        const Updatedleave = await Leave.findByIdAndUpdate(id, { status }, { new: true });
+
+        res.status(200).json(Updatedleave)
     } catch (error) {
         next(error)
     }

@@ -38,26 +38,26 @@ export default function Table1({newAllUserTabledata,fallback}) {
 {newAllUserTabledata?.length>0&&
         <tbody>
           {newAllUserTabledata?.map((item) => (
-            <tr key={item.id} className='text-center'>
+            <tr key={item?.id} className='text-center'>
             
-            <td>{item.employee_Ref.employeeCode}</td>
-                    <td>{item.employee_Ref.name}</td>
+            <td>{item?.employee_Ref.employeeCode}</td>
+                    <td>{item?.employee_Ref.name}</td>
               <td className='p-8'>
                 
                   
                   <div className='text-start'>
                   
-                    <p className='text-nowrap'>{item.start}</p>
+                    <p className='text-nowrap'>{item?.start}</p>
                   
                 </div>
               </td>
-              <td>{item.end||"-"}</td>
+              <td>{item?.end||"-"}</td>
               <td>{ daysInclusive(item.start, item.end)||"1"}</td>
-              <td>{item.type}</td>
-              <td>{item.file || "-"}</td>
+              <td>{item?.type}</td>
+              <td>{item?.file || "-"}</td>
               <td className='pl-6'>
               <AppRejButton
-              LeaveId={item._id}
+              LeaveId={item?._id}
               />
                  </td>
               

@@ -141,6 +141,10 @@ const [formData, setFormData] = React.useState({
 
     const User = useSelector((state: any) => state.user.currentUser)
     const handleForm = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+
+        
+
+
         setFormData({
 
             ...formData,
@@ -150,9 +154,15 @@ const [formData, setFormData] = React.useState({
     }
 
     const formSubbmission = (e: React.ChangeEvent<HTMLFormElement>) => {
+        let payload = { ...formData };
+
+      
+        if (payload.days === "single") {
+          payload.to = ""; 
+        }
         e.preventDefault();
         console.log(formData)
-        axios.post(`/api/leave/Employeeupdate-leave/${LeaveId}`, formData)
+        axios.post(`/api/leave/Employeeupdate-leave/${LeaveId}`, payload)
             .then((response) => {
                 const data = response.data
                 toast.success("Leave Updated Succesfully")
@@ -180,7 +190,8 @@ const [formData, setFormData] = React.useState({
                     onChange={(val: string) => {
                         setFormData({
                             ...formData,
-                            'days': val
+                            'days': val,
+                            to: val === "single" ? "" : formData.to,
                         })
                     }}
                 />

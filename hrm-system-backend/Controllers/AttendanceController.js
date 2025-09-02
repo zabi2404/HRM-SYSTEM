@@ -66,7 +66,7 @@ export const getEmplopyeeAttendance = async (req, res,next) => {
             endOfDay.setHours(23, 59, 59, 999);
       
             const attendance = await Attendance.find({
-              date: { $gte: startOfDay, $lt: endOfDay },
+              date: { $gte: startOfDay, $lt: endOfDay }  ,
             }).populate('emp_Ref', 'employeeCode');
             res.status(200).json(attendance);
         } catch (error) {

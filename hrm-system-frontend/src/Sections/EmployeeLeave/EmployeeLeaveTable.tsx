@@ -6,6 +6,7 @@ import Table1 from "../Leave/Table1";
 import EmployeeLeaveTable1 from "./EmployeeLeaveTable1";
 import { useSelector } from "react-redux";
 import axios from "axios";
+import { useLocation } from "react-router-dom";
 
 type EmployeeLeaveTableProps={
 type:string
@@ -14,8 +15,14 @@ type:string
 
 export default function EmployeeLeaveTable({type}:EmployeeLeaveTableProps) {
 console.log("from table", type)
+
+  const location = useLocation();
+
+  const urlParams = new URLSearchParams(location.search)
+  const searchTerm =  urlParams.get("searchTerm")
+
   const User = useSelector((state: any) => state.user.currentUser)
-  const [listing, setListing] = useState();
+  const [listing, setListing] = useState([]);
 
 
   useEffect(() => {
@@ -29,7 +36,7 @@ console.log("from table", type)
       )
 
       .catch((err) => console.log(err))
-  }, [type]);
+  }, [type,searchTerm]);
 
    const [currentPage, setCurrentPage] = useState(1);
     const itemPerPage = 10;

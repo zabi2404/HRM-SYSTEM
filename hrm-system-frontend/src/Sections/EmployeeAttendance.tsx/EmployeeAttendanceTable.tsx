@@ -9,9 +9,12 @@ export default function EmployeeAttendanceTable() {
 
   const [listint,setListing]=useState()
 
+
+  const urlParams = new URLSearchParams(location.search);
+  const searchTerm  = urlParams.get("searchTerm");
   useEffect(() => {
   
-  axios.get(`/api/attendance/get-EmployeeAttendance`)
+  axios.get(`/api/attendance/get-EmployeeAttendance?searchTerm=${searchTerm||''}`)
     .then((response)=>{
       console.log("emplouye attendance",response.data)
       const data = response.data;
@@ -20,7 +23,7 @@ export default function EmployeeAttendanceTable() {
   .catch((error)=>{
     console.log(error)
   })
-  }  ,[])
+  }  ,[searchTerm])
 
    const [currentPage, setCurrentPage] = useState(1);
     const itemPerPage = 10;

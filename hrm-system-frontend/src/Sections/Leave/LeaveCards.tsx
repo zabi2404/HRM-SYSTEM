@@ -22,8 +22,14 @@ export default function LeaveCards() {
     })
   }, []);
 
-  let annualLeave = cardData?.totalAnnualLeave;
-  let MonthlyLeave = annualLeave/12
+  let annualLeave = cardData?.remainingAnnualLeave;
+let monthly;
+  let annual = 60 - annualLeave;
+  if(annual>5){monthly=0}
+  else{
+    monthly= 5- annual
+  }
+
   return (
    <>
     <div className='flex flex-wrap gap-2 justify-center items-center mt-8 '>
@@ -41,24 +47,24 @@ export default function LeaveCards() {
   
       <InfoCard
        title="Monthly"
-       description={MonthlyLeave}
+       description="5"
        subTitle="Total"
        subTitle2='Remaning'
-       description2='5'
+       description2={monthly>0?monthly:'0'}
      />
       <InfoCard
        title="Sick Leave"
-       description={cardData?.remainingSickLeave}
+       description={cardData?.totalSickLeave}
        subTitle="Total"
        subTitle2='Remaning'
-       description2={cardData?.totalSickLeave}
+       description2={cardData?.remainingSickLeave}
      />
       <InfoCard
        title="Other"
-       description={cardData?.remainingCasualLeave}
+       description={cardData?.totalCasualLeave}
        subTitle="Total"
        subTitle2='Remaning'
-       description2={cardData?.totalCasualLeave}
+       description2={cardData?.remainingCasualLeave}
      />
    
    </div>

@@ -105,7 +105,12 @@ export function TimerButtonModal({ isOpen, onClose }: TimerButtonModalProps) {
       <DialogContent className="sm:max-w-[425px]">
         <DialogHeader>
           <DialogTitle>Clock {attendance?"Out":"In"} at {time}</DialogTitle>
+            <DialogDescription>
 
+            {canClockOut&&
+            "Can't mark double attendance in a single day"
+            }
+            </DialogDescription>
         </DialogHeader>
 
         <DialogFooter className='flex !justify-center items-center'>
