@@ -21,7 +21,7 @@ export function SelectDemo({onChange,value}:SelectDemoProps) {
     <Select
   onValueChange={(val)=>{
     console.log("from select",val)
-    onChange(val)
+    onChange?.(val);
   }}
   value={value}
   required
@@ -33,7 +33,7 @@ export function SelectDemo({onChange,value}:SelectDemoProps) {
       <SelectContent>
         <SelectGroup>
           <SelectLabel>Types</SelectLabel>
-          <SelectItem value="all">All</SelectItem>
+         
           <SelectItem value="Sick">Sick</SelectItem>
           <SelectItem value="other">other</SelectItem>
         </SelectGroup>

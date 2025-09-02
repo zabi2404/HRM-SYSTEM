@@ -117,7 +117,7 @@ const [formData, setFormData] = React.useState({
                 setFormData(
                     {
                         leaveType: data?.type||"",
-                        days: data?.status||"single",
+                        days: data?.days||"single",
                         from: data?.start||"",
                         to: data?.end||"",
                         description: data?.description||"",
@@ -173,7 +173,7 @@ const [formData, setFormData] = React.useState({
 
                 />
                 <SelectDays
-                        value={formData?.days}
+                     value={formData.days}
                     onChange={(val: string) => {
                         setFormData({
                             ...formData,

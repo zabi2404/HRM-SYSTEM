@@ -12,7 +12,7 @@ import {
 
 
 type SelectDaysprops = {
-  value:string,
+  value?:string,
 onChange?: (val: string) => void; 
 
 }
@@ -22,7 +22,7 @@ export default function SelectDays({onChange,value}) {
   return (
     <Select
     onValueChange={(val)=>{
-        onChange(val)
+      onChange?.(val);
       }}
       required
       value={value}
