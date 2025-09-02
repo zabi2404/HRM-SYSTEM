@@ -1,6 +1,14 @@
 import QuestionList from '@/Sections/Detailpayroll/QuestionList'
-import { QuestionListArray } from "../../../../public/Data2"
+
+
+// redux
+
+import { useDispatch, UseDispatch,useSelector } from 'react-redux';
+import { getMessage } from '@/Redux/Message/messageSlice';
+
 export default function Message() {
+
+  const messageObject = useSelector((state:any)=>state.Message.messageObject)
   return (
    <>
    <div >
@@ -11,13 +19,13 @@ export default function Message() {
    </div>
     <div>
  <ul>
-   {QuestionListArray.map((item) => {
+   {messageObject.map((item) => {
      return (
        <QuestionList
-         key={item.id}
-         id={item.id}
-         title={item.title}
-
+       key={item._id}
+       id={item._id}
+       title={item.title}
+       messageObject={messageObject}
        />
      )
    })}
