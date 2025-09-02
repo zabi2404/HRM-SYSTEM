@@ -28,12 +28,12 @@ export default function Navbar({setIsOpen,isopen}:any) {
         <div className='flex gap-4'>
          
           <div className="flex justify-center gap-2 md:justify-start">
-            <a href="#" className="flex items-center gap-2 font-medium">
-              <div className="bg-primary text-primary-foreground flex size-6 items-center justify-center rounded-md ">
-                <GalleryVerticalEnd className="size-4" />
-              </div >
-              <p className='text-nowrap'>HR Dashboard</p>
-            </a>
+          <Link to='/dashboard' className="flex items-center gap-2 font-medium">
+            <div className="bg-primary text-primary-foreground flex size-6 items-center justify-center rounded-md">
+              <GalleryVerticalEnd className="size-4" />
+            </div>
+            HR Dashboard
+          </Link>
           </div>
 
         </div>

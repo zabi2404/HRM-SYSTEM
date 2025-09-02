@@ -1,13 +1,13 @@
-import React, { useState } from 'react'
+
 import Data from '../../../../public/Data.js'
 import Menulink from './Menulink.js'
 import { hrMenu, adminMenu } from '../../../../public/Data.js'
 import { FaArrowRight } from "react-icons/fa6";
 import Input from '../Navbar/Input.js';
-
 import { useDispatch, UseDispatch, useSelector } from 'react-redux';
 import { GalleryVerticalEnd } from 'lucide-react';
 import { Link } from 'react-router-dom';
+import { useState } from 'react';
 
 
 export default function sidebar(props) {
@@ -34,12 +34,12 @@ export default function sidebar(props) {
          
           </div> */}
           <div className="flex  gap-2 justify-start mb-4 min-[1000px]:hidden">
-            <a href="#" className="flex items-center gap-2 font-medium">
-              <div className="bg-primary text-primary-foreground flex size-6 items-center justify-center rounded-md">
-                <GalleryVerticalEnd className="size-4" />
-              </div >
-              <p className='text-nowrap text-2xl'>HR Dashboard</p>
-            </a>
+          <Link to='/dashboard' className="flex items-center gap-2 font-medium">
+            <div className="bg-primary text-primary-foreground flex size-6 items-center justify-center rounded-md">
+              <GalleryVerticalEnd className="size-4" />
+            </div>
+            HR Dashboard
+          </Link>
           </div>
 
           <div className='mb-8'>
