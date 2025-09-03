@@ -28,9 +28,9 @@ if(validUser.role!=='admin'){
         const token = jwt.sign({
             id: validUser._id,
             role: validUser.role
-        }, process.env.JWT_SECRET_KEY, { expiresIn: "1d" })
+        }, process.env.JWT_SECRET_KEY, { expiresIn: "2h" })
         // jwt token is for backend security which is store in cookie in the front end which is get back to server on every req and server check if the user is authenticated or not
-        res.cookie('token', token, { httpOnly: true, expires: new Date(Date.now() + 24 * 60 * 60 * 1000) })
+        res.cookie('token', token, { httpOnly: true, expires: new Date(Date.now() +2*60* 60 * 1000) })
             .status(200).json({rest,employeeId})
     } catch (error) {
         next(error)

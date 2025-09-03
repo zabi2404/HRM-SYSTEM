@@ -33,19 +33,60 @@ const DetailPayroll = lazy(() => import("./Pages/ProtectedRoutes/EmployeesProtec
 import { Toaster } from "@/Components/Common/ui/sonner"
 import { useEffect, useRef, useState } from "react";
 import { FiSidebar } from "react-icons/fi";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { LoadingSpinner } from './Components/Common/loading/Loading';
 import EMPProfile from './Pages/ProtectedRoutes/EmployeesProtectedRoutes/EMPProfile';
-
+import { signOutUserSuccess } from './Redux/user/userSlice';
+import InactivityModal from './Components/InactivityModal';
+import { SessionConfirmButton } from './Components/SessionConfirmButton';
+import SessionHandler from './Components/sessionHandler';
 
 
 
 function App() {
-
+  const dispatch = useDispatch();
+  const SESSION_TTL =2*60* 60 * 1000
   const user = useSelector((state: any) => state.user.currentUser)
   const [isopen, setIsOpen] = useState(true);
   const sidebarRef = useRef(null);
   const buttonRef = useRef(null);
+
+
+
+
+  useEffect(() => {
+
+    const handleVisibilty = () => {
+      if (document.hidden) {
+        localStorage.setItem('expiryToken', Date.now().toString());
+      }
+      else {
+        localStorage.getItem('expiryToken')
+        const awayTimeStr = localStorage.getItem("awayTime");
+        if (!awayTimeStr) return;
+
+        const awayTime = parseInt(awayTimeStr, 10);
+        const timePassed = Date.now() - awayTime;
+
+        if (timePassed >= SESSION_TTL) {
+          // More than 2 hours away → logout
+          dispatch(signOutUserSuccess());
+          localStorage.removeItem("awayTime");
+        } else {
+          // Less than 2 hours → remove timer
+          localStorage.removeItem("awayTime");
+        }
+
+      }
+
+
+    }
+
+
+    document.addEventListener("visibilitychange", handleVisibilty);
+    return () => document.removeEventListener("visibilitychange", handleVisibilty);
+  }, [dispatch]);
+
 
   useEffect(() => {
     const handleResize = () => {
@@ -79,9 +120,11 @@ function App() {
 
   return (
     <>
-      <Suspense fallback={<LoadingSpinner/>}>
+      <Suspense fallback={<LoadingSpinner />}>
         <BrowserRouter>
-
+        {user &&
+        <SessionConfirmButton/>}
+        <SessionHandler/>
           <Toaster
             theme="dark" />
           <div className="flex">
@@ -93,7 +136,7 @@ function App() {
                 className={`fixed top-0 h-screen left-0 bg-[#0A0A0A]  z-40 shadow-xl min-h-screen transform transition-transform duration-1000 ease-in-out py-8 pl-7 pr-10 w-[344px]  ${isopen ? '  translate-x-0' : '  -translate-x-[344px] '}
           max-[768px]:z-10 
           `}>
-                 <Sidebar setIsOpen={setIsOpen} />
+                <Sidebar setIsOpen={setIsOpen} />
               </div>
 
             }
@@ -168,7 +211,7 @@ function App() {
 
                   {/* ROUTES THAT  CAN ACCESS  WITH VERFIED LOGIN AND TOKEN*/}
                   <Route element={<EmployeeProtectedRoute />} >
-                  <Route path="/" element={<Navigate to="/dashboard" replace />} />
+                    <Route path="/" element={<Navigate to="/dashboard" replace />} />
                     <Route path="/dashboard" element={<Dashboard />} />
                     <Route path="/attendance" element={<Attendance />} />
                     <Route path="/leave" element={<Leave />} />
