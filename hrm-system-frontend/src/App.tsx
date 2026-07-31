@@ -37,7 +37,6 @@ import { useDispatch, useSelector } from "react-redux";
 import { LoadingSpinner } from './Components/Common/loading/Loading';
 import EMPProfile from './Pages/ProtectedRoutes/EmployeesProtectedRoutes/EMPProfile';
 import { signOutUserSuccess } from './Redux/user/userSlice';
-import InactivityModal from './Components/InactivityModal';
 import { SessionConfirmButton } from './Components/SessionConfirmButton';
 import SessionHandler from './Components/sessionHandler';
 
@@ -115,6 +114,7 @@ function App() {
     return () => document.removeEventListener('mousedown', handleClickOutside);
   }, [isopen]);
 
+  
   const Hide = !user;
 
 

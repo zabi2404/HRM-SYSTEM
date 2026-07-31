@@ -13,7 +13,7 @@ import { TbBrandWebflow } from "react-icons/tb";
 export default function CloseSIdeBar(props) {
 
   const location = useLocation();
-const isActive = location.pathname.startsWith();
+const isActive = location.pathname.startsWith('/dashboard');
   
 console.log(isActive)
   return (

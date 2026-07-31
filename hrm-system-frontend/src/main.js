@@ -1,0 +1,10 @@
+import { jsx as _jsx } from "react/jsx-runtime";
+import { createRoot } from 'react-dom/client';
+import "./index.css";
+import App from './App';
+import { store } from './Redux/store';
+import { Provider } from 'react-redux';
+import { PersistGate } from 'redux-persist/integration/react';
+import { persistor } from './Redux/store';
+import { ThemeProvider } from 'next-themes';
+createRoot(document.getElementById('root')).render(_jsx(ThemeProvider, { attribute: "class", defaultTheme: "dark", enableSystem: false, children: _jsx(Provider, { store: store, children: _jsx(PersistGate, { loading: null, persistor: persistor, children: _jsx(App, {}) }) }) }));

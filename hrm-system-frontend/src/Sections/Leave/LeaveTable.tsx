@@ -8,7 +8,7 @@ import axios from "axios";
 export default function LeaveTable() {
 
   const User = useSelector((state: any) => state.user.currentUser)
-  const [listing, setListing] = useState();
+  const [listing, setListing] = useState<any[]>([]);
 const { loading } = useSelector((state: any) => state.loadingError)
 
   useEffect(() => {
@@ -30,9 +30,9 @@ const { loading } = useSelector((state: any) => state.loadingError)
     const startIndex = (currentPage - 1) * 10
     const endIndex = startIndex + itemPerPage;
    
-    const totalPages = Math.ceil(listing?.length / itemPerPage)
+    const totalPages = Math.ceil((listing?.length ?? 0) / itemPerPage)
   
-    const newAllUserTabledata = listing?.slice(startIndex, endIndex)
+    const newAllUserTabledata = listing?.slice(startIndex, endIndex) ?? []
   
 
   return (

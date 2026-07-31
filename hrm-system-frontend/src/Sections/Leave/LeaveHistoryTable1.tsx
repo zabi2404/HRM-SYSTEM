@@ -5,11 +5,11 @@ import { Badge } from '@/Components/Common/badge';
 
 export default function LeaveHistoryTable1({newAllUserTabledata}) {
 
-  function daysInclusive(from, to = from) {
-    const start = new Date(from + "T00:00:00Z"); 
-    const end   = new Date(to   + "T00:00:00Z");
+  function daysInclusive(from: string, to: string = from) {
+    const start = new Date(`${from}T00:00:00Z`); 
+    const end   = new Date(`${to}T00:00:00Z`);
     const msPerDay = 24 * 60 * 60 * 1000;
-    return Math.floor((end - start) / msPerDay) + 1;
+    return Math.floor((end.getTime() - start.getTime()) / msPerDay) + 1;
   }
  
 

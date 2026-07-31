@@ -9,7 +9,7 @@ import { useSelector } from 'react-redux';
 type QuestionListProps = {
     id: number;
     title: string;
-    messageObject:any
+    messageObject?: any[]
 }
 
 const QuestionList = ({id, title,messageObject}:QuestionListProps) => {
@@ -40,7 +40,7 @@ const QuestionList = ({id, title,messageObject}:QuestionListProps) => {
 
   </div>
 {isOpen &&
-  messageObject.filter(item => item._id === id).map(item => (
+  messageObject?.filter(item => item._id === id).map(item => (
     <AnswerList 
     key={item._id} 
     title={item.message}

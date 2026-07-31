@@ -4,7 +4,7 @@ import React, { useEffect, useState } from 'react'
 import DirectoryCard from '@/Components/Common/DirectoryCard';
 import axios from 'axios';
 export default function DirectoryBody() {
-    const [cardListing, setCardListing] = useState();
+    const [cardListing, setCardListing] = useState<any[]>([]);
     useEffect(() => {
 
         axios.get('/api/employee/getEmployees')

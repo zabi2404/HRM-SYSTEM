@@ -13,7 +13,7 @@ export default function ProfileSecondSection() {
      const [buttonClicked, setButtonClicked] = useState(false);
     const params = useParams();
     const [edit, setEdit] = useState(false)
-    const [empInfo, setEmpInfo] = useState();
+    const [empInfo, setEmpInfo] = useState<any>(null);
     const [formData, setFormData] = useState({
         name: '',
         contact_number: '',

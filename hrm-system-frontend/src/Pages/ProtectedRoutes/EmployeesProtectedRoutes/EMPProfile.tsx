@@ -14,7 +14,7 @@ const param = useParams();
 
 
 
-    const [listing, setListing] = useState();
+    const [listing, setListing] = useState<any>(null);
   
     useEffect(() => {
 

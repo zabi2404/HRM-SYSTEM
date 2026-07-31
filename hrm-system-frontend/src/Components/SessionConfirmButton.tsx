@@ -27,7 +27,7 @@ const [timer,setTimer]= useState(10);
 
     inactivityTimer.current = setTimeout(() => {
       setIsModalActive(true); // show modal
-    }, 15*60 *1000); // 15 min
+    },  15*60*1000); // 15 min
   };
 // when modal opens → start 10s timer
   useEffect(() => {

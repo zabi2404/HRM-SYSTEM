@@ -9,7 +9,7 @@ import { Loader2 } from 'lucide-react';
 
 export default function Profile() {
     const user = useSelector((state: any) => state.user.currentUser)
-    const [listing, setListing] = useState();
+    const [listing, setListing] = useState<any>();
     const id = user.rest._id
   
 

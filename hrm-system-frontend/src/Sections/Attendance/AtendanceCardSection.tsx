@@ -50,7 +50,7 @@ export default function AtendanceCardSection() {
     }
   };
 
-  const [listing , setListing] = useState();
+  const [listing , setListing] = useState<any>(null);
 const user = useSelector((state: any) => state.user.currentUser);
 const { loading } = useSelector((state: any) => state.loadingError)
 useEffect(() => {
