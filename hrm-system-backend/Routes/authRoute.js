@@ -11,4 +11,6 @@ authRoute.post('/login',Login)
 authRoute.post('/signup',VerifyToken,signUp)
 authRoute.get('/logout',VerifyToken,LogOut)
 
+
+
 export default authRoute;

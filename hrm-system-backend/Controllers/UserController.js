@@ -67,3 +67,4 @@ export const signUp = async (req, res, next) => {
 export const LogOut=(req,res,next)=>{
     res.clearCookie('token').status(200).json("User logOut")
 }
+

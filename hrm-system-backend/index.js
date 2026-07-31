@@ -12,6 +12,7 @@ const app = express();
 const port = 2404;
 
 dotenv.config();
+
 mongoose.connect(process.env.MONGO)
 
     .then(() => {
