@@ -13,13 +13,24 @@ const port = 2404;
 
 dotenv.config();
 
+app.use((req, res, next) => {
+    const startTime = Date.now();
+    console.log(`[${new Date().toISOString()}] Incoming request: ${req.method} ${req.originalUrl}`);
+
+    res.on('finish', () => {
+        console.log(`[${new Date().toISOString()}] Completed request: ${req.method} ${req.originalUrl} -> ${res.statusCode} (${Date.now() - startTime}ms)`);
+    });
+
+    next();
+});
+
 mongoose.connect(process.env.MONGO)
 
     .then(() => {
-        console.log("DataBase Connected...")
+        console.log(`[${new Date().toISOString()}] Database connected`)
     })
     .catch((err) => {
-        console.log(err.message)
+        console.error(`[${new Date().toISOString()}] Database connection error: ${err.message}`)
     })
 
 app.use(express.json());
@@ -36,6 +47,9 @@ app.use('/api/attendance',AttendanceRouter)
 app.use((err, req, res, next) => {
     const statusCode = err.statusCode || 500;
     const message = err.message || "internal server error";
+
+    console.error(`[${new Date().toISOString()}] Request error: ${req.method} ${req.originalUrl} -> ${statusCode} ${message}`);
+
     return res.status(statusCode).json(
         {
             success: false,
@@ -48,7 +62,7 @@ app.use((err, req, res, next) => {
 
 
 app.listen(port, () => {
-    console.log(`Server running on port ${port}`)
+    console.log(`[${new Date().toISOString()}] Server running on port ${port}`)
 })
 
 
