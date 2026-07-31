@@ -1,8 +1,8 @@
 import React from 'react'
 import HalfDoughnutChart from '../Components/Common/HalfDoughnutChart'
 import { useSelector } from 'react-redux'
-import LineChart2 from '../Components/Common/LineChart2'
-import LineChart from '../Components/Common/LineChart'
+import LineChart2 from '../Components/Common/LineChart2.jsx'
+import LineChart from '../Components/Common/LineChart.jsx'
 import { BsStopwatchFill } from "react-icons/bs";
 import GrowthButton from '../Components/Common/GrowthButton'
 import BarChart from '../Components/Common/Barchart'
