@@ -1,8 +1,8 @@
 import React from 'react'
 import HalfDoughnutChart from '../Components/Common/HalfDoughnutChart'
 import { useSelector } from 'react-redux'
-import LineChart2 from '../Components/Common/LineChart2.jsx'
-import LineChart from '../Components/Common/LineChart.jsx'
+// import LineChart2 from '../Components/Common/LineChart2.jsx'
+// import LineChart from '../Components/Common/LineChart.jsx'
 import { BsStopwatchFill } from "react-icons/bs";
 import GrowthButton from '../Components/Common/GrowthButton'
 import BarChart from '../Components/Common/Barchart'
@@ -80,7 +80,7 @@ export default function Dashboard() {
       sm:p-8
       xsm:pt-4 xsm:p-1
       ">
-              <LineChart />
+              {/* <LineChart /> */}
             </div>
 
           </div>
@@ -155,7 +155,7 @@ export default function Dashboard() {
               <div className="flex justify-center items-center w-full">
                 <div className="w-full max-w-[320px] sm:max-w-full">
                   <div className="relative xsm:h-[100px] sm:h-[200px] min-[1300px]:h-[150px]">
-                    <LineChart2 />
+                    {/* <LineChart2 /> */}
                   </div>
                 </div>
               </div>
