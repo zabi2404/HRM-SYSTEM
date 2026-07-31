@@ -1,5 +1,5 @@
 import { jsx as _jsx, jsxs as _jsxs, Fragment as _Fragment } from "react/jsx-runtime";
-import axios from 'axios';
+import api from '@/lib/api';
 import { FaPhoneAlt } from 'react-icons/fa';
 import { IoIosMail } from 'react-icons/io';
 import { signOutUserSuccess } from '../../../Redux/user/userSlice';
@@ -10,7 +10,7 @@ export default function ProfileFirstSection({ name, job_title, email, contact_nu
     const User = useSelector((state) => state.user.currentUser);
     const param = useParams();
     const logout = () => {
-        axios.get('/api/auth/logout')
+        api.get('/auth/logout')
             .then((response) => {
             console.log(response.data);
             dispatch(signOutUserSuccess());

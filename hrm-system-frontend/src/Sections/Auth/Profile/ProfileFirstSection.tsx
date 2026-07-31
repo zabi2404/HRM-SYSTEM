@@ -1,4 +1,4 @@
-import axios from 'axios'
+import api from '@/lib/api'
 import React from 'react'
 import { FaPhoneAlt } from 'react-icons/fa'
 import { IoIosMail } from 'react-icons/io'
@@ -29,7 +29,7 @@ export default function ProfileFirstSection({ name, job_title, email, contact_nu
 
     const logout = ()=>{
     
-        axios.get('/api/auth/logout')
+        api.get('/auth/logout')
         .then((response)=>{
             console.log(response.data)
     dispatch(signOutUserSuccess());

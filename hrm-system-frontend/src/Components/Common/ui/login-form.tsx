@@ -6,7 +6,7 @@ import { toast } from "sonner"
 import { useNavigate } from "react-router-dom"
 import { ReactFormState } from "react-dom/client"
 import { useState } from "react"
-import axios from "axios"
+import api from "@/lib/api"
 
 // redux
 import { useDispatch, useSelector } from "react-redux";
@@ -45,7 +45,7 @@ const navigate = useNavigate();
 
     dispatch(Start());
 
-    axios.post('/api/auth/login', formData)
+    api.post('/auth/login', formData)
       .then((response) => {
         
 const data = response.data;

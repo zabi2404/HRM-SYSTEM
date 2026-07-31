@@ -11,7 +11,7 @@ import { Input } from "@/Components/Common/ui/input"
 import { Label } from "@/Components/Common/ui/label"
 import { RadioGroup, RadioGroupItem } from "@/Components/Common/ui/radio-group"
 import { useState } from "react"
-import axios from "axios"
+import api from "@/lib/api"
 import { useNavigate } from "react-router-dom"
 
 // redux
@@ -52,7 +52,7 @@ export function LoginForm({
 
     e.preventDefault();
     dispatch(Start())
-    axios.post("/api/auth/signup",formData)
+    api.post("/auth/signup",formData)
     .then((response)=>{
       console.log(response.data);
       dispatch(Success())

@@ -6,7 +6,7 @@ import { Label } from "@/Components/Common/ui/label";
 import { toast } from "sonner";
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
-import axios from "axios";
+import api from "@/lib/api";
 // redux
 import { useDispatch, useSelector } from "react-redux";
 import { signInSuccess } from '../../../Redux/user/userSlice';
@@ -30,7 +30,7 @@ export function LoginForm({ className, ...props }) {
     const FormSubbmission = (e) => {
         e.preventDefault();
         dispatch(Start());
-        axios.post('/api/auth/login', formData)
+        api.post('/auth/login', formData)
             .then((response) => {
             const data = response.data;
             console.log(data);
