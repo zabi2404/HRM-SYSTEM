@@ -29,10 +29,11 @@ import axios from "axios"
 
 // redux
 
-import { useDispatch, UseDispatch, useSelector } from "react-redux"
-import { Start, Success, failure } from '../../../Redux/user/loadingErrorSlice'
+import { useDispatch } from "react-redux"
+import { Start, Success } from '../../../Redux/user/loadingErrorSlice'
 import { toast } from "sonner"
 import { useNavigate } from "react-router-dom"
+import { useState } from "react"
 
 export function AddNewUser() {
   const [open, setOpen] = React.useState(false)
@@ -92,10 +93,10 @@ function ProfileForm({ className }: React.ComponentProps<"form">) {
 
   //redux
   const dispatch = useDispatch();
-  const { loading, error } = useSelector((state: any) => state.loadingError)
+  // const { loading, error } = useSelector((state: any) => state.loadingError)
 
   // HANDLING FORM AND SUBBMISSION OF FORM
-  const [formData, setFormData] = React.useState({
+  const [formData, setFormData] = useState({
   })
 
 const navigate = useNavigate();
